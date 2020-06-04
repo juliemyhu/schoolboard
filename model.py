@@ -19,7 +19,10 @@ class User(db.Model):
 	password = db.Column(db.String)
 	location = db.Column(db.String)
 
-	usercolleges = db.relationship("UserColleges")
+	# usercolleges = db.relationship("UserColleges")
+	usercolleges = db.relationship("College",
+									secondary="user_colleges",
+									backref="users")
 
 	def __repr__(self):
 		return f'<User user_id={self.user_id} email={self.email}>'
@@ -36,7 +39,7 @@ class College(db.Model):
 	location = db.Column (db.String)
 	program = db.Column(db.String)
 
-	usercolleges = db.relationship("UserColleges")
+	# usercolleges = db.relationship("UserColleges")
 
 
 	def __repr__(self):
@@ -52,8 +55,8 @@ class UserCollege(db.Model):
 	college_id = db.Column(db.Integer, db.ForeignKey('colleges.college_id'), nullable=False)
 
 
-	colleges = db.relationship("College")
-	users = db.relationship("User")
+	# colleges = db.relationship("College")
+	# users = db.relationship("User")
 
 	def __repr__(self):
 		return f'<UserColleges user_id={self.user_id} college_id={self.college_id}>'
@@ -69,6 +72,8 @@ class Program(db.Model):
 	link=db.Column(db.String)
 	label=db.column(db.String)
 
+	programrequirements = db.relationship("ProgramRequirement")
+
 	def __repr__(self):
 		return f'<Program program_id={self.program_id} college_id={self.college_id}>'
 
@@ -78,6 +83,8 @@ class Requirement(db.Model):
 	__tablename='requirements'
 
 	requirement_type = db.Column(db.String, primary_key = True)
+
+	programrequirements = db.relationship("ProgramRequirement")
 
 
 	def __repr__(self):
@@ -94,6 +101,8 @@ class ProgramRequirement(db.Model):
 	status= db.Column(db.String)
 	date = db.Column(db.String)
 
+	programs = db.relationship("Program")
+	requirements = db.relationship("Requirement")
 
 	def __repr__(self):
 		return f'<ProgramRequirement program_requirements_id={self.program_requirements_id} >'
@@ -110,11 +119,10 @@ class Prerequsites(db.Model):
 	grade = db.Column(db.String)
 	status = db.Column(db.String)
 
+	requirement = db.relationship('Program', backref='prerequsites')
+
 	def __repr__(self):
 		return f'<Prerequsites prerequsites_id={self.prerequsites_id} program_id={self.program_id} name={self.name} >'
-
-
-
 
 
 
@@ -142,12 +150,7 @@ if __name__ == '__main__':
 
 	print('HI'*100)
 
-	# Julie = User(email = "julie@test.com", password= "test", location= "San Francisco")
-	# UCI = College (name ="UCI", location="Irvine,CA", program="nursing")
 
-	# db.session.add(Julie)
-	# db.session.add(UCI)
-	# db.session.commit()
 
 
 

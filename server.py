@@ -22,11 +22,10 @@ def show_allschools():
 	
 
 # @app.route('/v1/api/college/info' methods="GET")
+def get_college():
 
 
-
-
-
+	return jsonify
 
 
 
