@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
-{% block title %} College Board Home {% endblock %}
+{% block title %} School Board Home {% endblock %}
 
 {% block body %}
-	<h1>Welcome to College Board!</h1>
-	<h2>Start by adding colleges</h2>
-	
+
+	<h2>Start by adding a school</h2>
+
+	<form id="college-form" >
+		<label>College: </label>
+			<input type="text" id="college">
+	    	<input type="submit">
+	  </form>
+
+{% endblock %}
+
+{% block js %}<script src="/static/js/schoolboard.js"></script>{% endblock %}
 
 
-<!-- 
+
+<!-- {% if 'user_id' not in session %}
 	<h2>Create an Account</h2>
 	<form action="/users" method="POST">
 		<p>
@@ -32,6 +42,6 @@
 		<p>
 			<input type="submit">
 		</p>
-	</form> -->
+	</form>
 
-{% endblock %}
+{% endif %} -->

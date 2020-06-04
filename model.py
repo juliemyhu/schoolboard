@@ -140,7 +140,7 @@ if __name__ == '__main__':
 	connect_to_db(app)
 	db.create_all()
 
-
+	print('HI'*100)
 
 	# Julie = User(email = "julie@test.com", password= "test", location= "San Francisco")
 	# UCI = College (name ="UCI", location="Irvine,CA", program="nursing")
