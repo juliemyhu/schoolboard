@@ -36,7 +36,10 @@ class College(db.Model):
 
 	college_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	name = db.Column(db.String)
-	location = db.Column (db.String)
+	state = db.Column(db.String)
+	city = db.Column(db.String)
+	longitude = db.Column (db.Float)
+	latitude = db.Column (db.Float)
 	program = db.Column(db.String)
 
 	# usercolleges = db.relationship("UserColleges")

@@ -1,5 +1,4 @@
-
-
+from model import db, User, College, UserCollege, Program, Requirement,ProgramRequirement, Prerequsites, connect_to_db
 
 def create_user(email, password, location):
 	"""Create and return a new user"""
@@ -13,11 +12,14 @@ def create_user(email, password, location):
 
 
 
-def create_college(name, location, program):
+def create_college(name, city, state, longitude, latitude):
 	"""Create and return a new college"""
-	college = College(name=name, location=location, program=program)
+	college = College(name=name, city=city, state=state, longitude=longitude, latitude=latitude)
 
 	db.session.add(college)
 	db.session.commit()
 
 	return college
+
+
+

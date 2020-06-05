@@ -1,9 +1,10 @@
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, jsonify, redirect)
 from model import connect_to_db
 from jinja2 import StrictUndefined
+import crud
 
 app = Flask(__name__)
-app.secret_key = "college"
+app.secret_key = "c3so-l2o8-4bld-59o7-c1ra-le60-hoge"
 app.jinja_env.undefined = StrictUndefined
 
 
@@ -21,11 +22,19 @@ def show_allschools():
 	print ("Hi")
 	
 
-# @app.route('/v1/api/college/info' methods="GET")
-def get_college():
+@app.route('/add-college', methods=["POST"])
+def add_college():
+	print("add-college route called")
+	print(request.form)
+	college_name = request.form.get("collegeName")
+	college_city = request.form.get("city")
+	college_state = request.form.get("state")
+	college_lat = request.form.get("lat")
+	college_long = request.form.get("long")
+	
 
-
-	return jsonify
+	crud.create_college(college_name, college_city, college_state, college_lat, college_long)
+	return redirect('/allschools')
 
 
 
