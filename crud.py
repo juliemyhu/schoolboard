@@ -22,4 +22,12 @@ def create_college(name, city, state, longitude, latitude):
 	return college
 
 
+def get_colleges():
+	"""return all colleges"""
 
+	return College.query.all()
+
+def get_mycolleges():
+	"""return all of a users colleges"""
+
+	return UserCollege.query.all()

@@ -16,10 +16,13 @@ def show_homepage():
     return render_template('homepage.html')
 
 
-@app.route('/allschools')
-def show_allschools():
+@app.route('/mycolleges')
+def show_mycolleges():
 	"""Shows all schools"""
-	print ("Hi")
+	colleges = crud.get_mycolleges()
+	print(colleges)
+
+	return render_template('my_colleges.html', colleges=colleges)
 	
 
 @app.route('/add-college', methods=["POST"])
@@ -34,7 +37,7 @@ def add_college():
 	
 
 	crud.create_college(college_name, college_city, college_state, college_lat, college_long)
-	return redirect('/allschools')
+	return redirect('/mycolleges')
 
 
 

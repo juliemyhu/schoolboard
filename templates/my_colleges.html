@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} My colleges {% endblock %}
+
+{% block body %}
+
+<h>hello</h>
+{% for college in colleges %}
+	<div> {{user_college.name}} </div>
+
+{% endfor %}
+
+{% endblock %}
