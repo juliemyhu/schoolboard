@@ -13,13 +13,13 @@ app.jinja_env.undefined = StrictUndefined
 def show_homepage():
     """Show the application's homepage."""
 
-    return render_template('homepage.html')
+    return render_template('react_homepage.html')
 
 
 @app.route('/mycolleges')
 def show_mycolleges():
-	"""Shows all schools"""
-	colleges = crud.get_mycolleges()
+	"""Shows all of a users schools"""
+	colleges = crud.get_myprograms()
 	print(colleges)
 
 	return render_template('my_colleges.html', colleges=colleges)
@@ -29,14 +29,18 @@ def show_mycolleges():
 def add_college():
 	print("add-college route called")
 	print(request.form)
+	college_id = request.form.get("id")
 	college_name = request.form.get("collegeName")
 	college_city = request.form.get("city")
 	college_state = request.form.get("state")
 	college_lat = request.form.get("lat")
 	college_long = request.form.get("long")
 	
-
-	crud.create_college(college_name, college_city, college_state, college_lat, college_long)
+	college = crud.get_college_by_id(college_id)
+	if college:
+		pass
+	else:
+		crud.create_college(college_id, college_name, college_city, college_state, college_lat, college_long)
 	return redirect('/mycolleges')
 
 

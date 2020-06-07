@@ -1,4 +1,4 @@
-from model import db, User, College, UserCollege, Program, Requirement,ProgramRequirement, Prerequsites, connect_to_db
+from model import db, User, College, UserProgram, Program, Requirement,ProgramRequirement, Prerequsites, connect_to_db
 
 def create_user(email, password, location):
 	"""Create and return a new user"""
@@ -12,22 +12,37 @@ def create_user(email, password, location):
 
 
 
-def create_college(name, city, state, longitude, latitude):
+def create_college(college_id, name, city, state, longitude, latitude):
 	"""Create and return a new college"""
-	college = College(name=name, city=city, state=state, longitude=longitude, latitude=latitude)
+	college = College(college_id=college_id, name=name, city=city, state=state, longitude=longitude, latitude=latitude)
 
 	db.session.add(college)
 	db.session.commit()
 
 	return college
 
+def get_college_by_id(id):
+	"""returns college by id"""
 
-def get_colleges():
-	"""return all colleges"""
+	return College.query.filter(College.college_id == id).first()
 
-	return College.query.all()
 
-def get_mycolleges():
+# def create_user_college(college)
+	
+# 	user_colleges = UserProgram(college_id =college_id)
+
+def create_program(college_id, cohort, cost=0, link="no_link"):
+	"""Create and return program"""
+	program = Program(college_id=college_id, cohort=cohort, cost=cost, link=link) 
+
+	db.session.add(Program)
+	db.session.commit()
+	return program 
+
+
+def get_myprograms():
 	"""return all of a users colleges"""
 
-	return UserCollege.query.all()
+	return UserProgram.query.all()
+
+

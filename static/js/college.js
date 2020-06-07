@@ -36,6 +36,7 @@ $('#college-form').on('submit', (evt) => {
 
 			for(let i = 0; i < result.colleges.length; i++) {
 				const formData = {
+					id: result.colleges[i].collegeUnitId,
 					collegeName : result.colleges[i].name,
 					lat : result.colleges[i].locationLat,
 					long : result.colleges[i].locationLong,
@@ -66,3 +67,31 @@ $('#college-form').on('submit', (evt) => {
 //   .then(response => {
 //     console.log(response)
 //   })
+const programForm = `
+	<form id=new-program>
+		<div>
+		<label>Program:</label>
+			<input type="text" name="program"></input>
+		</div>
+		<div>
+		<label>College:</label>
+			<input type="text" name= "college"></input>
+		</div>
+		<div>
+		<label>Cohort</label>
+			<input type="text" name="cohort"></input>
+		</div>
+		<div>
+		<label>Link:</label>
+			<input type="text" name="link"></input>
+		</div>
+		<div>
+		<button id=submit-program type="button">Save</button>
+		</div>
+	</form>
+`;
+
+$('#program').on('click' ,() => {
+	alert('you clicked the add program button');
+	$('#program-form').html(programForm)
+});

@@ -6,25 +6,29 @@
 	<h2>Let's add some schools</h2>
 
 	<ul>
-		<li><a href="/mycolleges">View all of my colleges</a></li>
+		<li><a href="/">back to my colleges</a></li>
 	</ul>
 
 	<form id="college-form" >
 		<label>College: </label>
 			<input type="text" id="college">
 	    	<input type="submit">
-	  </form>
+	</form>
 
 	<div id="college-result"> 
 	</div>
 
+	<button id=program type="button">Add Program</button>
+
+	<div id="program-form"> 
+	</div>
 {% endblock %}
 
 {% block js %}<script src="/static/js/college.js"></script>{% endblock %}
 
 
 
-<!-- {% if 'user_id' not in session %} -->
+<!-- {% if 'user_id' not in session %}
 	<h2>Create an Account</h2>
 	<form action="/users" method="POST">
 		<p>
@@ -51,4 +55,4 @@
 		</p>
 	</form>
 
-{% endif %}
+{% endif %} -->

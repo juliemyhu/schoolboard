@@ -20,9 +20,7 @@ class User(db.Model):
 	location = db.Column(db.String)
 
 	# usercolleges = db.relationship("UserColleges")
-	usercolleges = db.relationship("College",
-									secondary="user_colleges",
-									backref="users")
+	userprograms = db.relationship("UserProgram")
 
 	def __repr__(self):
 		return f'<User user_id={self.user_id} email={self.email}>'
@@ -34,32 +32,34 @@ class College(db.Model):
 
 	__tablename__ = 'colleges'
 
-	college_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+	college_id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String)
 	state = db.Column(db.String)
 	city = db.Column(db.String)
 	longitude = db.Column (db.Float)
 	latitude = db.Column (db.Float)
-	program = db.Column(db.String)
+
 
 	# usercolleges = db.relationship("UserColleges")
+	# userprograms = db.relationship("UserProgram")
+	# programs=db.relationship("program") dont need this because we have backref
 
 
 	def __repr__(self):
 		return f'<College college_id={self.college_id} college_id={self.college_id}>'
 
-class UserCollege(db.Model):
+class UserProgram(db.Model):
 	"""College of a specific user"""
 
-	__tablename__ = 'user_colleges'
+	__tablename__ = 'user_programs'
 
-	user_colleges_id= db.Column(db.Integer, autoincrement= True, primary_key=True)
+	user_program_id= db.Column(db.Integer, autoincrement= True, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-	college_id = db.Column(db.Integer, db.ForeignKey('colleges.college_id'), nullable=False)
+	program_id = db.Column(db.Integer, db.ForeignKey('programs.program_id'), nullable=False)
 
 
-	# colleges = db.relationship("College")
-	# users = db.relationship("User")
+	programs = db.relationship("Program")
+	users = db.relationship("User")
 
 	def __repr__(self):
 		return f'<UserColleges user_id={self.user_id} college_id={self.college_id}>'
@@ -76,6 +76,7 @@ class Program(db.Model):
 	label=db.column(db.String)
 
 	programrequirements = db.relationship("ProgramRequirement")
+	college = db.relationship("College", backref="programs")
 
 	def __repr__(self):
 		return f'<Program program_id={self.program_id} college_id={self.college_id}>'
