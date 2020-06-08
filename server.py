@@ -16,13 +16,13 @@ def show_homepage():
     return render_template('react_homepage.html')
 
 
-@app.route('/mycolleges')
-def show_mycolleges():
-	"""Shows all of a users schools"""
-	colleges = crud.get_myprograms()
-	print(colleges)
+# @app.route('/mycolleges')
+# def show_mycolleges():
+# 	"""Shows all of a users schools"""
+# 	colleges = crud.get_myprograms()
+# 	print(colleges)
 
-	return render_template('my_colleges.html', colleges=colleges)
+# 	return render_template('my_colleges.html', colleges=colleges)
 	
 
 @app.route('/add-college', methods=["POST"])
@@ -41,9 +41,20 @@ def add_college():
 		pass
 	else:
 		crud.create_college(college_id, college_name, college_city, college_state, college_lat, college_long)
-	return redirect('/mycolleges')
+	return redirect('/')
 
 
+@app.route('/add-program', methods = ['POST'])
+def add_program():
+	"""Create new program."""
+
+	college =request.form.get('college')
+	program = request.form.get('program')
+	cohort = request.form.get('cohort')
+
+	crud.create_program(college, program, cohort )
+
+	return redirect('/')
 
 
 
