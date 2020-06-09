@@ -38,19 +38,45 @@ class ProgramForm extends React.Component {
         event.preventDefault();
 
         const college = this.state.college
-        const URL = 'https://api.collegeai.com/v1/api/college/info?api_key=free_d6e794d268065566fd05b280ee&college_names=' + college + '&info_ids=city%2Clocation_lat%2Clocation_long%2C'
+        const URL = 'https://api.collegeai.com/v1/api/college/info?api_key=' + MY_API_KEY + '&college_names=' + college + '&info_ids=city%2Clocation_lat%2Clocation_long%2Cstate_abbr'
         
         fetch(URL)
         .then(r => r.json())
-        .then(response => {
-            console.log(response)
-        })
+        .then(response => { 
+            console.log(response);
+            console.log(response.colleges);
+            
+            if (response.success == true) {
+                console.log(response.colleges[0]);
+                console.log(response.colleges[0].name);
+                const college = response.colleges[0];
+                var formData = {
+                    id:college.collegeUnitId,
+                    collegeName :college.name,
+                    lat : college.locationLat,
+                    long: college.locationLong,
+                    state: college.stateAbbr,
+                    city: college.city
+                }
+                console.log("formData", formData);
+                console.log("jsonify", JSON.stringify(formData));
+                fetch('/add-college', {
+                    method:"POST",
+                    body: JSON.stringify(formData),
+                    headers:{
+                        'Content-Type': 'application/json'
+                    }
+                }).then(console.log('fetch completed'))
 
-    //     fetch('/add-program', {
-    //         method: 'POST',
-    //         body: data,
-    //     });
+            }
+            else {alert("could not find college")}
+        });
+
+    
+
     }
+
+
 
 
 

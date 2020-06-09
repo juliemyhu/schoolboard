@@ -28,13 +28,15 @@ def show_homepage():
 @app.route('/add-college', methods=["POST"])
 def add_college():
 	print("add-college route called")
-	print(request.form)
-	college_id = request.form.get("id")
-	college_name = request.form.get("collegeName")
-	college_city = request.form.get("city")
-	college_state = request.form.get("state")
-	college_lat = request.form.get("lat")
-	college_long = request.form.get("long")
+	print(request)
+	print(request.get_json())
+	data = request.get_json()
+	college_id = data.get("id")
+	college_name = data.get("collegeName")
+	college_city = data.get("city")
+	college_state = data.get("state")
+	college_lat = data.get("lat")
+	college_long = data.get("long")
 	
 	college = crud.get_college_by_id(college_id)
 	if college:
