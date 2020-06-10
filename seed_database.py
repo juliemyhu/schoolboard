@@ -26,3 +26,5 @@ for college in college_data:
     db_college = crud.create_college(college_id, name, city, state, longitude, latitude)
 
     colleges_in_db.append(db_college)
+
+crud.create_user("user@user.com", "123", "San Francisco,CA")
