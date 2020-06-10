@@ -30,17 +30,21 @@ def get_college_by_id(id):
 	return College.query.filter(College.college_id == id).first()
 
 
-def create_program(college_id, program, cohort, cost=0, link="no_link"):
+def create_program(college_id, name, cohort, link:"no_link"):
 	"""Create and return program"""
-	program = Program(college_id=college_id, program=program, cohort=cohort, cost=cost, link=link) 
+	print("create programm called")
 
-	db.session.add(Program)
+	program = Program(college_id=college_id, name=name, cohort=cohort, link=link) 
+
+	print('program created')
+
+	db.session.add(program)
 	db.session.commit()
 	return program 
 
 
-def get_myprograms():
-	"""return all of a users colleges"""
+def get_users_programs(user_id):
+	"""return all programs where user_id=   """
 
 	return UserProgram.query.all()
 

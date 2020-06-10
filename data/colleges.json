@@ -1,0 +1,21 @@
+[
+    {
+        "college_id": "110653",
+        "name": "University of California - Irvine",
+        "state": "CA",
+        "city": "Irvine",
+        "longitude": -117.841248,
+        "latitude": 33.648434
+    },
+    {
+        "college_id": "123961",
+        "name": "University of Southern California",
+        "state": "CA",
+        "city": "Los Angeles",
+        "longitude": -118.283858,
+        "latitude": 34.021058
+    }
+
+ ]
+
+ 

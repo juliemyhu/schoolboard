@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+
 db = SQLAlchemy()
 
 
@@ -69,11 +69,11 @@ class Program(db.Model):
 
 	__tablename__= 'programs'
 
-	program_id = db.Column(db.Integer,primary_key=True)
+	program_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	college_id = db.Column(db.Integer, db.ForeignKey('colleges.college_id'), nullable=False)
+	name = db.Column(db.String)
 	cohort=  db.Column(db.String)
 	link=db.Column(db.String)
-	label=db.column(db.String)
 
 	programrequirements = db.relationship("ProgramRequirement")
 	college = db.relationship("College", backref="programs")
@@ -142,17 +142,10 @@ def connect_to_db(flask_app, db_uri='postgresql:///schoolboards', echo=True):
 
 
 if __name__ == '__main__':
-	import os 
+
 	from server import app
 
-	os.system('dropdb schoolboards')
-	os.system('createdb schoolboards')
-
-	# college to database
 	connect_to_db(app)
-	db.create_all()
-
-	print('HI'*100)
 
 
 

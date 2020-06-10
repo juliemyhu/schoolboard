@@ -27,10 +27,12 @@ def show_homepage():
 
 @app.route('/add-college', methods=["POST"])
 def add_college():
+	"""creates new college"""
 	print("add-college route called")
 	print(request)
 	print(request.get_json())
 	data = request.get_json()
+	
 	college_id = data.get("id")
 	college_name = data.get("collegeName")
 	college_city = data.get("city")
@@ -38,31 +40,36 @@ def add_college():
 	college_lat = data.get("lat")
 	college_long = data.get("long")
 	
-	college = crud.get_college_by_id(college_id)
-	if college:
-		pass
-	else:
-		crud.create_college(college_id, college_name, college_city, college_state, college_lat, college_long)
-	return redirect('/')
+	try:
+		crud.create_college(college_id, college_name, college_city, college_state, college_long, college_lat)
+		return jsonify({'success': True})
+	except Exception as err:
+		return jsonify({'success': False,
+						'error': str(err)})
 
 
 @app.route('/add-program', methods = ['POST'])
 def add_program():
 	"""Create new program."""
+	print("add-program in server called")
+	print("program info in add_program route:", request.get_json())
+	data = request.get_json()
 
-	college =request.form.get('college')
-	program = request.form.get('program')
-	cohort = request.form.get('cohort')
+	
+	college = data.get('id')
+	name = data.get('programName')
+	cohort = data.get('cohort')
+	link= data.get('link')
 
-	crud.create_program(college, program, cohort )
-
-	return redirect('/')
-
-
+	try:
+		crud.create_program(college, name, cohort, link)
+		return jsonify({'success':True})
+	except Exception as err:
+		return jsonify({'success': False,
+						'error':str(err)})
 
 
 if __name__ == '__main__':
 	connect_to_db(app)
 	app.run(host='0.0.0.0', debug=True)
 
-	print('Hi'*100)

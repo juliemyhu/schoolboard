@@ -4,22 +4,22 @@ class ProgramForm extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            value: '',
-            program: '',
+            id: '',
+            programName: '',
             college: '',
             cohort: '',
             link: ''
     };
 
-        this.handleChangeProgram = this.handleChangeProgram.bind(this);
+        this.handleChangeProgramName = this.handleChangeProgramName.bind(this);
         this.handleChangeCollege= this.handleChangeCollege.bind(this);
         this.handleChangeCohort= this.handleChangeCohort.bind(this);
         this.handleChangeLink= this.handleChangeLink.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeProgram(event) {
-        this.setState({program: event.target.value});
+    handleChangeProgramName(event) {
+        this.setState({programName: event.target.value});
     }
     handleChangeCollege(event) {
         this.setState({college: event.target.value});
@@ -51,12 +51,12 @@ class ProgramForm extends React.Component {
                 console.log(response.colleges[0].name);
                 const college = response.colleges[0];
                 var formData = {
-                    id:college.collegeUnitId,
-                    collegeName :college.name,
+                    id : college.collegeUnitId,
+                    collegeName : college.name,
                     lat : college.locationLat,
-                    long: college.locationLong,
-                    state: college.stateAbbr,
-                    city: college.city
+                    long : college.locationLong,
+                    state : college.stateAbbr,
+                    city : college.city
                 }
                 console.log("formData", formData);
                 console.log("jsonify", JSON.stringify(formData));
@@ -66,16 +66,32 @@ class ProgramForm extends React.Component {
                     headers:{
                         'Content-Type': 'application/json'
                     }
-                }).then(console.log('fetch completed'))
+                }).then( () => {
+                    this.setState({id:formData.id})
+                    fetch('/add-program', {
+                        method:"POST",
+                        body: JSON.stringify(this.state),
+                        headers: {'Content-type': 'application/json'}
+                    }).then (console.log('add program fetch completed')) 
+                    console.log('add college fetch completed');
+                })
+                    
 
             }
             else {alert("could not find college")}
         });
-
-    
-
+        
     }
 
+    // addProgramFetch(college_id) {
+    //     this.setState({id:college_id})
+    //     fetch('/add-program', {
+    //         method:"POST",
+    //         body: JSON.stringify(this.state),
+    //         headers: {'Content-type': 'application/json'}
+    //     }).then (console.log('add program fetch completed')) 
+    //     console.log('add college fetch completed')
+    // }
 
 
 
@@ -86,14 +102,14 @@ class ProgramForm extends React.Component {
             {this.props.children}
         <form onSubmit={this.handleSubmit}>
             <label>Program:</label>
-                <input type="text" value={this.state.program} onChange={this.handleChangeProgram}></input>
+                <input type="text" value={this.state.programName} onChange={this.handleChangeProgramName}></input>
             <label>College:</label>
                 <input type="text" value={this.state.college} onChange={this.handleChangeCollege}></input>
             <label>Cohort</label>
                 <input type="text" value={this.state.cohort} onChange={this.handleChangeCohort}></input>
             <label>Link:</label>
                 <input type="text" value={this.state.link} onChange={this.handleChangeLink}></input>
-            <input type="submit" value="Submit"/>  
+            <input type="submit" value="Add"/>  
 	    </form>
         <button onClick= {() => this.props.onDelete(this.props.form.id)}>Delete</button>
         </div>
