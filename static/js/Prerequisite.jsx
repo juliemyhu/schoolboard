@@ -1,12 +1,26 @@
 class PrerequisiteForm extends React.Component {
     constructor(props) {
         super(props); 
-            this.state = {
-                name: null,
-                units: null ,
-                grade:null,
-                status: null
-            };
+        this.state = {
+            name: '',
+            units: '' ,
+            grade:'',
+            status: 'complete'
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+        handleInputChange(event) {
+            this.setState({ 
+                [event.target.name]: event.target.value
+            });
+            console.log(this.state);
+        }
+    
+        handleSubmit(event) {
+            event.preventDefault();
+            alert('the prerequsite submit button was clicked');
+            console.log(this.state);
         }
     
     render() {
@@ -15,13 +29,13 @@ class PrerequisiteForm extends React.Component {
                 <h3>Add Prerequisite</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label>name:</label>
-                        <input type="text" value={this.state.name}></input>
+                        <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} ></input>
                     <label>Units:</label>
-                        <input type="text" value={this.state.units}></input>
+                        <input type="text" name="units" value={this.state.units} onChange={this.handleInputChange}></input>
                     <label>Grade</label>
-                        <input type="text" value={this.state.grade}></input>
+                        <input type="text" name="grade" value={this.state.grade} onChange={this.handleInputChange}></input>
                     <label>Status:</label>
-                            <select value={this.state.value} onChange={this.handleChange}>
+                            <select name="status" value={this.state.status} onChange={this.handleInputChange}>
                                 <option value="complete">Complete</option>
                                 <option value="in-progress">In Progress</option>
                                 <option value="planned">Planned</option>
