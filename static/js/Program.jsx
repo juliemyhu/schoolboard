@@ -94,6 +94,7 @@ class ProgramForm extends React.Component {
         return (
         <div>
             {this.props.children}
+            <h3>Add School</h3>
         <form onSubmit={this.handleSubmit}>
             <label>Program:</label>
                 <input type="text" value={this.state.programName} onChange={this.handleChangeProgramName}></input>
@@ -120,8 +121,7 @@ class ProgramFormContainer extends React.Component {
         this.state = {
             forms: [
                 {id: 1, value: 0},
-                {id: 2, value: 0},
-                {id: 3, value: 0}
+            
             ]
         };
     }
@@ -141,7 +141,8 @@ class ProgramFormContainer extends React.Component {
                     key={form.id} 
                     onDelete={this.handleDelete} 
                     form={form}
-                    ><h4>Program#{form.id}</h4>
+                     >
+                         {/* <h4>Program#{form.id}</h4> */}
                 </ProgramForm>
              ))}
         </div>
