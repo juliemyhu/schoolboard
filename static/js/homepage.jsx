@@ -1,4 +1,6 @@
+
 const MY_API_KEY ='free_d6e794d268065566fd05b280ee'
+
 
 class ProgramForm extends React.Component {
     constructor(props) {
@@ -83,15 +85,6 @@ class ProgramForm extends React.Component {
         
     }
 
-    // addProgramFetch(college_id) {
-    //     this.setState({id:college_id})
-    //     fetch('/add-program', {
-    //         method:"POST",
-    //         body: JSON.stringify(this.state),
-    //         headers: {'Content-type': 'application/json'}
-    //     }).then (console.log('add program fetch completed')) 
-    //     console.log('add college fetch completed')
-    // }
 
 
 
@@ -111,7 +104,7 @@ class ProgramForm extends React.Component {
                 <input type="text" value={this.state.link} onChange={this.handleChangeLink}></input>
             <input type="submit" value="Add"/>  
 	    </form>
-        <button onClick= {() => this.props.onDelete(this.props.form.id)}>Delete</button>
+        {/* <button onClick= {() => this.props.onDelete(this.props.form.id)}>Delete</button> */}
         </div>
         );
     }
@@ -130,18 +123,14 @@ class ProgramFormContainer extends React.Component {
                 {id: 3, value: 0}
             ]
         };
-        this.addProgram = this.addProgram.bind(this);
     }
  
-    addProgram() {
-        const program = this.state.listOfForms.concat(<ProgramForm />);
-        this.setState({listOfForms : program});
-    }
 
-    handleDelete = formId => {
-        const forms = this.state.forms.filter(f => f.id !== formId);
-        this.setState({ forms }); 
-    }; 
+
+    // handleDelete = formId => {
+    //     const forms = this.state.forms.filter(f => f.id !== formId);
+    //     this.setState({ forms }); 
+    // }; 
 
     render() {
         return ( 

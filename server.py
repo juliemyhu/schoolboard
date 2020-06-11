@@ -63,6 +63,8 @@ def add_program():
 
 	try:
 		crud.create_program(college, name, cohort, link)
+		
+		
 		return jsonify({'success':True})
 	except Exception as err:
 		return jsonify({'success': False,

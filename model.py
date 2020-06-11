@@ -111,7 +111,7 @@ class ProgramRequirement(db.Model):
 	def __repr__(self):
 		return f'<ProgramRequirement program_requirements_id={self.program_requirements_id} >'
 
-class Prerequsites(db.Model):
+class Prerequsite(db.Model):
 	"""A prerequsite course of a program. """
 
 	__tablename__= 'prerequsites'

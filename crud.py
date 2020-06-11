@@ -1,4 +1,4 @@
-from model import db, User, College, UserProgram, Program, Requirement,ProgramRequirement, Prerequsites, connect_to_db
+from model import db, User, College, UserProgram, Program, Requirement,ProgramRequirement, Prerequsite, connect_to_db
 
 def create_user(email, password, location="default"):
 	"""Create and return a new user"""
@@ -13,6 +13,15 @@ def get_user_by_id(id):
 	"""return a user by id"""
 
 	return User.query.get(id)
+
+def create_user_program(user_id, program_id):
+
+	user_program = UserProgram(user_id=user_id, program_id=program_id)
+
+	db.session.add(user_program)
+	db.session.commit()
+
+	return user_program
 
 
 def create_college(college_id, name, city, state, longitude, latitude):
@@ -34,18 +43,43 @@ def create_program(college_id, name, cohort, link:"no_link"):
 	"""Create and return program"""
 	print("create programm called")
 
-	program = Program(college_id=college_id, name=name, cohort=cohort, link=link) 
+	program = Program(college_id=college_id, name=name, cohort=cohort, link=link)
+	print(program)
+	print (program.program_id, program.name) 
 
 	print('program created')
-
 	db.session.add(program)
 	db.session.commit()
-	return program 
+	print ("after commit",program.program_id)
+	user_program = UserProgram(user_id=1, program_id=program.program_id)
+	db.session.add(user_program)
+	db.session.commit()
+
+	print("after commit 2", user_program)
+	print("hello", user_program.programs)
+	print("helloss", user_program.users)
+	return program, user_program
 
 
-def get_users_programs(user_id):
+def get_users_programs(id):
 	"""return all programs where user_id=   """
 
-	return UserProgram.query.all()
+	return UserProgram.query.filter(UserProgram.user_id == id).all()
 
+def create_requirement(type):
+	"""Create and return requirement"""
+	requirement = Requirement(type=type)
+	db.session.add(requirement)
+	db.session.commit()
+
+	return requirement 
+
+def create_prerequsite(program_id, name, units, grade, status):
+	"""create and returns prerequsite"""
+
+	prerequsite= Prerequsite(program_id=program_id,name=name, units=units, grade=grade, status=status)
+	db.session.add(prerequsite)
+	db.session.commit()
+
+	return prerequsite
 
