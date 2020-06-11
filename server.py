@@ -13,7 +13,7 @@ app.jinja_env.undefined = StrictUndefined
 def show_homepage():
     """Show the application's homepage."""
 
-    return render_template('react_homepage.html')
+    return render_template('homepage.html')
 
 
 # @app.route('/mycolleges')
@@ -70,6 +70,9 @@ def add_program():
 		return jsonify({'success': False,
 						'error':str(err)})
 
+@app.route('/add-program', methods = ['POST'])
+def add_requirement():
+	pass
 
 if __name__ == '__main__':
 	connect_to_db(app)

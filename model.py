@@ -111,22 +111,22 @@ class ProgramRequirement(db.Model):
 	def __repr__(self):
 		return f'<ProgramRequirement program_requirements_id={self.program_requirements_id} >'
 
-class Prerequsite(db.Model):
-	"""A prerequsite course of a program. """
+class Prerequisite(db.Model):
+	"""A prerequisite course of a program. """
 
-	__tablename__= 'prerequsites'
+	__tablename__= 'prerequisites'
 
-	prerequsites_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+	prerequisites_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	program_id = db.Column(db.Integer, db.ForeignKey('programs.program_id'), nullable = False)
 	name = db.Column(db.String)
 	units = db.Column(db.Integer)
 	grade = db.Column(db.String)
 	status = db.Column(db.String)
 
-	requirement = db.relationship('Program', backref='prerequsites')
+	requirement = db.relationship('Program', backref='prerequisites')
 
 	def __repr__(self):
-		return f'<Prerequsites prerequsites_id={self.prerequsites_id} program_id={self.program_id} name={self.name} >'
+		return f'<Prerequisites prerequisites_id={self.prerequisites_id} program_id={self.program_id} name={self.name} >'
 
 
 

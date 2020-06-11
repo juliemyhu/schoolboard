@@ -1,58 +1,12 @@
 {% extends 'base.html' %}
-{% block title %} School Board Home {% endblock %}
+
+{% block title %}Homepage{% endblock %}
 
 {% block body %}
-
-	<h2>Let's add some schools</h2>
-
-	<ul>
-		<li><a href="/">back to my colleges</a></li>
-	</ul>
-
-	<form id="college-form" >
-		<label>College: </label>
-			<input type="text" id="college">
-	    	<input type="submit">
-	</form>
-
-	<div id="college-result"> 
-	</div>
-
-	<button id=program type="button">Add Program</button>
-
-	<div id="program-form"> 
-	</div>
+    <div id="app"></div>
 {% endblock %}
 
-{% block js %}<script src="/static/js/college.js"></script>{% endblock %}
-
-
-
-<!-- {% if 'user_id' not in session %}
-	<h2>Create an Account</h2>
-	<form action="/users" method="POST">
-		<p>
-			Email <input type="text" name="email">
-		</p>
-		<p>
-			Password <input type="password" name="password">
-		</p>
-		<p>
-			<input type="submit">
-		</p>
-	</form>
-
-	<h2>Login</h2>
-	<form action="/login" method="POST"> 
-		<p>
-			Email <input type="text" name="email">
-		</p>
-		<p>
-			Password <input type="password" name="password">
-		</p>
-		<p>
-			<input type="submit">
-		</p>
-	</form>
-
-{% endif %} -->
+{% block js %}
+	<script src="static/js/Homepage.jsx" type="text/jsx"></script>
+	
+{% endblock %}

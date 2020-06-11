@@ -1,4 +1,4 @@
-from model import db, User, College, UserProgram, Program, Requirement,ProgramRequirement, Prerequsite, connect_to_db
+from model import db, User, College, UserProgram, Program, Requirement,ProgramRequirement, Prerequisite, connect_to_db
 
 def create_user(email, password, location="default"):
 	"""Create and return a new user"""
