@@ -91,6 +91,41 @@ def add_prereqiuiste():
 		return jsonify({'success': False,
 						'error':str(err)})
 
+@app.route('/api/get_user_programs', methods= ["POST"])
+def get_user_programs():
+
+	programs = []
+
+	data = request.get_json()
+	print("data:", data)
+
+	# user_programs is a list of program objects 
+	try:
+		user_programs= crud.get_user_programs(data)
+		print ("the programs", user_programs)
+
+		for program in user_programs:
+			print("test program",program.program_id)
+
+			program_by_ids = crud.get_program_by_id(program.program_id)
+
+			print("test program id", program_by_ids)
+			programs.append(program_by_ids.as_dict())
+			print("the program list", programs)
+			
+		return jsonify({'success':True, 'programs':programs })
+
+	except Exception as err:
+		return jsonify({'success': False,
+						'error':str(err)})
+
+
+def get_prerequisite():
+	pass
+
+def get_program():
+	pass
+
 if __name__ == '__main__':
 	connect_to_db(app)
 	app.run(host='0.0.0.0', debug=True)

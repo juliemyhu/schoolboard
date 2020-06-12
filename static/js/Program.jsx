@@ -151,15 +151,18 @@ class ProgramFormContainer extends React.Component {
 
     }
 
+
+
+// ********** end ********************
+
+
+
 class ProgramContainer extends React.Component {
     // ProgramContainer receives a userId. Its going guestId. 
     constructor(props) {
         super(props);
         this.state = {
-            programs:[
-                // {Program1},
-                // {Program2}
-            ],
+            programs:[],
             user_id: this.props.user_id
         }
     }
@@ -172,53 +175,83 @@ class ProgramContainer extends React.Component {
             method:"POST",
             body: JSON.stringify(this.state.user_id),
             headers: {"Content-type": "application/json"}
-        }).then(res => {
-            const response = res.json();
+        }).then(r => r.json())
+        .then(response => {
+            console.log(response)
+            this.setState({programs:response.programs})
+            console.log(this.state)
+        })
+    
             // At this point we should a list of programs from server
             // Then we need to setState and update programs to have
+            // this.setState(programs)
             // the programs we received.
-        })
+            // res.json() = {[{program1}, {program2}, {program3}]}
     }
 
 
 
     render() {
+        return (
         <div>
             Render programs here from this.state.programs
             map thing goes here 
             {this.state.programs.map(program => (
-                <Program set the props here></Program>
+                <Program 
+                    key = {program.program_id}
+                    program_id = {program.program_id}
+                    name = {program.name}
+                    college = {program.college_id}
+                    cohort = {program.cohort}
+                    link = {program.link}
+                ></Program>
             ))}
         </div>
-    }
+        )}
 }
   
 class Program extends React.Component {
+    // We know that we are created with information
+    // We know the Program_id
+    // We know the college_id or we can fetch college_id 
+    constructor(props) {
+        super(props);
+        this.state = {
+            program_id:this.props.program_id,
+            name : this.props.name,
+            college : this.props.college,
+            cohort : this.props.cohort,
+            link : this.props.link
 
-    componentDidMount() {
-        // We need to know what program we're looking for
-        const program_id = this.props.program_id;
-        fetch('/get-prerequisites', {
-            method:"POST",
-            body: JSON.stringify(program_id),
-            headers: {'Content-type': 'applicatin/json'}
-        })
-        .then(response => {
-            // It should fetch the existing list of prerequisites
-            // For this program.
-            // Also, let's pass the program ID to PrerequisiteContainer
-            console.log(response.json())
-            const data = response.json()
-            // we would start setting states here. 
-        });
+        }
+        console.log("program's p_id", this.state.program_id);
     }
+
+    
 
     render() {
         return (
             <div>
-                <PrerequisiteContainer program_id={this.props.program_id}>
+                <div>
+                    Program: {this.state.program_id}
+                </div>
+                <div>
+                    Name: {this.state.name}
+                </div>
+                <div>
+                    College: {this.state.college}
+                </div>
+                <div>
+                    Cohort: {this.state.cohort}
+                </div>
+                <div>
+                    Link : {this.state.link}
+                </div>
+                <div>
+                    <PrerequisiteContainer program_id={this.state.program_id}>
 
-                </PrerequisiteContainer>
+                    </PrerequisiteContainer>
+                </div>
             </div>
         )
     }

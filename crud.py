@@ -61,10 +61,17 @@ def create_program(college_id, name, cohort, link:"no_link"):
 	return program, user_program
 
 
-def get_users_programs(id):
+def get_user_programs(id):
 	"""return all programs where user_id=   """
 
 	return UserProgram.query.filter(UserProgram.user_id == id).all()
+
+def get_program_by_id(id):
+	"""gets programs by programid"""
+
+	# return Program.query.filter(Program.program_id == id).all()
+	return Program.query.get(id)
+
 
 def create_requirement(type):
 	"""Create and return requirement"""

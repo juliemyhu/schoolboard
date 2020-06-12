@@ -13,11 +13,12 @@ class App extends React.Component {
 
         It should only have programFormContainer and
         ProgramContainer.
-        <ProgramFormContainer/>
-        <Prerequisite/>
+        {/* <ProgramFormContainer/> */}
+        <ProgramContainer user_id='1'/>
+        {/* <Prerequisite name="hello"/>
         <PrerequisiteContainer/>
         <ProgramContainer user={this.state.user_id}>
-        </ProgramContainer>
+        </ProgramContainer> */}
         </div>
         
             

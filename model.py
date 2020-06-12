@@ -62,7 +62,7 @@ class UserProgram(db.Model):
 	users = db.relationship("User")
 
 	def __repr__(self):
-		return f'<UserColleges user_id={self.user_id} college_id={self.college_id}>'
+		return f'<UserProgram user_id={self.user_id} program_id={self.program_id}>'
 
 class Program(db.Model):
 	"""A program."""
@@ -77,6 +77,9 @@ class Program(db.Model):
 
 	programrequirements = db.relationship("ProgramRequirement")
 	college = db.relationship("College", backref="programs")
+
+	def as_dict(self):
+		return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 	def __repr__(self):
 		return f'<Program program_id={self.program_id} college_id={self.college_id}>'
