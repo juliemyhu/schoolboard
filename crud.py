@@ -70,7 +70,23 @@ def get_program_by_id(id):
 	"""gets programs by programid"""
 
 	# return Program.query.filter(Program.program_id == id).all()
-	return Program.query.get(id)
+	print("CRUD CRUD CRUD")
+	condition2= (Program.college_id == College.college_id)
+	condition1= (Program.program_id==id)
+	for p, c in db.session.query(Program, College).filter(condition1, condition2).all():
+		print("Program_id: {} College_name: {} college_state: {}".format(p.program_id, c.name, c.state))
+		return {
+			"program_id":p.program_id,
+			"cohort":p.cohort,
+			"link":p.link,
+			"name":p.name,
+			"college_id":c.college_id,
+			"college_name":c.name,
+			"college_state":c.state,
+			"college_city":c.city,
+			"college_lat":c.latitude,
+			"college_lon":c.longitude
+		}
 
 
 def create_requirement(type):

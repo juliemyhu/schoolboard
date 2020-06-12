@@ -110,7 +110,7 @@ def get_user_programs():
 			program_by_ids = crud.get_program_by_id(program.program_id)
 
 			print("test program id", program_by_ids)
-			programs.append(program_by_ids.as_dict())
+			programs.append(program_by_ids)
 			print("the program list", programs)
 			
 		return jsonify({'success':True, 'programs':programs })
