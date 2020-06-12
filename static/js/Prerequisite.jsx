@@ -1,3 +1,4 @@
+
 class PrerequisiteForm extends React.Component {
     constructor(props) {
         super(props); 
@@ -5,7 +6,8 @@ class PrerequisiteForm extends React.Component {
             name: '',
             units: '' ,
             grade:'',
-            status: 'complete'
+            status: 'complete',
+            program_id: this.props.program_id
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -21,6 +23,13 @@ class PrerequisiteForm extends React.Component {
             event.preventDefault();
             alert('the prerequsite submit button was clicked');
             console.log(this.state);
+
+            this.props.program_id
+            fetch('/add-prerequisite', {
+                method:"POST",
+                body: JSON.stringify(this.state),
+                headers: {'Content-type': 'application/json'}
+            })
         }
     
     render() {
@@ -49,26 +58,45 @@ class PrerequisiteForm extends React.Component {
 }
 
 
-
-
-class PrerequisiteContainer extends React.Component {
-    
-    // constructer(props) {
-    //     super():
-    //     this.state = {
-    //         forms: [
-    //             {id: 1}
-    //         ]
-    //     }
-    // }
-    
-    
-    
+class Prerequisite extends React.Component { 
     render() {
         return (
         <div>
-            <PrerequisiteForm>
-            </PrerequisiteForm>
+            {this.props.name}
+            {this.props.units}
+            {this.props.status}
+            {this.props.grade}
         </div>)
+    }
+}
+
+class PrerequisiteContainer extends React.Component {
+    constructor(props) {
+        super(props); 
+        this.state = {
+            forms: [
+                {id: 1}
+            ],
+            prereqs:[]
+        };
+}
+
+    render() {
+        return (
+            <div>
+            {this.state.forms.map(form => (
+                <PrerequisiteForm key={form.id} />
+            ))}
+            {this.state.prereqs.map(prereq => (
+                <Prerequisite 
+                key={prereq.id}            
+                name = {prereq.name}
+                units = {prereq.units}
+                status = {prereq.status}
+                grade ={prereq.grade} />
+            ))}
+            </div>
+            
+        )
     }
 }

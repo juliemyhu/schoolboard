@@ -70,9 +70,26 @@ def add_program():
 		return jsonify({'success': False,
 						'error':str(err)})
 
-@app.route('/add-program', methods = ['POST'])
-def add_requirement():
-	pass
+@app.route('/add-prerequisite', methods = ['POST'])
+def add_prereqiuiste():
+	
+	data = request.get_json()
+
+	
+	grade = data.get('grade')
+	name = data.get('name')
+	status = data.get('status')
+	units= data.get('units')
+	program_id = data.get('program_id')
+
+	try:
+		crud.create_prerequisite(program_id,name,units,grade,status)
+		
+		
+		return jsonify({'success':True})
+	except Exception as err:
+		return jsonify({'success': False,
+						'error':str(err)})
 
 if __name__ == '__main__':
 	connect_to_db(app)

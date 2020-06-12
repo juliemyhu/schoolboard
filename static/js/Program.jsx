@@ -151,5 +151,75 @@ class ProgramFormContainer extends React.Component {
 
     }
 
+class ProgramContainer extends React.Component {
+    // ProgramContainer receives a userId. Its going guestId. 
+    constructor(props) {
+        super(props);
+        this.state = {
+            programs:[
+                // {Program1},
+                // {Program2}
+            ],
+            user_id: this.props.user_id
+        }
+    }
 
+    // Start off by finding all the programs this user has added.
+
+    componentDidMount() {
+        // Fetch the programs that this user has added.
+        fetch("/api/get_user_programs", {
+            method:"POST",
+            body: JSON.stringify(this.state.user_id),
+            headers: {"Content-type": "application/json"}
+        }).then(res => {
+            const response = res.json();
+            // At this point we should a list of programs from server
+            // Then we need to setState and update programs to have
+            // the programs we received.
+        })
+    }
+
+
+
+    render() {
+        <div>
+            Render programs here from this.state.programs
+            map thing goes here 
+            {this.state.programs.map(program => (
+                <Program set the props here></Program>
+            ))}
+        </div>
+    }
+}
   
+class Program extends React.Component {
+
+    componentDidMount() {
+        // We need to know what program we're looking for
+        const program_id = this.props.program_id;
+        fetch('/get-prerequisites', {
+            method:"POST",
+            body: JSON.stringify(program_id),
+            headers: {'Content-type': 'applicatin/json'}
+        })
+        .then(response => {
+            // It should fetch the existing list of prerequisites
+            // For this program.
+            // Also, let's pass the program ID to PrerequisiteContainer
+            console.log(response.json())
+            const data = response.json()
+            // we would start setting states here. 
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <PrerequisiteContainer program_id={this.props.program_id}>
+
+                </PrerequisiteContainer>
+            </div>
+        )
+    }
+}
