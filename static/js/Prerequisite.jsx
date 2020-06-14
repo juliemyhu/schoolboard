@@ -58,14 +58,29 @@ class PrerequisiteForm extends React.Component {
 
 // a single prerequsite displaying its information 
 class Prerequisite extends React.Component { 
+    constructor(props) {
+        super(props);
+        this.state = {
+            prerequisite_id:this.props.prerequisite_id,
+            name: this.props.name,
+            units: this.props.units,
+            grade: this.props.grade,
+            status: this.props.status
+        }
+    }
+
     render() {
         return (
-        <div>
-            {this.props.name}
-            {this.props.units}
-            {this.props.status}
-            {this.props.grade}
-        </div>)
+            <div>
+                <table>
+                    <tbody>
+                    <tr><td>Name:  {this.props.name}</td></tr>
+                    <tr><td>units: {this.props.units}</td></tr>
+                    <tr><td>Grade: {this.props.grade}, {this.state.c_state} </td></tr>
+                    <tr><td>status: {this.props.status}</td></tr>
+                    </tbody>
+                </table>
+            </div>)
     }
 }
 
@@ -75,43 +90,43 @@ class PrerequisiteContainer extends React.Component {
         super(props); 
         this.state = {
             prereqs:[],
-            program_id:this.props.program_id
+            program_id: this.props.program_id
         };
     }
 
     componentDidMount() {
         // We need to know what program we're looking for
-        const program_id = this.props.program_id;
         fetch('/get-prerequisites', {
             method:"POST",
-            body: JSON.stringify(program_id),
+            body: JSON.stringify(this.state.program_id),
             headers: {'Content-type': 'application/json'}
         })
+        .then(r => r.json())
         .then(response => {
+            console.log(response)
+        })
             // It should fetch the existing list of prerequisites
             // For this program.
             // Also, let's pass the program ID to PrerequisiteContainer
-            console.log(response.json())
-            const data = response.json()
+            // console.log(response.json())
+            // const data = response.json()
             // we would start setting states here.
              
-        });
-    }
+        }
+    
 
     render() {
         return (
             <div>
-            <PrerequisiteForm key='1' program_id={this.props.program_id}/>
-            {this.state.prereqs.map(prereq => (
-                <Prerequisite 
-                key={prereq.id}            
-                name = {prereq.name}
-                units = {prereq.units}
-                status = {prereq.status}
-                grade ={prereq.grade} />
-            ))}
-            </div>
-            
-        )
-    }
+                {this.state.prereqs.map(prereq => (
+                    <Prerequisite 
+                        key={prereq.id}            
+                        name = {prereq.name}
+                        units = {prereq.units}
+                        status = {prereq.status}
+                        grade ={prereq.grade}
+                    ></Prerequisite>
+                ))}
+            </div>   
+        )}
 }

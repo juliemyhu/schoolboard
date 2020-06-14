@@ -106,3 +106,20 @@ def create_prerequisite(program_id, name, units, grade, status):
 
 	return prerequisite
 
+def get_prerequisites(program_id):
+
+	return Prerequisite.query.filter(Prerequisite.program_id == program_id).all()
+	
+
+def get_prerequisite_by_id(id):
+	condition1 = (Prerequisite.program_id == Program.program_id)
+	condition2 = (Prerequisite.prerequisite_id == id)
+	for pre, pro in db.session.query(Prerequisite, Program).filter(condition1, condition2).all():
+		return {
+			"prerequisite_id":pre.prerequisite_id,
+			"name": pre.name,
+			"units": pre.units,
+			"grade": pre.grade,
+			"status": pre.status
+		}
+	

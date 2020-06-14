@@ -16,7 +16,7 @@ class App extends React.Component {
         {/* <ProgramFormContainer/> */}
         <ProgramContainer user_id='1'/>
         {/* <Prerequisite name="hello"/> */}
-        <PrerequisiteContainer program_id='1'/>
+        {/* <PrerequisiteContainer program_id='1'/> */}
         {/* <ProgramContainer user={this.state.user_id}>
         </ProgramContainer> */}
         </div>

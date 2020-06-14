@@ -121,6 +121,25 @@ def get_user_programs():
 		return jsonify({'success': False,
 						'error':str(err)})
 
+@app.route('/get-prerequisites', methods= ["POST"])
+def get_prerequisites():
+
+	prerequisites = []
+
+	data = request.get_json()
+
+	try: 
+		program_prerequisites= crud.get_prerequisites(data)
+
+		for prerequisite in program_prerequisites:
+
+			prerequisite_by_ids = crud.get_prerequisite_by_id(prerequisite.prerequisites_id)
+			prerequisites.append(prerequisite_by_ids)
+		return jsonify({'success': True, 'prerequisites':prerequisites })
+	
+	except Exception as err:
+		return jsonify({'success': False,
+						'error':str(err)})
 
 if __name__ == '__main__':
 	connect_to_db(app)
