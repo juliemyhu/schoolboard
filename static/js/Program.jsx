@@ -2,7 +2,7 @@
 
 const MY_API_KEY ='free_d6e794d268065566fd05b280ee'
 
-
+// program form inside every programformcontainer
 class ProgramForm extends React.Component {
     constructor(props) {
         super(props);
@@ -69,13 +69,15 @@ class ProgramForm extends React.Component {
                     headers:{
                         'Content-Type': 'application/json'
                     }
-                }).then( () => {
+                })
+                .then( () => {
                     this.setState({id:formData.id})
                     fetch('/add-program', {
                         method:"POST",
                         body: JSON.stringify(this.state),
                         headers: {'Content-type': 'application/json'}
-                    }).then (console.log('add program fetch completed')) 
+                    })
+                    .then (console.log('add program fetch completed')) 
                     console.log('add college fetch completed');
                 })
                     
@@ -113,7 +115,7 @@ class ProgramForm extends React.Component {
 }
 
 
-
+// just the container for programform
 class ProgramFormContainer extends React.Component {
 
     constructor(props) {
@@ -125,8 +127,6 @@ class ProgramFormContainer extends React.Component {
             ]
         };
     }
- 
-
 
     // handleDelete = formId => {
     //     const forms = this.state.forms.filter(f => f.id !== formId);
@@ -156,7 +156,7 @@ class ProgramFormContainer extends React.Component {
 // ********** end ********************
 
 
-
+// container tha holds all the programs
 class ProgramContainer extends React.Component {
     // ProgramContainer receives a userId. Its going guestId. 
     constructor(props) {
@@ -175,7 +175,8 @@ class ProgramContainer extends React.Component {
             method:"POST",
             body: JSON.stringify(this.state.user_id),
             headers: {"Content-type": "application/json"}
-        }).then(r => r.json())
+        })
+        .then(r => r.json())
         .then(response => {
             console.log(response)
             this.setState({programs:response.programs})
@@ -204,12 +205,18 @@ class ProgramContainer extends React.Component {
                     college = {program.college_id}
                     cohort = {program.cohort}
                     link = {program.link}
+                    c_name = {program.college_name}
+                    c_city = {program.college_city}
+                    c_state = {program.college_state}
+                    c_lat = {program.college_lat}
+                    c_lon = {program.college_lon}
                 ></Program>
             ))}
         </div>
         )}
 }
-  
+
+// a single program displaying program information 
 class Program extends React.Component {
     // We know that we are created with information
     // We know the Program_id
@@ -219,7 +226,11 @@ class Program extends React.Component {
         this.state = {
             program_id:this.props.program_id,
             name : this.props.name,
-            college : this.props.college,
+            c_name : this.props.c_name,
+            c_state : this.props.c_state,
+            c_city : this.props.c_city,
+            c_lat : this.props.c_lat,
+            c_lon : this.props.c_lon,
             cohort : this.props.cohort,
             link : this.props.link
 
@@ -233,23 +244,19 @@ class Program extends React.Component {
         return (
             <div>
                 <div>
-                    Program: {this.state.program_id}
+                    <table>
+                        <tbody>
+                        <tr><td>Program: {this.state.program_id}</td></tr>
+                        <tr><td>College: {this.state.c_name}</td></tr>
+                        <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
+                        <tr><td>Cohort: {this.state.cohort}</td></tr>
+                        <tr><td>Link : {this.state.link}</td></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div>
-                    Name: {this.state.name}
-                </div>
-                <div>
-                    College: {this.state.college}
-                </div>
-                <div>
-                    Cohort: {this.state.cohort}
-                </div>
-                <div>
-                    Link : {this.state.link}
-                </div>
-                <div>
-                    <PrerequisiteContainer program_id={this.state.program_id}>
-
+                    <PrerequisiteContainer 
+                        program_id={this.state.program_id}>
                     </PrerequisiteContainer>
                 </div>
             </div>

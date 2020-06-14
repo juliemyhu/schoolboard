@@ -72,6 +72,7 @@ def add_program():
 
 @app.route('/add-prerequisite', methods = ['POST'])
 def add_prereqiuiste():
+	"""adds prerequsite to program"""
 	
 	data = request.get_json()
 
@@ -93,13 +94,14 @@ def add_prereqiuiste():
 
 @app.route('/api/get_user_programs', methods= ["POST"])
 def get_user_programs():
+	"""gets all of a users programs"""
 
 	programs = []
 
 	data = request.get_json()
 	print("data:", data)
 
-	# user_programs is a list of program objects 
+	# user_programs is a list of user-program OBJECTS 
 	try:
 		user_programs= crud.get_user_programs(data)
 		print ("the programs", user_programs)
@@ -119,12 +121,6 @@ def get_user_programs():
 		return jsonify({'success': False,
 						'error':str(err)})
 
-
-def get_prerequisite():
-	pass
-
-def get_program():
-	pass
 
 if __name__ == '__main__':
 	connect_to_db(app)

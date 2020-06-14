@@ -1,4 +1,5 @@
 
+// form that takes in new prerequsites
 class PrerequisiteForm extends React.Component {
     constructor(props) {
         super(props); 
@@ -47,7 +48,6 @@ class PrerequisiteForm extends React.Component {
                                 <option value="complete">Complete</option>
                                 <option value="in-progress">In Progress</option>
                                 <option value="planned">Planned</option>
-                            
                             </select>
                     <input type="submit" value="Add"/>  
                 </form>
@@ -56,7 +56,7 @@ class PrerequisiteForm extends React.Component {
     }
 }
 
-
+// a single prerequsite displaying its information 
 class Prerequisite extends React.Component { 
     render() {
         return (
@@ -69,11 +69,13 @@ class Prerequisite extends React.Component {
     }
 }
 
+// container that holds all the prerequsites 
 class PrerequisiteContainer extends React.Component {
     constructor(props) {
         super(props); 
         this.state = {
-            prereqs:[]
+            prereqs:[],
+            program_id:this.props.program_id
         };
     }
 

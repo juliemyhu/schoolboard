@@ -100,9 +100,9 @@ def create_requirement(type):
 def create_prerequisite(program_id, name, units, grade, status):
 	"""create and returns prerequsite"""
 
-	prerequsite= Prerequisite(program_id=program_id,name=name, units=units, grade=grade, status=status)
-	db.session.add(prerequsite)
+	prerequisite= Prerequisite(program_id=program_id,name=name, units=units, grade=grade, status=status)
+	db.session.add(prerequisite)
 	db.session.commit()
 
-	return prerequsite
+	return prerequisite
 
