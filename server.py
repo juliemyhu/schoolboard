@@ -124,18 +124,13 @@ def get_user_programs():
 @app.route('/get-prerequisites', methods= ["POST"])
 def get_prerequisites():
 
-	prerequisites = []
-
 	data = request.get_json()
+	print("hello", data)
 
 	try: 
 		program_prerequisites= crud.get_prerequisites(data)
-
-		for prerequisite in program_prerequisites:
-
-			prerequisite_by_ids = crud.get_prerequisite_by_id(prerequisite.prerequisites_id)
-			prerequisites.append(prerequisite_by_ids)
-		return jsonify({'success': True, 'prerequisites':prerequisites })
+		print("HELLO I'm Empty", program_prerequisites)
+		return jsonify({'success': True, 'prerequisites':program_prerequisites })
 	
 	except Exception as err:
 		return jsonify({'success': False,

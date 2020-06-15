@@ -24,6 +24,7 @@ class PrerequisiteForm extends React.Component {
             event.preventDefault();
             alert('the prerequsite submit button was clicked');
             console.log(this.state);
+            this.props.getNewPrereq(this.state);
 
             fetch('/add-prerequisite', {
                 method:"POST",
@@ -92,8 +93,10 @@ class PrerequisiteContainer extends React.Component {
             prereqs:[],
             program_id: this.props.program_id
         };
+        this.getNewPrerequisite=this.getNewPrerequisite.bind(this);
     }
 
+    
     componentDidMount() {
         // We need to know what program we're looking for
         fetch('/get-prerequisites', {
@@ -103,7 +106,8 @@ class PrerequisiteContainer extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-            console.log(response)
+            console.log("get-prereq response: ",response)
+            this.setState({prereqs:response.prerequisites})
         })
             // It should fetch the existing list of prerequisites
             // For this program.
@@ -113,6 +117,17 @@ class PrerequisiteContainer extends React.Component {
             // we would start setting states here.
              
         }
+
+    getNewPrerequisite(new_prereq) {
+        console.log("NEW PREREC", new_prereq)
+        var current_prereqs=this.state.prereqs
+        current_prereqs.push(new_prereq)
+        this.setState({
+            prereqs: current_prereqs
+        })
+
+
+    }
     
 
     render() {
@@ -120,13 +135,18 @@ class PrerequisiteContainer extends React.Component {
             <div>
                 {this.state.prereqs.map(prereq => (
                     <Prerequisite 
-                        key={prereq.id}            
+                        key={prereq.name}            
                         name = {prereq.name}
                         units = {prereq.units}
                         status = {prereq.status}
                         grade ={prereq.grade}
                     ></Prerequisite>
                 ))}
+                <PrerequisiteForm 
+                getNewPrereq = {this.getNewPrerequisite}
+                program_id= {this.state.program_id }>
+
+                </PrerequisiteForm>
             </div>   
         )}
 }

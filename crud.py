@@ -107,8 +107,19 @@ def create_prerequisite(program_id, name, units, grade, status):
 	return prerequisite
 
 def get_prerequisites(program_id):
+	print("HI IM CALLED")
+	prereq_list = Prerequisite.query.filter(Prerequisite.program_id == program_id).all()
 
-	return Prerequisite.query.filter(Prerequisite.program_id == program_id).all()
+	prereqs = []
+	for prereq in prereq_list:
+		prereqs.append({
+			"name":prereq.name,
+			"units":prereq.units,
+			"grade":prereq.grade,
+			"status":prereq.status
+		})
+		
+	return prereqs
 	
 
 def get_prerequisite_by_id(id):
