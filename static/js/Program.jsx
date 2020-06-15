@@ -95,19 +95,24 @@ class ProgramForm extends React.Component {
     render() {
         return (
         <div>
-            {this.props.children}
             <h3>Add School</h3>
-        <form onSubmit={this.handleSubmit}>
-            <label>Program:</label>
-                <input type="text" value={this.state.programName} onChange={this.handleChangeProgramName}></input>
-            <label>College:</label>
-                <input type="text" value={this.state.college} onChange={this.handleChangeCollege}></input>
-            <label>Cohort</label>
-                <input type="text" value={this.state.cohort} onChange={this.handleChangeCohort}></input>
-            <label>Link:</label>
-                <input type="text" value={this.state.link} onChange={this.handleChangeLink}></input>
-            <input type="submit" value="Add"/>  
-	    </form>
+            <form onSubmit={this.handleSubmit}>
+                <label>Program:</label>
+                    <input type="text" value={this.state.programName} onChange={this.handleChangeProgramName}></input>
+                <label>College:</label>
+                    <input type="text" value={this.state.college} onChange={this.handleChangeCollege}></input>
+                <label>Cohort:</label>
+                        <select name="cohort" value={this.state.cohort} onChange={this.handleChangeCohort}>
+                            <option value="Fall 2020">Fall 2020</option>
+                            <option value="Winter 2020">Winter 2020</option>
+                            <option value="Spring 2021">Spring 2021</option>
+                            <option value="Summer 2021">Summer 2021</option>
+                            <option value="Fall 2021">Fall 2021</option>
+                        </select>
+                <label>Link:</label>
+                    <input type="text" value={this.state.link} onChange={this.handleChangeLink}></input>
+                <input type="submit" value="Add"/>  
+            </form>
         {/* <button onClick= {() => this.props.onDelete(this.props.form.id)}>Delete</button> */}
         </div>
         );

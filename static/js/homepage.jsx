@@ -9,16 +9,10 @@ class App extends React.Component {
     }
 
     render() {
-        return (<div>
-
-        I should only have programFormContainer and
-        ProgramContainer.
-        {/* <ProgramFormContainer/> */}
+        return (
+        <div>
+        <ProgramFormContainer/>
         <ProgramContainer user_id='1'/>
-        {/* <Prerequisite name="hello"/> */}
-        {/* <PrerequisiteContainer program_id='1'/> */}
-        {/* <ProgramContainer user={this.state.user_id}>
-        </ProgramContainer> */}
         </div>
         
             

@@ -125,8 +125,6 @@ class PrerequisiteContainer extends React.Component {
         this.setState({
             prereqs: current_prereqs
         })
-
-
     }
     
 
@@ -143,9 +141,8 @@ class PrerequisiteContainer extends React.Component {
                     ></Prerequisite>
                 ))}
                 <PrerequisiteForm 
-                getNewPrereq = {this.getNewPrerequisite}
-                program_id= {this.state.program_id }>
-
+                    getNewPrereq = {this.getNewPrerequisite}
+                    program_id= {this.state.program_id}>
                 </PrerequisiteForm>
             </div>   
         )}
