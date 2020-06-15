@@ -10,35 +10,36 @@ class ProgramForm extends React.Component {
             id: '',
             programName: '',
             college: '',
-            cohort: '',
+            cohort: 'Fall 2020',
             link: ''
         };
-        // this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
 
-        this.handleChangeProgramName = this.handleChangeProgramName.bind(this);
-        this.handleChangeCollege= this.handleChangeCollege.bind(this);
-        this.handleChangeCohort= this.handleChangeCohort.bind(this);
-        this.handleChangeLink= this.handleChangeLink.bind(this);
+        // this.handleChangeProgramName = this.handleChangeProgramName.bind(this);
+        // this.handleChangeCollege= this.handleChangeCollege.bind(this);
+        // this.handleChangeCohort= this.handleChangeCohort.bind(this);
+        // this.handleChangeLink= this.handleChangeLink.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    // handleInputChange(event) {
-    //     this.setState({
-    //         [event.target.name]: event.target.value
-    //     });
-    // }
+    handleInputChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
 
-    handleChangeProgramName(event) {
-        this.setState({programName: event.target.value});
-    }
-    handleChangeCollege(event) {
-        this.setState({college: event.target.value});
-    }
-    handleChangeCohort(event) {
-        this.setState({cohort: event.target.value});
-    }
-    handleChangeLink(event) {
-        this.setState({link: event.target.value});
-    }
+    // handleChangeProgramName(event) {
+    //     this.setState({programName: event.target.value});
+    // }
+    // handleChangeCollege(event) {
+    //     this.setState({college: event.target.value});
+    // }
+    // handleChangeCohort(event) {
+    //     this.setState({cohort: event.target.value});
+    // }
+    // handleChangeLink(event) {
+    //     this.setState({link: event.target.value});
+    // }
     getNewProgram(new_program) {
         var current_programs = this.state.programs
         current_programs.push(new_program)
@@ -107,11 +108,11 @@ class ProgramForm extends React.Component {
             <h3>Add School</h3>
             <form onSubmit={this.handleSubmit}>
                 <label>Program:</label>
-                    <input type="text"  value={this.state.programName} onChange={this.handleChangeProgramName}></input>
+                    <input type="text"  name="programName" value={this.state.programName} onChange={this.handleInputChange}></input>
                 <label>College:</label>
-                    <input type="text" value={this.state.college} onChange={this.handleChangeCollege}></input>
+                    <input type="text" name="college" value={this.state.college} onChange={this.handleInputChange}></input>
                 <label>Cohort:</label>
-                        <select name="cohort" value={this.state.cohort} onChange={this.handleChangeCohort}>
+                        <select name="cohort" value={this.state.cohort} onChange={this.handleInputChange}>
                             <option value="Fall 2020">Fall 2020</option>
                             <option value="Winter 2020">Winter 2020</option>
                             <option value="Spring 2021">Spring 2021</option>
@@ -119,7 +120,7 @@ class ProgramForm extends React.Component {
                             <option value="Fall 2021">Fall 2021</option>
                         </select>
                 <label>Link:</label>
-                    <input type="text" value={this.state.link} onChange={this.handleChangeLink}></input>
+                    <input type="text" name = "link" value={this.state.link} onChange={this.handleInputChange}></input>
                 <input type="submit" value="Add"/>  
             </form>
         {/* <button onClick= {() => this.props.onDelete(this.props.form.id)}>Delete</button> */}
