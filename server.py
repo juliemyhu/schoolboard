@@ -76,7 +76,6 @@ def add_prereqiuiste():
 	
 	data = request.get_json()
 
-	
 	grade = data.get('grade')
 	name = data.get('name')
 	status = data.get('status')
@@ -85,7 +84,6 @@ def add_prereqiuiste():
 
 	try:
 		crud.create_prerequisite(program_id,name,units,grade,status)
-		
 		
 		return jsonify({'success':True})
 	except Exception as err:

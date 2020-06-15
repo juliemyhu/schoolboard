@@ -12,7 +12,8 @@ class ProgramForm extends React.Component {
             college: '',
             cohort: '',
             link: ''
-    };
+        };
+        // this.handleInputChange = this.handleInputChange.bind(this);
 
         this.handleChangeProgramName = this.handleChangeProgramName.bind(this);
         this.handleChangeCollege= this.handleChangeCollege.bind(this);
@@ -20,6 +21,11 @@ class ProgramForm extends React.Component {
         this.handleChangeLink= this.handleChangeLink.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    // handleInputChange(event) {
+    //     this.setState({
+    //         [event.target.name]: event.target.value
+    //     });
+    // }
 
     handleChangeProgramName(event) {
         this.setState({programName: event.target.value});
@@ -33,12 +39,18 @@ class ProgramForm extends React.Component {
     handleChangeLink(event) {
         this.setState({link: event.target.value});
     }
+    getNewProgram(new_program) {
+        var current_programs = this.state.programs
+        current_programs.push(new_program)
+        this
+    }
 
     handleSubmit(event) {
-        alert('the program submit button was clicked');
-        console.log(this.state)
-        console.log('college:', this.state.college)
+        // alert('the program submit button was clicked');
+        // console.log(this.state)
+        // console.log('college:', this.state.college)
         event.preventDefault();
+        // this.props.getNewProgram(this.state);
 
         const college = this.state.college
         const URL = 'https://api.collegeai.com/v1/api/college/info?api_key=' + MY_API_KEY + '&college_names=' + college + '&info_ids=city%2Clocation_lat%2Clocation_long%2Cstate_abbr'
@@ -46,12 +58,12 @@ class ProgramForm extends React.Component {
         fetch(URL)
         .then(r => r.json())
         .then(response => { 
-            console.log(response);
-            console.log(response.colleges);
+            // console.log(response);
+            // console.log(response.colleges);
             
             if (response.success == true) {
-                console.log(response.colleges[0]);
-                console.log(response.colleges[0].name);
+                // console.log(response.colleges[0]);
+                // console.log(response.colleges[0].name);
                 const college = response.colleges[0];
                 var formData = {
                     id : college.collegeUnitId,
@@ -61,8 +73,8 @@ class ProgramForm extends React.Component {
                     state : college.stateAbbr,
                     city : college.city
                 }
-                console.log("formData", formData);
-                console.log("jsonify", JSON.stringify(formData));
+                // console.log("formData", formData);
+                // console.log("jsonify", JSON.stringify(formData));
                 fetch('/add-college', {
                     method:"POST",
                     body: JSON.stringify(formData),
@@ -89,16 +101,13 @@ class ProgramForm extends React.Component {
     }
 
 
-
-
-
     render() {
         return (
         <div>
             <h3>Add School</h3>
             <form onSubmit={this.handleSubmit}>
                 <label>Program:</label>
-                    <input type="text" value={this.state.programName} onChange={this.handleChangeProgramName}></input>
+                    <input type="text"  value={this.state.programName} onChange={this.handleChangeProgramName}></input>
                 <label>College:</label>
                     <input type="text" value={this.state.college} onChange={this.handleChangeCollege}></input>
                 <label>Cohort:</label>
@@ -161,6 +170,54 @@ class ProgramFormContainer extends React.Component {
 // ********** end ********************
 
 
+// a single program displaying program information 
+class Program extends React.Component {
+    // We know that we are created with information
+    // We know the Program_id
+    // We know the college_id or we can fetch college_id 
+    constructor(props) {
+        super(props);
+        this.state = {
+            program_id:this.props.program_id,
+            name : this.props.name,
+            c_name : this.props.c_name,
+            c_state : this.props.c_state,
+            c_city : this.props.c_city,
+            c_lat : this.props.c_lat,
+            c_lon : this.props.c_lon,
+            cohort : this.props.cohort,
+            link : this.props.link
+
+        }
+        // console.log("program's p_id", this.state.program_id);
+    }
+
+    
+
+    render() {
+        return (
+            <div>
+                <div>
+                    <table>
+                        <tbody>
+                        {/* <tr><td>Program: {this.state.program_id}</td></tr> */}
+                        <tr><td>College: {this.state.c_name}</td></tr>
+                        <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
+                        <tr><td>Cohort: {this.state.cohort}</td></tr>
+                        <tr><td>Link : {this.state.link}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <PrerequisiteContainer 
+                        program_id={this.state.program_id}>
+                    </PrerequisiteContainer>
+                </div>
+            </div>
+        )
+    }
+}
+
 // container tha holds all the programs
 class ProgramContainer extends React.Component {
     // ProgramContainer receives a userId. Its going guestId. 
@@ -183,9 +240,9 @@ class ProgramContainer extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-            console.log(response)
+            // console.log(response)
             this.setState({programs:response.programs})
-            console.log(this.state)
+            // console.log(this.state)
         })
     
             // At this point we should a list of programs from server
@@ -200,8 +257,6 @@ class ProgramContainer extends React.Component {
     render() {
         return (
         <div>
-            Render programs here from this.state.programs
-            map thing goes here 
             {this.state.programs.map(program => (
                 <Program 
                     key = {program.program_id}
@@ -219,52 +274,4 @@ class ProgramContainer extends React.Component {
             ))}
         </div>
         )}
-}
-
-// a single program displaying program information 
-class Program extends React.Component {
-    // We know that we are created with information
-    // We know the Program_id
-    // We know the college_id or we can fetch college_id 
-    constructor(props) {
-        super(props);
-        this.state = {
-            program_id:this.props.program_id,
-            name : this.props.name,
-            c_name : this.props.c_name,
-            c_state : this.props.c_state,
-            c_city : this.props.c_city,
-            c_lat : this.props.c_lat,
-            c_lon : this.props.c_lon,
-            cohort : this.props.cohort,
-            link : this.props.link
-
-        }
-        console.log("program's p_id", this.state.program_id);
-    }
-
-    
-
-    render() {
-        return (
-            <div>
-                <div>
-                    <table>
-                        <tbody>
-                        <tr><td>Program: {this.state.program_id}</td></tr>
-                        <tr><td>College: {this.state.c_name}</td></tr>
-                        <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
-                        <tr><td>Cohort: {this.state.cohort}</td></tr>
-                        <tr><td>Link : {this.state.link}</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <PrerequisiteContainer 
-                        program_id={this.state.program_id}>
-                    </PrerequisiteContainer>
-                </div>
-            </div>
-        )
-    }
 }

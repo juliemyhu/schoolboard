@@ -11,12 +11,10 @@ class App extends React.Component {
     render() {
         return (
         <div>
-        <ProgramFormContainer/>
-        <ProgramContainer user_id='1'/>
-        </div>
-        
-            
-            )
+            <ProgramContainer user_id='1'/>
+            <ProgramFormContainer/>
+        </div>  
+        )
     };
 }
 

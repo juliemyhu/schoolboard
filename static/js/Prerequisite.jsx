@@ -10,28 +10,30 @@ class PrerequisiteForm extends React.Component {
             status: 'complete',
             program_id: this.props.program_id
         };
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
-        handleInputChange(event) {
-            this.setState({ 
-                [event.target.name]: event.target.value
-            });
-            console.log(this.state);
-        }
-    
-        handleSubmit(event) {
-            event.preventDefault();
-            alert('the prerequsite submit button was clicked');
-            console.log(this.state);
-            this.props.getNewPrereq(this.state);
 
-            fetch('/add-prerequisite', {
-                method:"POST",
-                body: JSON.stringify(this.state),
-                headers: {'Content-type': 'application/json'}
-            })
-        }
+    handleInputChange(event) {
+        this.setState({ 
+            [event.target.name]: event.target.value
+        });
+        // console.log(this.state);
+    }
+    
+    handleSubmit(event) {
+        event.preventDefault();
+        // alert('the prerequsite submit button was clicked');
+        // console.log(this.state);
+        this.props.getNewPrereq(this.state);
+
+        fetch('/add-prerequisite', {
+            method:"POST",
+            body: JSON.stringify(this.state),
+            headers: {'Content-type': 'application/json'}
+        })
+    }
     
     render() {
         return (
@@ -93,6 +95,7 @@ class PrerequisiteContainer extends React.Component {
             prereqs:[],
             program_id: this.props.program_id
         };
+
         this.getNewPrerequisite=this.getNewPrerequisite.bind(this);
     }
 
@@ -106,20 +109,13 @@ class PrerequisiteContainer extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-            console.log("get-prereq response: ",response)
+            // console.log("get-prereq response: ",response)
             this.setState({prereqs:response.prerequisites})
-        })
-            // It should fetch the existing list of prerequisites
-            // For this program.
-            // Also, let's pass the program ID to PrerequisiteContainer
-            // console.log(response.json())
-            // const data = response.json()
-            // we would start setting states here.
-             
+        })    
         }
 
     getNewPrerequisite(new_prereq) {
-        console.log("NEW PREREC", new_prereq)
+        // console.log("NEW PREREC", new_prereq)
         var current_prereqs=this.state.prereqs
         current_prereqs.push(new_prereq)
         this.setState({
@@ -131,6 +127,7 @@ class PrerequisiteContainer extends React.Component {
     render() {
         return (
             <div>
+                <h3>Prerequisites:</h3>
                 {this.state.prereqs.map(prereq => (
                     <Prerequisite 
                         key={prereq.name}            
