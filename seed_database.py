@@ -27,6 +27,6 @@ for college in college_data:
 
     colleges_in_db.append(db_college)
 
-crud.create_user("user@user.com", "123", "San Francisco,CA")
+crud.create_user("test","user","user@user.com", "123", "San Francisco,CA")
 crud.create_program("123961","PharmD","Fall 2020","https://pharmacyschool.usc.edu/apply/admission/requirements/")
 crud.create_program("123961","DDS","Spring 2020","https://dentistry.usc.edu/admission/doctor-of-dental-surgery-dds/" )

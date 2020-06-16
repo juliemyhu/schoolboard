@@ -23,7 +23,23 @@ def show_homepage():
 # 	print(colleges)
 
 # 	return render_template('my_colleges.html', colleges=colleges)
-	
+
+@app.route('/api/login', methods=["POST"])
+def check_user_info():
+
+	data = request.get_json()
+	email = data['email']
+	password = data['password']
+	user = crud.get_user_by_email(email)
+
+	if not user:
+		status = 'That email address is not associated with a user in our system'
+	elif user.password == password:
+		session['logged_in_user_id'] = user.logged_in_user_id
+		status = user.logged_in_user_id
+	else:
+		status = 'Incorrect password. Please try again. '
+	return jsonify(status)
 
 @app.route('/add-college', methods=["POST"])
 def add_college():

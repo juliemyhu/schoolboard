@@ -1,8 +1,8 @@
 from model import db, User, College, UserProgram, Program, Requirement,ProgramRequirement, Prerequisite, connect_to_db
 
-def create_user(email, password, location="default"):
+def create_user(first_name, last_name, email, password, location="default"):
 	"""Create and return a new user"""
-	user = User(email = email, password = password, location =location)
+	user = User(first_name=first_name, last_name=last_name, email = email, password = password, location =location)
 	
 	db.session.add(user)
 	db.session.commit()
@@ -13,6 +13,12 @@ def get_user_by_id(id):
 	"""return a user by id"""
 
 	return User.query.get(id)
+
+def get_user_by_email(email):
+	"""return user by email"""
+	
+	return User.query.filter(User.email==email).first()
+
 
 def create_user_program(user_id, program_id):
 

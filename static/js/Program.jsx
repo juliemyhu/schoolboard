@@ -71,12 +71,9 @@ class ProgramForm extends React.Component {
                     .then (console.log('add program fetch completed')) 
                     console.log('add college fetch completed');
                 })
-                    
-
             }
             else {alert("could not find college")}
-        });
-        
+        });  
     }
 
 
@@ -178,7 +175,7 @@ class Program extends React.Component {
                 <div>
                     <table>
                         <tbody>
-                        {/* <tr><td>Program: {this.state.program_id}</td></tr> */}
+                        <tr><td>Program: {this.state.name}</td></tr>
                         <tr><td>College: {this.state.c_name}</td></tr>
                         <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
                         <tr><td>Cohort: {this.state.cohort}</td></tr>

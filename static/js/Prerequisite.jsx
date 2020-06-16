@@ -10,7 +10,6 @@ class PrerequisiteForm extends React.Component {
             status: 'complete',
             program_id: this.props.program_id
         };
-
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -39,7 +38,7 @@ class PrerequisiteForm extends React.Component {
         return (
             <div>
                 <h3>Add Prerequisite</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} >
                     <label>name:</label>
                         <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} ></input>
                     <label>Units:</label>
@@ -52,7 +51,7 @@ class PrerequisiteForm extends React.Component {
                                 <option value="in-progress">In Progress</option>
                                 <option value="planned">Planned</option>
                             </select>
-                    <input type="submit" value="Add"/>  
+                    <input type="submit" className="btn btn-primary" value="Add"/> 
                 </form>
             </div>
         )
@@ -77,9 +76,9 @@ class Prerequisite extends React.Component {
             <div>
                 <table>
                     <tbody>
-                    <tr><td>Name:  {this.props.name}</td></tr>
+                    <tr><td>Name:  {this.props.name} </td></tr>
                     <tr><td>units: {this.props.units}</td></tr>
-                    <tr><td>Grade: {this.props.grade}, {this.state.c_state} </td></tr>
+                    <tr><td>Grade: {this.props.grade} {this.state.c_state} </td></tr>
                     <tr><td>status: {this.props.status}</td></tr>
                     </tbody>
                 </table>
