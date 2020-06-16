@@ -14,12 +14,6 @@ class ProgramForm extends React.Component {
             link: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
-
-        // this.handleChangeProgramName = this.handleChangeProgramName.bind(this);
-        // this.handleChangeCollege= this.handleChangeCollege.bind(this);
-        // this.handleChangeCohort= this.handleChangeCohort.bind(this);
-        // this.handleChangeLink= this.handleChangeLink.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleInputChange(event) {
@@ -28,23 +22,7 @@ class ProgramForm extends React.Component {
         });
     }
 
-    // handleChangeProgramName(event) {
-    //     this.setState({programName: event.target.value});
-    // }
-    // handleChangeCollege(event) {
-    //     this.setState({college: event.target.value});
-    // }
-    // handleChangeCohort(event) {
-    //     this.setState({cohort: event.target.value});
-    // }
-    // handleChangeLink(event) {
-    //     this.setState({link: event.target.value});
-    // }
-    getNewProgram(new_program) {
-        var current_programs = this.state.programs
-        current_programs.push(new_program)
-        this
-    }
+
 
     handleSubmit(event) {
         // alert('the program submit button was clicked');
@@ -138,7 +116,6 @@ class ProgramFormContainer extends React.Component {
         this.state = {
             forms: [
                 {id: 1, value: 0},
-            
             ]
         };
     }
@@ -205,7 +182,7 @@ class Program extends React.Component {
                         <tr><td>College: {this.state.c_name}</td></tr>
                         <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
                         <tr><td>Cohort: {this.state.cohort}</td></tr>
-                        <tr><td>Link : {this.state.link}</td></tr>
+                        <tr><td>Link : <a href={this.state.link}>program link</a></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -227,8 +204,13 @@ class ProgramContainer extends React.Component {
         this.state = {
             programs:[],
             user_id: this.props.user_id
-        }
+        };
+    
+        this.getNewProgram=this.getNewProgram.bind(this);
+
     }
+
+   
 
     // Start off by finding all the programs this user has added.
 
@@ -253,6 +235,13 @@ class ProgramContainer extends React.Component {
             // res.json() = {[{program1}, {program2}, {program3}]}
     }
 
+    getNewProgram(new_program) {
+        var current_programs = this.state.programs
+        current_programs.push(new_program)
+        this.setState({
+            programs: current_programs
+        })
+    }
 
 
     render() {
