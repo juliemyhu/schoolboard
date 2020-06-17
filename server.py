@@ -15,6 +15,14 @@ def show_homepage():
 
     return render_template('homepage.html')
 
+@app.route('/dashboard')
+def show_dashboard():
+    """Show the application's homepage."""
+
+    return render_template('homepage.html')
+
+
+
 @app.route('/api/register', methods=["POST"])
 def register_user():
 	data = request.get_json()

@@ -147,11 +147,38 @@ class Registration extends React.Component {
               required
             />
   
-
-  
             <button type="submit">Register</button>
           </form>
         </div>
       );
     }
   }
+
+class Homepage extends React.Component {
+
+  render() {
+    return (
+    <div>
+      Status: 
+      <Login>
+      </Login>
+      <Registration>
+        
+      </Registration>
+
+    </div>
+    )
+  }
+}
+
+
+const Dashboard = props => {
+  return (
+    <div>
+      <div>
+        <h1>Dashboard</h1>
+        <h1>Status: {props.loggedInStatus}</h1>
+      </div>
+    </div>
+  )
+}
