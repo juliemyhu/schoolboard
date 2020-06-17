@@ -15,28 +15,41 @@ def show_homepage():
 
     return render_template('homepage.html')
 
+@app.route('/api/register', methods=["POST"])
+def register_user():
+	data = request.get_json()
 
-# @app.route('/mycolleges')
-# def show_mycolleges():
-# 	"""Shows all of a users schools"""
-# 	colleges = crud.get_myprograms()
-# 	print(colleges)
+	print("register",data)
+	first_name = data["first_name"]
+	last_name = data["last_name"]
+	location = data["location"]
+	email = data['email']
+	password = data['password']
 
-# 	return render_template('my_colleges.html', colleges=colleges)
+	try:
+		crud.create_user(first_name, last_name, email, password, location)
+		return jsonify({'success':True})
+	except Exception as err:
+		return jsonify({'success': False,
+					'error':str(err)})
+
 
 @app.route('/api/login', methods=["POST"])
 def check_user_info():
 
 	data = request.get_json()
+	print("login data", data)
 	email = data['email']
 	password = data['password']
+
 	user = crud.get_user_by_email(email)
+	print(user)
 
 	if not user:
 		status = 'That email address is not associated with a user in our system'
 	elif user.password == password:
-		session['logged_in_user_id'] = user.logged_in_user_id
-		status = user.logged_in_user_id
+		session['logged_in_user_id'] = user.user_id
+		status = user.user_id
 	else:
 		status = 'Incorrect password. Please try again. '
 	return jsonify(status)

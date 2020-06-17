@@ -17,32 +17,23 @@ class Login extends React.Component {
         [event.target.name]: event.target.value
       });
     }
-  
+
     handleSubmit(event) {
-      const { email, password } = this.state;
-      console.log("state of user", this.state)
-  
-      axios
-        .post(
-          "http://localhost:5000/sessions",
-          {
-            user: {
-              email: email,
-              password: password
-            }
-          },
-          { withCredentials: true }
-        )
-        .then(response => {
-          if (response.data.logged_in) {
-            this.props.handleSuccessfulAuth(response.data);
-          }
+        event.preventDefault();
+        alert("login button clicked");
+        console.log(this.state);
+        fetch('/api/login', {
+            method:"POST",
+            body: JSON.stringify(this.state),
+            headers: {'Content-type': 'application/json'}
         })
-        .catch(error => {
-          console.log("login error", error);
-        });
-      event.preventDefault();
+        .then(r => r.json())
+        .then(response => {
+            console.log(response);
+    
+        })
     }
+  
   
     render() {
       return (
@@ -81,6 +72,7 @@ class Registration extends React.Component {
       this.state = {
         first_name: "",
         last_name: "",
+        location: "",
         email: "",
         password: "",
         registrationErrors: ""
@@ -97,33 +89,15 @@ class Registration extends React.Component {
     }
 
     handleSubmit(event) {
-        alert("register button clicked")
+        event.preventDefault();
+        alert("register button clicked");
+        console.log(this.state);
+        fetch('/api/register', {
+            method:"POST",
+            body: JSON.stringify(this.state),
+            headers: {'Content-type': 'application/json'}
+        })
     }
-  
-    // handleSubmit(event) {
-    //   const { email, password, password_confirmation } = this.state;
-  
-    //   axios
-    //     .post(
-    //       "http://localhost:5000/registrations",
-    //       {
-    //         user: {
-    //           email: email,
-    //           password: password,
-    //         }
-    //       },
-    //       { withCredentials: true }
-    //     )
-    //     .then(response => {
-    //       if (response.data.status === "created") {
-    //         this.props.handleSuccessfulAuth(response.data);
-    //       }
-    //     })
-    //     .catch(error => {
-    //       console.log("registration error", error);
-    //     });
-    //   event.preventDefault();
-    // }
   
     render() {
       return (
@@ -142,6 +116,14 @@ class Registration extends React.Component {
                 type="last_name"
                 name="last_name"
                 placeholder="last Name"
+                value={this.state.password_confirmation}
+              onChange={this.handleChange}
+              required
+            />
+            <input
+                type="location"
+                name="location"
+                placeholder="City, State"
                 value={this.state.password_confirmation}
               onChange={this.handleChange}
               required
