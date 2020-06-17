@@ -20,6 +20,7 @@ class Login extends React.Component {
   
     handleSubmit(event) {
       const { email, password } = this.state;
+      console.log("state of user", this.state)
   
       axios
         .post(
@@ -78,9 +79,10 @@ class Registration extends React.Component {
       super(props);
   
       this.state = {
+        first_name: "",
+        last_name: "",
         email: "",
         password: "",
-        password_confirmation: "",
         registrationErrors: ""
       };
   
@@ -93,31 +95,35 @@ class Registration extends React.Component {
         [event.target.name]: event.target.value
       });
     }
-  
+
     handleSubmit(event) {
-      const { email, password, password_confirmation } = this.state;
-  
-      axios
-        .post(
-          "http://localhost:5000/registrations",
-          {
-            user: {
-              email: email,
-              password: password,
-            }
-          },
-          { withCredentials: true }
-        )
-        .then(response => {
-          if (response.data.status === "created") {
-            this.props.handleSuccessfulAuth(response.data);
-          }
-        })
-        .catch(error => {
-          console.log("registration error", error);
-        });
-      event.preventDefault();
+        alert("register button clicked")
     }
+  
+    // handleSubmit(event) {
+    //   const { email, password, password_confirmation } = this.state;
+  
+    //   axios
+    //     .post(
+    //       "http://localhost:5000/registrations",
+    //       {
+    //         user: {
+    //           email: email,
+    //           password: password,
+    //         }
+    //       },
+    //       { withCredentials: true }
+    //     )
+    //     .then(response => {
+    //       if (response.data.status === "created") {
+    //         this.props.handleSuccessfulAuth(response.data);
+    //       }
+    //     })
+    //     .catch(error => {
+    //       console.log("registration error", error);
+    //     });
+    //   event.preventDefault();
+    // }
   
     render() {
       return (

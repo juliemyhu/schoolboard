@@ -85,9 +85,9 @@ class ProgramForm extends React.Component {
                 <label>Program:</label>
                     <input type="text"  name="programName" value={this.state.programName} onChange={this.handleInputChange}></input>
                 <label>College:</label>
-                    <input type="text" name="college" value={this.state.college} onChange={this.handleInputChange}></input>
+                    <input type="text" name="college" value={this.state.college} onChange={this.handleInputChange} required ></input>
                 <label>Cohort:</label>
-                        <select name="cohort" value={this.state.cohort} onChange={this.handleInputChange}>
+                        <select name="cohort" value={this.state.cohort} onChange={this.handleInputChange} required>
                             <option value="Fall 2020">Fall 2020</option>
                             <option value="Winter 2020">Winter 2020</option>
                             <option value="Spring 2021">Spring 2021</option>
@@ -95,8 +95,8 @@ class ProgramForm extends React.Component {
                             <option value="Fall 2021">Fall 2021</option>
                         </select>
                 <label>Link:</label>
-                    <input type="text" name = "link" value={this.state.link} onChange={this.handleInputChange}></input>
-                <input type="submit" value="Add"/>  
+                    <input type="text" name = "link" value={this.state.link} onChange={this.handleInputChange} required></input>
+                <button type="submit" >Submit </button>  
             </form>
         {/* <button onClick= {() => this.props.onDelete(this.props.form.id)}>Delete</button> */}
         </div>
@@ -195,6 +195,8 @@ class Program extends React.Component {
 
 // container tha holds all the programs
 class ProgramContainer extends React.Component {
+    _isMounted = false;
+
     // ProgramContainer receives a userId. Its going guestId. 
     constructor(props) {
         super(props);
@@ -212,6 +214,7 @@ class ProgramContainer extends React.Component {
     // Start off by finding all the programs this user has added.
 
     componentDidMount() {
+        this._isMounted = true;
         // Fetch the programs that this user has added.
         fetch("/api/get_user_programs", {
             method:"POST",
@@ -221,7 +224,10 @@ class ProgramContainer extends React.Component {
         .then(r => r.json())
         .then(response => {
             // console.log(response)
-            this.setState({programs:response.programs})
+            if (this._isMounted) {
+                this.setState({programs:response.programs})
+            }
+            
             // console.log(this.state)
         })
     
@@ -230,6 +236,10 @@ class ProgramContainer extends React.Component {
             // this.setState(programs)
             // the programs we received.
             // res.json() = {[{program1}, {program2}, {program3}]}
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     getNewProgram(new_program) {

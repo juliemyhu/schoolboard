@@ -11,11 +11,12 @@ class App extends React.Component {
     render() {
         return (
         <div>
+            <Login></Login>
+            <Registration></Registration>
             {this.state.user_id}'s Board
             <ProgramContainer user_id='1'/>
             <ProgramFormContainer/>
-            <Login></Login>
-            <Registration></Registration>
+
         </div>  
         )
     };

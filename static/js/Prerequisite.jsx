@@ -40,18 +40,18 @@ class PrerequisiteForm extends React.Component {
                 <h3>Add Prerequisite</h3>
                 <form onSubmit={this.handleSubmit} >
                     <label>name:</label>
-                        <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} ></input>
+                        <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} ></input>
                     <label>Units:</label>
-                        <input type="text" name="units" value={this.state.units} onChange={this.handleInputChange}></input>
+                        <input type="text" name="units" placeholder="units"value={this.state.units} onChange={this.handleInputChange}></input>
                     <label>Grade</label>
-                        <input type="text" name="grade" value={this.state.grade} onChange={this.handleInputChange}></input>
+                        <input type="text" name="grade" placeholder="grade" value={this.state.grade} onChange={this.handleInputChange}></input>
                     <label>Status:</label>
                             <select name="status" value={this.state.status} onChange={this.handleInputChange}>
                                 <option value="complete">Complete</option>
                                 <option value="in-progress">In Progress</option>
                                 <option value="planned">Planned</option>
                             </select>
-                    <input type="submit" className="btn btn-primary" value="Add"/> 
+                    <button type="submit" className="btn btn-primary">Add</button> 
                 </form>
             </div>
         )
