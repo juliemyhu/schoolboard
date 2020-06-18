@@ -102,8 +102,8 @@ class Registration extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-          console.log("registration res", response)
-          if (response.success === 'true') {
+          console.log("registration res", response.user)
+          if (typeof(response.user) === "number") {
             this.props.handleSuccessfulAuth(response);
           }
         })
