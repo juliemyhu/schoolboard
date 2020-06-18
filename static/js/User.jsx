@@ -30,6 +30,9 @@ class Login extends React.Component {
         .then(r => r.json())
         .then(response => {
             console.log("Res from login", response);
+            if (response.data.logged_in) {
+              this.props.handleSuccessfulAuth(response.data);
+            }
     
         })
     }
@@ -180,7 +183,7 @@ class Homepage extends React.Component {
     <div>
       <h1>Home</h1>
       <h1>Status: {this.props.loggedInStatus}</h1>
-      <Login>
+      <Login handleSuccessfulAuth={this.handleSuccessfulAuth}>
       </Login>
       <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}>
         
