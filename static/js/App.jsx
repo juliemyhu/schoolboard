@@ -18,8 +18,9 @@ class App extends React.Component {
     handleLogin(data) {
         this.setState({
             loggedInStatus:"LOGGED_IN",
-            user: data
+            user_id: data
         })
+        console.log(this.state.user_id)
     }
 
     // render() {
@@ -47,7 +48,7 @@ class App extends React.Component {
                     <Route 
                     exact path={'/dashboard'}
                     render= {props => (
-                        <Dashboard { ... props} loggedInStatus={this.state.loggedInStatus }></Dashboard>
+                        <Dashboard { ... props} user_id={this.state.user_id} loggedInStatus={this.state.loggedInStatus }></Dashboard>
                     )}
                     ></Route>
                 </Switch>

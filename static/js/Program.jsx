@@ -216,6 +216,7 @@ class ProgramContainer extends React.Component {
     componentDidMount() {
         this._isMounted = true;
         // Fetch the programs that this user has added.
+        console.log(this.state.user_id)
         fetch("/api/get_user_programs", {
             method:"POST",
             body: JSON.stringify(this.state.user_id),
