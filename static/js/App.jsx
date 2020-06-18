@@ -11,7 +11,27 @@ class App extends React.Component {
             loggedInStatus: "NOT_LOGGED_IN",
             user_id: {}
         };
+
+        this.handleLogin = this.handleLogin.bind(this);
     }
+
+    handleLogin(data) {
+        this.setState({
+            loggedInStatus:"LOGGED_IN",
+            user: data
+        })
+    }
+
+    // render() {
+    //     return (
+    //     <div>
+    //         {this.state.user_id}'s Board
+    //         <ProgramContainer user_id='1'/>
+    //         <ProgramFormContainer/>
+
+    //     </div>  
+    //     )
+    // };
 
     render() {
         return (
@@ -21,7 +41,7 @@ class App extends React.Component {
                     <Route 
                     exact path={'/'} 
                     render= {props => (
-                        <Homepage { ... props} loggedInStatus={this.state.loggedInStatus }></Homepage>
+                        <Homepage { ... props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus }></Homepage>
                     )}
                     ></Route>
                     <Route 
@@ -32,11 +52,6 @@ class App extends React.Component {
                     ></Route>
                 </Switch>
             </BrowserRouter>
-            {/* <Login></Login>
-            <Registration></Registration>
-            {this.state.user_id}'s Board
-            <ProgramContainer user_id='1'/>
-            <ProgramFormContainer/> */}
 
         </div>  
         )

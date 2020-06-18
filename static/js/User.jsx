@@ -29,7 +29,7 @@ class Login extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-            console.log(response);
+            console.log("Res from login", response);
     
         })
     }
@@ -97,6 +97,15 @@ class Registration extends React.Component {
             body: JSON.stringify(this.state),
             headers: {'Content-type': 'application/json'}
         })
+        .then(r => r.json())
+        .then(response => {
+          console.log("registration res", response)
+          if (response.data.status === 'created') {
+            this.props.handleSuccessfulAuth(response.data);
+          }
+        })
+        
+    
     }
   
     render() {
@@ -155,22 +164,51 @@ class Registration extends React.Component {
   }
 
 class Homepage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+  }
+
+  handleSuccessfulAuth(data) {
+    this.props.handleLogin(data);
+    this.props.history.push("/dashboard"); 
+  }
 
   render() {
     return (
     <div>
-      Status: 
+      <h1>Home</h1>
+      <h1>Status: {this.props.loggedInStatus}</h1>
       <Login>
       </Login>
-      <Registration>
+      <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}>
         
       </Registration>
 
     </div>
-    )
+    );
   }
 }
 
+// const Homepage = props => {
+//   constructor(props) {
+//     super(props);
+//   }
+//   return (
+//     <div>
+//       <div>
+//         <h1>Homepage</h1>
+//         <h1>Status: {props.loggedInStatus}</h1>
+//         <Login>
+//         </Login>  
+//         <Registration>    
+
+//         </Registration>
+//       </div>
+//     </div>
+//   )
+// }
 
 const Dashboard = props => {
   return (
