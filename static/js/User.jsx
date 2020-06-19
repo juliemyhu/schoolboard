@@ -30,7 +30,7 @@ class Login extends React.Component {
         .then(r => r.json())
         .then(response => {
             console.log("Res from login", response);
-            if (typeof(response) === "number") {
+            if (response.success) {
               this.props.handleSuccessfulAuth(response);
             }
     
@@ -174,7 +174,7 @@ class Homepage extends React.Component {
   }
 
   handleSuccessfulAuth(data) {
-    console.log("sucess", data);
+    console.log("success", data);
     this.props.handleLogin(data);
     this.props.history.push("/dashboard"); 
   }
@@ -214,6 +214,26 @@ class Homepage extends React.Component {
 //   )
 // }
 
+
+// class Dashboard extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//   }
+
+//   render() {
+//     return (
+//     <div>
+//       <h1>Dashboard</h1>
+//       <h1>Status: {this.props.loggedInStatus}</h1>
+//       <ProgramContainer user_id={props.user_id} ></ProgramContainer>
+//         <ProgramFormContainer></ProgramFormContainer>
+
+//     </div>
+//     );
+//   }
+// }
+
 const Dashboard = props => {
   return (
     <div>
@@ -221,6 +241,7 @@ const Dashboard = props => {
         <h1>Dashboard</h1>
         <h1>Status: {props.loggedInStatus}</h1>
         <ProgramContainer user_id={props.user_id} ></ProgramContainer>
+        <ProgramFormContainer user_id={props.user_id} ></ProgramFormContainer>
       </div>
     </div>
   )

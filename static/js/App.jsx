@@ -16,10 +16,13 @@ class App extends React.Component {
     }
 
     handleLogin(data) {
-        this.setState({
-            loggedInStatus:"LOGGED_IN",
-            user_id: data
-        })
+        if(data.success) {
+            this.setState({
+                loggedInStatus:"LOGGED_IN",
+                user_id: data.user
+            })
+        }
+        
         console.log(this.state.user_id)
     }
 

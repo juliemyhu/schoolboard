@@ -20,14 +20,6 @@ def get_user_by_email(email):
 	return User.query.filter(User.email==email).first()
 
 
-def create_user_program(user_id, program_id):
-
-	user_program = UserProgram(user_id=user_id, program_id=program_id)
-
-	db.session.add(user_program)
-	db.session.commit()
-
-	return user_program
 
 
 def create_college(college_id, name, city, state, longitude, latitude):
@@ -45,7 +37,16 @@ def get_college_by_id(id):
 	return College.query.filter(College.college_id == id).first()
 
 
-def create_program(college_id, name, cohort, link:"no_link"):
+def create_user_program(user_id, program_id):
+
+	user_program = UserProgram(user_id=user_id, program_id=program_id)
+
+	db.session.add(user_program)
+	db.session.commit()
+
+	return user_program
+
+def create_program(user_id, college_id, name, cohort, link:"no_link"):
 	"""Create and return program"""
 	print("create programm called")
 
@@ -57,7 +58,7 @@ def create_program(college_id, name, cohort, link:"no_link"):
 	db.session.add(program)
 	db.session.commit()
 	print ("after commit",program.program_id)
-	user_program = UserProgram(user_id=1, program_id=program.program_id)
+	user_program = UserProgram(user_id=user_id, program_id=program.program_id)
 	db.session.add(user_program)
 	db.session.commit()
 

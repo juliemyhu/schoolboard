@@ -11,7 +11,8 @@ class ProgramForm extends React.Component {
             programName: '',
             college: '',
             cohort: 'Fall 2020',
-            link: ''
+            link: '',
+            user_id: this.props.user_id
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -109,11 +110,12 @@ class ProgramForm extends React.Component {
 class ProgramFormContainer extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             forms: [
                 {id: 1, value: 0},
-            ]
+            ],
+            user_id: this.props.user_id
         };
     }
 
@@ -130,6 +132,7 @@ class ProgramFormContainer extends React.Component {
                     key={form.id} 
                     onDelete={this.handleDelete} 
                     form={form}
+                    user_id ={this.state.user_id}
                      >
                          {/* <h4>Program#{form.id}</h4> */}
                 </ProgramForm>
@@ -193,7 +196,7 @@ class Program extends React.Component {
     }
 }
 
-// container tha holds all the programs
+// container tha holds all of a users programs
 class ProgramContainer extends React.Component {
     _isMounted = false;
 
@@ -255,7 +258,7 @@ class ProgramContainer extends React.Component {
     render() {
         return (
         <div>
-            {this.state.programs.map(program => (
+             {this.state.programs.map(program => (
                 <Program 
                     key = {program.program_id}
                     program_id = {program.program_id}
