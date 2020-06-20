@@ -74,8 +74,9 @@ class Program(db.Model):
 	program_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	college_id = db.Column(db.Integer, db.ForeignKey('colleges.college_id'), nullable=False)
 	name = db.Column(db.String)
-	cohort=  db.Column(db.String)
-	link=db.Column(db.String)
+	cohort = db.Column(db.String)
+	label = db.Column(db.String)
+	link = db.Column(db.String)
 
 	programrequirements = db.relationship("ProgramRequirement")
 	college = db.relationship("College", backref="programs")

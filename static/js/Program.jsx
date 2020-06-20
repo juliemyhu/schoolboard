@@ -12,7 +12,8 @@ class ProgramForm extends React.Component {
             college: '',
             cohort: 'Fall 2020',
             link: '',
-            user_id: this.props.user_id
+            user_id: this.props.user_id,
+            label: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -97,6 +98,12 @@ class ProgramForm extends React.Component {
                             <option value="Summer 2021">Summer 2021</option>
                             <option value="Fall 2021">Fall 2021</option>
                         </select>
+                <label>Label:</label>
+                        <select name="label" value={this.state.label} onChange={this.handleInputChange} required>
+                            <option value="Reach">Reach</option>
+                            <option value="Match">Match</option>
+                            <option value="Safety">Safety</option>
+                        </select>
                 <label>Link:</label>
                     <input type="text" name = "link" value={this.state.link} onChange={this.handleInputChange} required></input>
                 <button type="submit" >Submit </button>  
@@ -167,7 +174,9 @@ class Program extends React.Component {
             c_lat : this.props.c_lat,
             c_lon : this.props.c_lon,
             cohort : this.props.cohort,
+            label: this.props.label,
             link : this.props.link
+            
 
         }
         // console.log("program's p_id", this.state.program_id);
@@ -185,6 +194,7 @@ class Program extends React.Component {
                         <tr><td>College: {this.state.c_name}</td></tr>
                         <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
                         <tr><td>Cohort: {this.state.cohort}</td></tr>
+                        <tr><td>Label: {this.state.label}</td></tr>
                         <tr><td>Link : <a href={this.state.link}>program link</a></td></tr>
                         </tbody>
                     </table>
@@ -268,6 +278,7 @@ class ProgramContainer extends React.Component {
                     name = {program.name}
                     college = {program.college_id}
                     cohort = {program.cohort}
+                    label = {program.label}
                     link = {program.link}
                     c_name = {program.college_name}
                     c_city = {program.college_city}
@@ -277,8 +288,8 @@ class ProgramContainer extends React.Component {
                 ></Program>
              ))}
                 <ProgramFormContainer
-                getNewProgram = {this.getNewProgram}
-                user_id={this.state.user_id}
+                    getNewProgram = {this.getNewProgram}
+                    user_id={this.state.user_id}
                 ></ProgramFormContainer>
         </div>
         )}

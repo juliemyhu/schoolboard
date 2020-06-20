@@ -30,8 +30,8 @@ for college in college_data:
 crud.create_user("test","user","user@user.com", "123", "San Francisco,CA")
 crud.create_user("julie","hu","julie@user.com", "123", "Seattle,CA")
 
-crud.create_program("1","123961","PharmD","Fall 2020","https://pharmacyschool.usc.edu/apply/admission/requirements/")
+crud.create_program("1","123961","PharmD","Fall 2020","Reach","https://pharmacyschool.usc.edu/apply/admission/requirements/")
 
 
-crud.create_program("2","123961","DDS","Spring 2020","https://dentistry.usc.edu/admission/doctor-of-dental-surgery-dds/" )
-crud.create_program("2","110653","DDS","Spring 2020","https://dentistry.ucsf.edu/programs/dds/admissions/prerequisites" ) 
+crud.create_program("2","123961","DDS","Spring 2020","Match","https://dentistry.usc.edu/admission/doctor-of-dental-surgery-dds/" )
+crud.create_program("2","110653","DDS","Spring 2020","Match","https://dentistry.ucsf.edu/programs/dds/admissions/prerequisites" ) 

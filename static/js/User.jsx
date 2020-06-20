@@ -171,12 +171,18 @@ class Homepage extends React.Component {
     super(props);
 
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
   handleSuccessfulAuth(data) {
     // console.log("success", data);
     this.props.handleLogin(data);
     this.props.history.push("/dashboard"); 
+  }
+
+  handleLogoutClick() {
+    localStorage.removeItem("user_id")
+    this.props.handleLogout();
   }
 
   // handleLogoutClick() {
@@ -195,6 +201,7 @@ class Homepage extends React.Component {
     <div>
       <h1>Home</h1>
       <h1>Status: {this.props.loggedInStatus}</h1>
+      <button onClick = {() => this.handleLogoutClick()}>Logout</button>
       <Login handleSuccessfulAuth={this.handleSuccessfulAuth}>
       </Login>
       <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}>
@@ -205,26 +212,6 @@ class Homepage extends React.Component {
     );
   }
 }
-
-// const Homepage = props => {
-//   constructor(props) {
-//     super(props);
-//   }
-//   return (
-//     <div>
-//       <div>
-//         <h1>Homepage</h1>
-//         <h1>Status: {props.loggedInStatus}</h1>
-//         <Login>
-//         </Login>  
-//         <Registration>    
-
-//         </Registration>
-//       </div>
-//     </div>
-//   )
-// }
-
 
   class Dashboard extends React.Component {
     constructor(props) {

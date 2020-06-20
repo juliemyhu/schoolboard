@@ -104,9 +104,10 @@ def add_program():
 	cohort = data.get('cohort')
 	link = data.get('link')
 	user_id = data.get('user_id')
+	label = data.get('label')
 
 	try:
-		crud.create_program(user_id, college_id, name, cohort, link)
+		crud.create_program(user_id, college_id, name, cohort, label , link)
 		
 		
 		return jsonify({'success':True})
