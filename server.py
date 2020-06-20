@@ -53,16 +53,18 @@ def check_user_info():
 	user = crud.get_user_by_email(email)
 	print(user)
 	success = False 
+	user_id = -1
 
 	if not user:
 		status = 'That email address is not associated with a user in our system'
 	elif user.password == password:
 		session['logged_in_user_id'] = user.user_id
 		success = True
+		status = 'logged in'
 		user_id = user.user_id
 	else:
 		status = 'Incorrect password. Please try again. '
-	return jsonify({'success': success, 'user':user_id})
+	return jsonify({'success': success, 'user_id':user_id, 'status':status})
 
 @app.route('/add-college', methods=["POST"])
 def add_college():
@@ -72,7 +74,7 @@ def add_college():
 	print(request.get_json())
 	data = request.get_json()
 	
-	college_id = data.get("id")
+	college_id = data.get("college_id")
 	college_name = data.get("collegeName")
 	college_city = data.get("city")
 	college_state = data.get("state")
@@ -94,17 +96,17 @@ def add_program():
 	print("program info in add_program route:", request.get_json())
 	data = request.get_json()
 
-	print("program data: ",data)
+	print("program data: ", data)
 
 	
-	college = data.get('id')
+	college_id = data.get('college_id')
 	name = data.get('programName')
 	cohort = data.get('cohort')
 	link = data.get('link')
 	user_id = data.get('user_id')
 
 	try:
-		crud.create_program(user_id, college, name, cohort, link)
+		crud.create_program(user_id, college_id, name, cohort, link)
 		
 		
 		return jsonify({'success':True})

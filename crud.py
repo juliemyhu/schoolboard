@@ -48,7 +48,7 @@ def create_user_program(user_id, program_id):
 
 def create_program(user_id, college_id, name, cohort, link:"no_link"):
 	"""Create and return program"""
-	print("create programm called")
+	print("create program called")
 
 	program = Program(college_id=college_id, name=name, cohort=cohort, link=link)
 	print(program)
@@ -57,7 +57,7 @@ def create_program(user_id, college_id, name, cohort, link:"no_link"):
 	print('program created')
 	db.session.add(program)
 	db.session.commit()
-	print ("after commit",program.program_id)
+	print ("after commit", program.program_id)
 	user_program = UserProgram(user_id=user_id, program_id=program.program_id)
 	db.session.add(user_program)
 	db.session.commit()

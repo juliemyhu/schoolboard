@@ -174,10 +174,21 @@ class Homepage extends React.Component {
   }
 
   handleSuccessfulAuth(data) {
-    console.log("success", data);
+    // console.log("success", data);
     this.props.handleLogin(data);
     this.props.history.push("/dashboard"); 
   }
+
+  // handleLogoutClick() {
+  //   axios
+  //     .delete("http://localhost:3001/logout", { withCredentials: true })
+  //     .then(response => {
+  //       this.props.handleLogout();
+  //     })
+  //     .catch(error => {
+  //       console.log("logout error", error);
+  //     });
+  // }
 
   render() {
     return (
@@ -215,34 +226,56 @@ class Homepage extends React.Component {
 // }
 
 
-// class Dashboard extends React.Component {
-//   constructor(props) {
-//     super(props);
+  class Dashboard extends React.Component {
+    constructor(props) {
+      super(props);
+      const stored_user_id = JSON.parse(localStorage.getItem("user_id"))
+      if(stored_user_id != null) {
+        this.state = {
+          loggedInStatus: "LOGGED_IN",
+          user_id: stored_user_id
+        }
+      } else {
+        this.state = {
+          loggedInStatus: this.props.loggedInStatus,
+          user_id: this.props.user_id
+        };
+      }
+    }
 
-//   }
+    // componentDidMount() {
+    //   const user_id = JSON.parse(localStorage.getItem("user_id"));
+    //     if (user_id != null) {
+    //         this.setState({ 
+    //             loggedInStatus:"LOGGED_IN",
+    //             user_id: user_id});
+    //     }
+    //     console.log("dashboard state:", this.state, "user_id", user_id)
+    // }
 
-//   render() {
-//     return (
-//     <div>
-//       <h1>Dashboard</h1>
-//       <h1>Status: {this.props.loggedInStatus}</h1>
-//       <ProgramContainer user_id={props.user_id} ></ProgramContainer>
-//         <ProgramFormContainer></ProgramFormContainer>
-
-//     </div>
-//     );
-//   }
-// }
-
-const Dashboard = props => {
-  return (
-    <div>
+    render() {
+      return (
       <div>
+        User_ID: {this.state.user_id}
         <h1>Dashboard</h1>
-        <h1>Status: {props.loggedInStatus}</h1>
-        <ProgramContainer user_id={props.user_id} ></ProgramContainer>
-        <ProgramFormContainer user_id={props.user_id} ></ProgramFormContainer>
+        <h1>Status: {this.state.loggedInStatus}</h1>
+        <ProgramContainer user_id={this.state.user_id} ></ProgramContainer>
+          {/* <ProgramFormContainer></ProgramFormContainer> */}
+
       </div>
-    </div>
-  )
-}
+      );
+    }
+  }
+
+// const Dashboard = props => {
+//   return (
+//     <div>
+//       <div>
+//         <h1>Dashboard</h1>
+//         <h1>Status: {props.loggedInStatus}</h1>
+//         <ProgramContainer user_id={props.user_id} ></ProgramContainer>
+//         <ProgramFormContainer user_id={props.user_id} ></ProgramFormContainer>
+//       </div>
+//     </div>
+//   )
+// }

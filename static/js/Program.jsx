@@ -7,7 +7,7 @@ class ProgramForm extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            id: '',
+            college_id: '',
             programName: '',
             college: '',
             cohort: 'Fall 2020',
@@ -46,7 +46,7 @@ class ProgramForm extends React.Component {
                 // console.log(response.colleges[0].name);
                 const college = response.colleges[0];
                 var formData = {
-                    id : college.collegeUnitId,
+                    college_id : college.collegeUnitId,
                     collegeName : college.name,
                     lat : college.locationLat,
                     long : college.locationLong,
@@ -63,14 +63,16 @@ class ProgramForm extends React.Component {
                     }
                 })
                 .then( () => {
-                    this.setState({id:formData.id})
+                    this.setState({college_id: formData.college_id})
                     fetch('/add-program', {
                         method:"POST",
                         body: JSON.stringify(this.state),
                         headers: {'Content-type': 'application/json'}
                     })
-                    .then (console.log('add program fetch completed')) 
-                    console.log('add college fetch completed');
+                    .then ((res) => {
+                        const response = res.json();
+                        console.log("add-program response:", response)
+                    });
                 })
             }
             else {alert("could not find college")}
@@ -83,7 +85,7 @@ class ProgramForm extends React.Component {
         <div>
             <h3>Add School</h3>
             <form onSubmit={this.handleSubmit}>
-                <label>Program:</label>
+                <label>Program Type:</label>
                     <input type="text"  name="programName" value={this.state.programName} onChange={this.handleInputChange}></input>
                 <label>College:</label>
                     <input type="text" name="college" value={this.state.college} onChange={this.handleInputChange} required ></input>
@@ -117,6 +119,7 @@ class ProgramFormContainer extends React.Component {
             ],
             user_id: this.props.user_id
         };
+        console.log("programFormContainer constructor: ", this.state)
     }
 
     // handleDelete = formId => {
@@ -207,7 +210,7 @@ class ProgramContainer extends React.Component {
             programs:[],
             user_id: this.props.user_id
         };
-    
+        console.log("ProgramContainer constructor: ", this.state)
         this.getNewProgram=this.getNewProgram.bind(this);
 
     }
@@ -272,7 +275,11 @@ class ProgramContainer extends React.Component {
                     c_lat = {program.college_lat}
                     c_lon = {program.college_lon}
                 ></Program>
-            ))}
+             ))}
+                <ProgramFormContainer
+                getNewProgram = {this.getNewProgram}
+                user_id={this.state.user_id}
+                ></ProgramFormContainer>
         </div>
         )}
 }
