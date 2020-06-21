@@ -60,7 +60,7 @@ class UserProgram(db.Model):
 	program_id = db.Column(db.Integer, db.ForeignKey('programs.program_id'), nullable=False)
 
 
-	programs = db.relationship("Program")
+	programs = db.relationship("Program", cascade="all,delete", backref='UserProgram')
 	users = db.relationship("User")
 
 	def __repr__(self):
@@ -78,8 +78,9 @@ class Program(db.Model):
 	label = db.Column(db.String)
 	link = db.Column(db.String)
 
-	programrequirements = db.relationship("ProgramRequirement")
-	college = db.relationship("College", backref="programs")
+	# programrequirements = db.relationship("program_requirements", backref="programs")
+	college = db.relationship("College", backref="Program")
+	requirement = db.relationship('Prerequisite', cascade="all,delete", backref='Program')
 
 	def as_dict(self):
 		return {c.name: getattr(self, c.name) for c in self.__table__.columns}
@@ -94,7 +95,7 @@ class Requirement(db.Model):
 
 	requirement_type = db.Column(db.String, primary_key = True)
 
-	programrequirements = db.relationship("ProgramRequirement")
+	# programrequirements = db.relationship("ProgramRequirement")
 
 
 	def __repr__(self):
@@ -129,7 +130,7 @@ class Prerequisite(db.Model):
 	grade = db.Column(db.String)
 	status = db.Column(db.String)
 
-	requirement = db.relationship('Program', backref='prerequisites')
+	
 
 	def __repr__(self):
 		return f'<Prerequisites prerequisites_id={self.prerequisites_id} program_id={self.program_id} name={self.name} >'

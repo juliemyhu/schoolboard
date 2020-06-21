@@ -70,14 +70,15 @@ class ProgramForm extends React.Component {
                         body: JSON.stringify(this.state),
                         headers: {'Content-type': 'application/json'}
                     })
-                    .then ((res) => {
-                        const response = res.json();
+                    .then (r => r.json())
+                    .then ( response => {
                         console.log("add-program response:", response)
-                    });
-                })
+                        this.props.getNewProgram();
+                    }).then(this.props.getNewProgram());
+                });
             }
             else {alert("could not find college")}
-        });  
+        }); 
     }
 
 
@@ -143,6 +144,7 @@ class ProgramFormContainer extends React.Component {
                     onDelete={this.handleDelete} 
                     form={form}
                     user_id ={this.state.user_id}
+                    getNewProgram = {this.props.getNewProgram}
                      >
                          {/* <h4>Program#{form.id}</h4> */}
                 </ProgramForm>
@@ -248,7 +250,7 @@ class ProgramContainer extends React.Component {
             }
             
             // console.log(this.state)
-        })
+        });
     
             // At this point we should a list of programs from server
             // Then we need to setState and update programs to have
@@ -261,18 +263,29 @@ class ProgramContainer extends React.Component {
         this._isMounted = false;
     }
 
-    getNewProgram(new_program) {
-        var current_programs = this.state.programs
-        current_programs.push(new_program)
-        this.setState({
-            programs: current_programs
+    getNewProgram() {
+        console.log(" getNewProgram called");
+        fetch("/api/get_user_programs", {
+            method:"POST",
+            body: JSON.stringify(this.state.user_id),
+            headers: {"Content-type": "application/json"}
         })
+        .then(r => r.json())
+        .then(response => {
+            // console.log(response)
+            if (this._isMounted) {
+                this.setState({programs:response.programs})
+            }
+            
+            // console.log(this.state)
+        });
+        
     }
 
     handleDelete = programId => {
         console.log("program delete?", this.state.programs, "programid", programId)
         const program = this.state.programs.filter(p =>p.program_id !== programId);
-        console.log("after",program)
+        console.log("after", program)
         this.setState({programs: program});
         fetch('/api/delete-program', {
             method:"POST",

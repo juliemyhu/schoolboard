@@ -75,7 +75,7 @@ def get_user_programs(id):
 
 def delete_program(id):
 
-	program=db.session.query(Program).filter(Program.program_id==id).first()
+	program=db.session.query(UserProgram).filter(UserProgram.program_id==id).first()
 	db.session.delete(program)
 	db.session.commit()
 
