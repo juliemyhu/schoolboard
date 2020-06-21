@@ -134,6 +134,18 @@ def add_prereqiuiste():
 	except Exception as err:
 		return jsonify({'success': False,
 						'error':str(err)})
+					
+@app.route('/api/delete-prerequisite', methods = ['POST'])
+def delete_prerequisite():
+	data = request.get_json()
+	print(data)
+	try:
+		crud.delete_prerequisite(data)
+	except Exception as err:
+		return jsonify({'success': False,
+						'error':str(err)})
+
+	return jsonify({'success':True})
 
 @app.route('/api/get_user_programs', methods= ["POST"])
 def get_user_programs():

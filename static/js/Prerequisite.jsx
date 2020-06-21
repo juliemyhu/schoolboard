@@ -71,17 +71,20 @@ class Prerequisite extends React.Component {
         }
     }
 
+
     render() {
         return (
             <div>
                 <table>
                     <tbody>
                     <tr><td>Name:  {this.props.name} </td></tr>
-                    <tr><td>units: {this.props.units}</td></tr>
+                    <tr><td>Units: {this.props.units}</td></tr>
                     <tr><td>Grade: {this.props.grade} {this.state.c_state} </td></tr>
-                    <tr><td>status: {this.props.status}</td></tr>
+                    <tr><td>Status: {this.props.status}</td></tr>
                     </tbody>
                 </table>
+                <button onClick= {() => this.props.onDelete(this.props.prerequisite_id)}  className="btn btn-outline-danger ml-4">Delete</button>
+                <button className="btn btn-outline-primary">Edit</button>
             </div>)
     }
 }
@@ -94,7 +97,7 @@ class PrerequisiteContainer extends React.Component {
             prereqs:[],
             program_id: this.props.program_id
         };
-
+        this.handleDelete=this.handleDelete.bind(this);
         this.getNewPrerequisite=this.getNewPrerequisite.bind(this);
     }
 
@@ -122,6 +125,17 @@ class PrerequisiteContainer extends React.Component {
         })
     }
     
+    handleDelete = prereqId => {
+        console.log("handledelete?", this.state.prereqs, "prereq_id", prereqId)
+        const prereqs = this.state.prereqs.filter(p =>p.prerequisite_id !== prereqId);
+        console.log("after", prereqs );
+        this.setState({prereqs: prereqs});
+        fetch('/api/delete-prerequisite', {
+            method:"POST",
+            body: JSON.stringify(prereqId),
+            headers: {'Content-type': 'application/json'}
+        });
+    }
 
     render() {
         return (
@@ -129,11 +143,13 @@ class PrerequisiteContainer extends React.Component {
                 <h3>Prerequisites:</h3>
                 {this.state.prereqs.map(prereq => (
                     <Prerequisite 
-                        key={prereq.name}            
+                        key={prereq.name}
+                        prerequisite_id={prereq.prerequisite_id}            
                         name = {prereq.name}
                         units = {prereq.units}
                         status = {prereq.status}
                         grade ={prereq.grade}
+                        onDelete={this.handleDelete}
                     ></Prerequisite>
                 ))}
                 <PrerequisiteForm 

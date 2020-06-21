@@ -114,6 +114,17 @@ def create_prerequisite(program_id, name, units, grade, status):
 
 	return prerequisite
 
+def delete_prerequisite(prereq_id):
+	"""deletes prerequisite"""
+
+	prereq=db.session.query(Prerequisite).filter(Prerequisite.prerequisites_id==prereq_id).first()
+	db.session.delete(prereq)
+	db.session.commit()
+
+	return 
+
+
+
 def get_prerequisites(program_id):
 	print("HI IM CALLED")
 	prereq_list = Prerequisite.query.filter(Prerequisite.program_id == program_id).all()
@@ -124,7 +135,8 @@ def get_prerequisites(program_id):
 			"name":prereq.name,
 			"units":prereq.units,
 			"grade":prereq.grade,
-			"status":prereq.status
+			"status":prereq.status,
+			"prerequisite_id":prereq.prerequisites_id
 		})
 		
 	return prereqs
