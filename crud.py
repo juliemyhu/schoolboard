@@ -73,6 +73,14 @@ def get_user_programs(id):
 
 	return UserProgram.query.filter(UserProgram.user_id == id).all()
 
+def delete_program(id):
+
+	program=db.session.query(Program).filter(Program.program_id==id).first()
+	db.session.delete(program)
+	db.session.commit()
+
+	return 
+
 def get_program_by_id(id):
 	"""gets programs by programid"""
 

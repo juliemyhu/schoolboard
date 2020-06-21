@@ -176,6 +176,18 @@ def get_user_programs():
 		return jsonify({'success': False,
 						'error':str(err)})
 
+@app.route('/api/delete-program', methods = ['POST'])
+def delete_program():
+	data = request.get_json()
+	print("delete program",data)
+	try:
+		crud.delete_program(data)
+	except Exception as err:
+		return jsonify({'success': False,
+						'error':str(err)})
+
+	return jsonify({'success':True})
+
 @app.route('/get-prerequisites', methods= ["POST"])
 def get_prerequisites():
 

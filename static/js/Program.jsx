@@ -198,6 +198,7 @@ class Program extends React.Component {
                         <tr><td>Link : <a href={this.state.link}>program link</a></td></tr>
                         </tbody>
                     </table>
+                    <button onClick={() => this.props.onDelete(this.props.program_id)} className="btn btn-outline-danger ml-4">Delete</button>
                 </div>
                 <div>
                     <PrerequisiteContainer 
@@ -222,7 +223,8 @@ class ProgramContainer extends React.Component {
         };
         console.log("ProgramContainer constructor: ", this.state)
         this.getNewProgram=this.getNewProgram.bind(this);
-
+        this.handleDelete=this.handleDelete.bind(this);
+        
     }
 
    
@@ -267,6 +269,17 @@ class ProgramContainer extends React.Component {
         })
     }
 
+    handleDelete = programId => {
+        console.log("program delete?", this.state.programs, "programid", programId)
+        const program = this.state.programs.filter(p =>p.program_id !== programId);
+        console.log("after",program)
+        this.setState({programs: program});
+        fetch('/api/delete-program', {
+            method:"POST",
+            body: JSON.stringify(programId),
+            headers: {'Content-type': 'application/json'}
+        });
+    }
 
     render() {
         return (
@@ -285,6 +298,7 @@ class ProgramContainer extends React.Component {
                     c_state = {program.college_state}
                     c_lat = {program.college_lat}
                     c_lon = {program.college_lon}
+                    onDelete={this.handleDelete}
                 ></Program>
              ))}
                 <ProgramFormContainer
