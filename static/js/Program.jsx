@@ -13,7 +13,8 @@ class ProgramForm extends React.Component {
             cohort: 'Fall 2020',
             link: '',
             user_id: this.props.user_id,
-            label: ''
+            label: '',
+            minimum_gpa: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -99,6 +100,8 @@ class ProgramForm extends React.Component {
                             <option value="Summer 2021">Summer 2021</option>
                             <option value="Fall 2021">Fall 2021</option>
                         </select>
+                <label>Minimum_gpa</label>
+                    <input type= "text" name="minimum_gpa" value = {this.state.minimum_gpa} onChange= {this.handleInputChange}></input>
                 <label>Label:</label>
                         <select name="label" value={this.state.label} onChange={this.handleInputChange} required>
                             <option value="Reach">Reach</option>
@@ -176,6 +179,7 @@ class Program extends React.Component {
             c_lat : this.props.c_lat,
             c_lon : this.props.c_lon,
             cohort : this.props.cohort,
+            minimum_gpa: this.props.minimum_gpa,
             label: this.props.label,
             link : this.props.link
             
@@ -196,6 +200,7 @@ class Program extends React.Component {
                         <tr><td>College: {this.state.c_name}</td></tr>
                         <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
                         <tr><td>Cohort: {this.state.cohort}</td></tr>
+                        <tr><td>Minimum GPA: {this.state.minimum_gpa}</td></tr>
                         <tr><td>Label: {this.state.label}</td></tr>
                         <tr><td>Link : <a href={this.state.link}>program link</a></td></tr>
                         </tbody>
@@ -304,6 +309,7 @@ class ProgramContainer extends React.Component {
                     name = {program.name}
                     college = {program.college_id}
                     cohort = {program.cohort}
+                    minimum_gpa = {program.minimum_gpa}
                     label = {program.label}
                     link = {program.link}
                     c_name = {program.college_name}

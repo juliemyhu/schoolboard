@@ -29,36 +29,6 @@ class App extends React.Component {
                 user_id: user});
                 console.log("finished setting", this.state.user_id);
         }
-        console.log("??", this.state)
-        //   fetch("/api/login", { 
-        //       method:"POST",
-        //       body: JSON.stringify(this.state),
-        //       headers: {'Content-type':'application/json'},
-        //       withCredentials: true })
-        //   .then(r => r.json())
-        //   .then(response => {
-        //       console.log("logged in?", response);
-            // if (
-            //   response.data.logged_in &&
-            //   this.state.loggedInStatus === "NOT_LOGGED_IN"
-            // ) {
-            //   this.setState({
-            //     loggedInStatus: "LOGGED_IN",
-            //     user_id: response.data.user_id
-            //   });
-            // } else if (
-            //   !response.data.logged_in &
-            //   (this.state.loggedInStatus === "LOGGED_IN")
-            // ) {
-            //   this.setState({
-            //     loggedInStatus: "NOT_LOGGED_IN",
-            //     user_id: {}
-            //   });
-            // }
-        //   })
-        //   .catch(error => {
-        //     console.log("check login error", error);
-        //   });
       }
     
     componentDidMount() {
@@ -83,17 +53,6 @@ class App extends React.Component {
         user_id: {}
         })
     }
-
-    // render() {
-    //     return (
-    //     <div>
-    //         {this.state.user_id}'s Board
-    //         <ProgramContainer user_id='1'/>
-    //         <ProgramFormContainer/>
-
-    //     </div>  
-    //     )
-    // };
 
     render() {
         return (
@@ -128,7 +87,6 @@ class App extends React.Component {
         )
     };
 }
-
 
 ReactDOM.render(<App/>, document.getElementById('app'));
 

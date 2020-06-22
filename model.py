@@ -75,6 +75,7 @@ class Program(db.Model):
 	college_id = db.Column(db.Integer, db.ForeignKey('colleges.college_id'), nullable=False)
 	name = db.Column(db.String)
 	cohort = db.Column(db.String)
+	minimum_gpa = db.Column(db.String)
 	label = db.Column(db.String)
 	link = db.Column(db.String)
 

@@ -84,7 +84,7 @@ class Prerequisite extends React.Component {
                     </tbody>
                 </table>
                 <button onClick= {() => this.props.onDelete(this.props.prerequisite_id)}  className="btn btn-outline-danger ml-4">Delete</button>
-                <button className="btn btn-outline-primary">Edit</button>
+                <button onClick= {() => this.props.onEdit(this.props.prerequisite_id)} className="btn btn-outline-primary">Edit</button>
             </div>)
     }
 }
@@ -128,13 +128,18 @@ class PrerequisiteContainer extends React.Component {
     handleDelete = prereqId => {
         console.log("handledelete?", this.state.prereqs, "prereq_id", prereqId)
         const prereqs = this.state.prereqs.filter(p =>p.prerequisite_id !== prereqId);
-        console.log("after", prereqs );
+        // console.log("after", prereqs );
         this.setState({prereqs: prereqs});
         fetch('/api/delete-prerequisite', {
             method:"POST",
             body: JSON.stringify(prereqId),
             headers: {'Content-type': 'application/json'}
         });
+    }
+
+    handleEdit = prereqId => {
+        alert("edit button clicked");
+        console.log("edit?", this.state.prereqs, "prereq_id", prereqId);
     }
 
     render() {
@@ -150,6 +155,7 @@ class PrerequisiteContainer extends React.Component {
                         status = {prereq.status}
                         grade ={prereq.grade}
                         onDelete={this.handleDelete}
+                        onEdit={this.handleEdit}
                     ></Prerequisite>
                 ))}
                 <PrerequisiteForm 

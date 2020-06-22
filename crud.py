@@ -46,11 +46,11 @@ def create_user_program(user_id, program_id):
 
 	return user_program
 
-def create_program(user_id, college_id, name, cohort, label, link:"no_link"):
+def create_program(user_id, college_id, name, cohort, minimum_gpa, label, link:"no_link"):
 	"""Create and return program"""
 	print("create program called")
 
-	program = Program(college_id=college_id, name=name, cohort=cohort,label=label, link=link)
+	program = Program(college_id=college_id, name=name, cohort=cohort,minimum_gpa=minimum_gpa, label=label, link=link)
 	print(program)
 	print (program.program_id, program.name) 
 
@@ -93,6 +93,7 @@ def get_program_by_id(id):
 		return {
 			"program_id":p.program_id,
 			"cohort":p.cohort,
+			"minimum_gpa":p.minimum_gpa,
 			"label":p.label,
 			"link":p.link,
 			"name":p.name,
