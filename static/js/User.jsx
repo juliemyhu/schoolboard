@@ -171,7 +171,7 @@ class Homepage extends React.Component {
     super(props);
 
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+
   }
 
   handleSuccessfulAuth(data) {
@@ -180,32 +180,16 @@ class Homepage extends React.Component {
     this.props.history.push("/dashboard"); 
   }
 
-  handleLogoutClick() {
-    localStorage.removeItem("user_id")
-    this.props.handleLogout();
-  }
-
-  // handleLogoutClick() {
-  //   axios
-  //     .delete("http://localhost:3001/logout", { withCredentials: true })
-  //     .then(response => {
-  //       this.props.handleLogout();
-  //     })
-  //     .catch(error => {
-  //       console.log("logout error", error);
-  //     });
-  // }
 
   render() {
     return (
     <div>
       <h1>Home</h1>
       <h1>Status: {this.props.loggedInStatus}</h1>
-      <button onClick = {() => this.handleLogoutClick()}>Logout</button>
+
       <Login handleSuccessfulAuth={this.handleSuccessfulAuth}>
       </Login>
       <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}>
-        
       </Registration>
 
     </div>
@@ -216,6 +200,9 @@ class Homepage extends React.Component {
   class Dashboard extends React.Component {
     constructor(props) {
       super(props);
+
+      this.handleLogoutClick = this.handleLogoutClick.bind(this);
+
       const stored_user_id = JSON.parse(localStorage.getItem("user_id"))
       if(stored_user_id != null) {
         this.state = {
@@ -228,6 +215,12 @@ class Homepage extends React.Component {
           user_id: this.props.user_id
         };
       }
+    }
+
+    handleLogoutClick() {
+      localStorage.removeItem("user_id")
+      this.props.handleLogout();
+      this.props.history.push("/");
     }
 
     // componentDidMount() {
@@ -246,6 +239,7 @@ class Homepage extends React.Component {
         User_ID: {this.state.user_id}
         <h1>Dashboard</h1>
         <h1>Status: {this.state.loggedInStatus}</h1>
+        <button onClick = {() => this.handleLogoutClick()}>Logout</button>
         <ProgramContainer user_id={this.state.user_id} ></ProgramContainer>
           {/* <ProgramFormContainer></ProgramFormContainer> */}
 

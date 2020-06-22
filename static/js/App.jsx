@@ -1,8 +1,10 @@
 "use strict";
 
 const BrowserRouter = window.ReactRouterDOM.BrowserRouter;
+const UseHistory = window.ReactRouterDOM.UseHistory;
 const Route = window.ReactRouterDOM.Route;
 const Switch = window.ReactRouterDOM.Switch;
+const Redirect = window.ReactRouterDOM.Redirect;
 
 class App extends React.Component {
     constructor(props) {
@@ -100,10 +102,9 @@ class App extends React.Component {
                 <Switch>
                     <Route 
                     exact path={'/'} 
-                    render= {props => (
+                    render = {props => (
                         <Homepage { ... props} 
                         handleLogin={this.handleLogin} 
-                        handleLogout={this.handleLogout}
                         loggedInStatus={this.state.loggedInStatus}
                         ></Homepage>
                         
@@ -114,7 +115,9 @@ class App extends React.Component {
                     render= {props => (
                         <Dashboard { ... props} 
                         user_id={this.state.user_id} 
-                        loggedInStatus={this.state.loggedInStatus }>
+                        handleLogout={this.handleLogout}
+                        loggedInStatus={this.state.loggedInStatus }
+                        >
                         </Dashboard>
                     )}
                     ></Route>

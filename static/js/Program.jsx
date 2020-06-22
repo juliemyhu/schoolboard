@@ -74,7 +74,7 @@ class ProgramForm extends React.Component {
                     .then ( response => {
                         console.log("add-program response:", response)
                         this.props.getNewProgram();
-                    }).then(this.props.getNewProgram());
+                    });
                 });
             }
             else {alert("could not find college")}
