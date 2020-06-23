@@ -69,6 +69,7 @@ class Prerequisite extends React.Component {
             grade: this.props.grade,
             status: this.props.status
         }
+        
     }
 
 
@@ -77,14 +78,14 @@ class Prerequisite extends React.Component {
             <div>
                 <table>
                     <tbody>
-                    <tr><td>Name:  {this.props.name} </td></tr>
+                    <tr><td>Name: {this.props.name}</td></tr>
                     <tr><td>Units: {this.props.units}</td></tr>
-                    <tr><td>Grade: {this.props.grade} {this.state.c_state} </td></tr>
+                    <tr><td>Grade: {this.props.grade}</td></tr>
                     <tr><td>Status: {this.props.status}</td></tr>
                     </tbody>
                 </table>
                 <button onClick= {() => this.props.onDelete(this.props.prerequisite_id)}  className="btn btn-outline-danger ml-4">Delete</button>
-                <button onClick= {() => this.props.onEdit(this.props.prerequisite_id)} className="btn btn-outline-primary">Edit</button>
+                {/* <button onClick= {() => this.props.onEdit(this.props.prerequisite_id)} className="btn btn-outline-primary">Edit</button> */}
             </div>)
     }
 }
@@ -137,10 +138,10 @@ class PrerequisiteContainer extends React.Component {
         });
     }
 
-    handleEdit = prereqId => {
-        alert("edit button clicked");
-        console.log("edit?", this.state.prereqs, "prereq_id", prereqId);
-    }
+    // handleEdit = prereqId => {
+    //     alert("edit button clicked");
+    //     console.log("edit?", this.state.prereqs, "prereq_id", prereqId);
+    // }
 
     render() {
         return (
@@ -155,7 +156,7 @@ class PrerequisiteContainer extends React.Component {
                         status = {prereq.status}
                         grade ={prereq.grade}
                         onDelete={this.handleDelete}
-                        onEdit={this.handleEdit}
+                        // onEdit={this.handleEdit}
                     ></Prerequisite>
                 ))}
                 <PrerequisiteForm 

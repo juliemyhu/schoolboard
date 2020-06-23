@@ -13,7 +13,7 @@ class ProgramForm extends React.Component {
             cohort: 'Fall 2020',
             link: '',
             user_id: this.props.user_id,
-            label: '',
+            label: 'Reach',
             minimum_gpa: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -100,8 +100,8 @@ class ProgramForm extends React.Component {
                             <option value="Summer 2021">Summer 2021</option>
                             <option value="Fall 2021">Fall 2021</option>
                         </select>
-                <label>Minimum_gpa</label>
-                    <input type= "text" name="minimum_gpa" value = {this.state.minimum_gpa} onChange= {this.handleInputChange}></input>
+                <label>Minimum gpa</label>
+                    <input type= "text" name="minimum_gpa" value = {this.state.minimum_gpa} onChange={this.handleInputChange} required></input>
                 <label>Label:</label>
                         <select name="label" value={this.state.label} onChange={this.handleInputChange} required>
                             <option value="Reach">Reach</option>

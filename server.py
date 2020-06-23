@@ -102,12 +102,13 @@ def add_program():
 	college_id = data.get('college_id')
 	name = data.get('programName')
 	cohort = data.get('cohort')
+	minimum_gpa = data.get('minimum_gpa')
 	link = data.get('link')
 	user_id = data.get('user_id')
 	label = data.get('label')
 
 	try:
-		crud.create_program(user_id, college_id, name, cohort, label , link)
+		crud.create_program(user_id, college_id, name, cohort, minimum_gpa, label , link)
 		
 		
 		return jsonify({'success':True})
