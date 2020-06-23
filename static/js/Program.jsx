@@ -20,8 +20,22 @@ class ProgramForm extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSetCollege = this.handleSetCollege.bind(this);
+        this.handleCollegeInputChange = this.handleCollegeInputChange.bind(this);
     }
     handleInputChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+        // console.log(this.state);
+        // fetch("https://api.collegeai.com/v1/api/autocomplete/colleges?api_key=" + MY_API_KEY + "&query=" + this.state.college)
+        // .then(r => r.json())
+        // .then(response => {
+        //     console.log(response);
+        //     this.setState({potential_colleges: response.collegeList});
+        // })
+    }
+    
+    handleCollegeInputChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         });
@@ -100,8 +114,8 @@ class ProgramForm extends React.Component {
     render() {
         let potential_colleges = this.state.potential_colleges;
         let optionItems = potential_colleges.map((college) =>
-        <Test key={college.name} onClick={this.handleSetCollege} collegeName ={college.name}>
-        </Test>);
+        <CollegeDropdowng key={college.name} onClick={this.handleSetCollege} collegeName ={college.name}>
+        </CollegeDropdowng>);
         return (
         <div>
             <h3>Add School</h3>
@@ -109,7 +123,7 @@ class ProgramForm extends React.Component {
                 <label>Program Type:</label>
                     <input type="text"  name="programName" value={this.state.programName} onChange={this.handleInputChange}></input>
                 <label>College:</label>
-                    <input type="text" name="college" value={this.state.college} onChange={this.handleInputChange} required ></input>
+                    <input type="text" name="college" value={this.state.college} onChange={this.handleCollegeInputChange} required ></input>
                         <div>
                             {optionItems}
                         </div>
@@ -140,7 +154,7 @@ class ProgramForm extends React.Component {
     }
 }
 
-class Test extends React.Component {
+class CollegeDropdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
