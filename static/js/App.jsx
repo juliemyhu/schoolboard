@@ -21,13 +21,13 @@ class App extends React.Component {
 
     checkLoginStatus() {
         var user = JSON.parse(localStorage.getItem("user_id"));
-        console.log("login status", user, typeof user)
+        // console.log("login status", user, typeof user)
         if (user != null) {
-            console.log("about to set")
+            // console.log("about to set")
             this.setState({ 
                 loggedInStatus:"LOGGED_IN",
                 user_id: user});
-                console.log("finished setting", this.state.user_id);
+                // console.log("finished setting", this.state.user_id);
         }
       }
     

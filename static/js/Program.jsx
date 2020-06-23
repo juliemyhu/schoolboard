@@ -14,26 +14,40 @@ class ProgramForm extends React.Component {
             link: '',
             user_id: this.props.user_id,
             label: 'Reach',
-            minimum_gpa: ''
+            minimum_gpa: '',
+            potential_colleges: []
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSetCollege = this.handleSetCollege.bind(this);
     }
     handleInputChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         });
+        console.log(this.state);
+        fetch("https://api.collegeai.com/v1/api/autocomplete/colleges?api_key=" + MY_API_KEY + "&query=" + this.state.college)
+        .then(r => r.json())
+        .then(response => {
+            console.log(response);
+            this.setState({potential_colleges: response.collegeList});
+        })
     }
 
+    handleSetCollege(college_name) {
+        this.setState({
+            college: college_name,
+            potential_colleges: []
+        })
+    }
 
 
     handleSubmit(event) {
         // alert('the program submit button was clicked');
-        // console.log(this.state)
+        console.log(this.state)
         // console.log('college:', this.state.college)
         event.preventDefault();
-        // this.props.getNewProgram(this.state);
-
+        console.log(this.state)
         const college = this.state.college
         const URL = 'https://api.collegeai.com/v1/api/college/info?api_key=' + MY_API_KEY + '&college_names=' + college + '&info_ids=city%2Clocation_lat%2Clocation_long%2Cstate_abbr'
         
@@ -84,6 +98,10 @@ class ProgramForm extends React.Component {
 
 
     render() {
+        let potential_colleges = this.state.potential_colleges;
+        let optionItems = potential_colleges.map((college) =>
+        <Test key={college.name} onClick={this.handleSetCollege} collegeName ={college.name}>
+        </Test>);
         return (
         <div>
             <h3>Add School</h3>
@@ -92,6 +110,10 @@ class ProgramForm extends React.Component {
                     <input type="text"  name="programName" value={this.state.programName} onChange={this.handleInputChange}></input>
                 <label>College:</label>
                     <input type="text" name="college" value={this.state.college} onChange={this.handleInputChange} required ></input>
+                        <div>
+                            {optionItems}
+                        </div>
+                        
                 <label>Cohort:</label>
                         <select name="cohort" value={this.state.cohort} onChange={this.handleInputChange} required>
                             <option value="Fall 2020">Fall 2020</option>
@@ -116,6 +138,27 @@ class ProgramForm extends React.Component {
         </div>
         );
     }
+}
+
+class Test extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            collegeName: this.props.collegeName
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <p onClick={()=>{this.props.onClick(this.state.collegeName)}}>
+                    {this.state.collegeName}
+                </p>
+                
+            </div>
+        )
+    }
+
 }
 
 
@@ -228,7 +271,7 @@ class ProgramContainer extends React.Component {
             programs:[],
             user_id: this.props.user_id
         };
-        console.log("ProgramContainer constructor: ", this.state)
+        // console.log("ProgramContainer constructor: ", this.state)
         this.getNewProgram=this.getNewProgram.bind(this);
         this.handleDelete=this.handleDelete.bind(this);
         
@@ -241,7 +284,7 @@ class ProgramContainer extends React.Component {
     componentDidMount() {
         this._isMounted = true;
         // Fetch the programs that this user has added.
-        console.log(this.state.user_id)
+        // console.log(this.state.user_id)
         fetch("/api/get_user_programs", {
             method:"POST",
             body: JSON.stringify(this.state.user_id),
