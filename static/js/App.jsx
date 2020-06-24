@@ -5,6 +5,8 @@ const UseHistory = window.ReactRouterDOM.UseHistory;
 const Route = window.ReactRouterDOM.Route;
 const Switch = window.ReactRouterDOM.Switch;
 const Redirect = window.ReactRouterDOM.Redirect;
+import ReactDOM from 'react-dom';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -89,5 +91,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App/>, document.getElementById('app'));
+
 
 

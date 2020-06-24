@@ -1,3 +1,5 @@
+// import GoogleMap from "./Map"
+
 class Login extends React.Component {
     constructor(props) {
       super(props);
@@ -240,23 +242,14 @@ class Homepage extends React.Component {
         <h1>Dashboard</h1>
         <h1>Status: {this.state.loggedInStatus}</h1>
         <button onClick = {() => this.handleLogoutClick()}>Logout</button>
-        <ProgramContainer user_id={this.state.user_id} ></ProgramContainer>
-          {/* <ProgramFormContainer></ProgramFormContainer> */}
+        <ProgramContainer 
+          user_id={this.state.user_id} 
+        ></ProgramContainer>
+
+        <GoogleMap />
+
 
       </div>
       );
     }
   }
-
-// const Dashboard = props => {
-//   return (
-//     <div>
-//       <div>
-//         <h1>Dashboard</h1>
-//         <h1>Status: {props.loggedInStatus}</h1>
-//         <ProgramContainer user_id={props.user_id} ></ProgramContainer>
-//         <ProgramFormContainer user_id={props.user_id} ></ProgramFormContainer>
-//       </div>
-//     </div>
-//   )
-// }

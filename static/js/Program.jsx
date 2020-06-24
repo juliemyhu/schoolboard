@@ -114,8 +114,8 @@ class ProgramForm extends React.Component {
     render() {
         let potential_colleges = this.state.potential_colleges;
         let optionItems = potential_colleges.map((college) =>
-        <CollegeDropdowng key={college.name} onClick={this.handleSetCollege} collegeName ={college.name}>
-        </CollegeDropdowng>);
+        <CollegeDropdown key={college.name} onClick={this.handleSetCollege} collegeName ={college.name}>
+        </CollegeDropdown>);
         return (
         <div>
             <h3>Add School</h3>
