@@ -1,9 +1,10 @@
-import React, {Component, createRef} from "react"
+// import React, {Component, createRef} from "react"
 
-export default class GoogleMap extends Component {
+class GoogleMap extends React.Component {
     googleMapRef = React.createRef()
   
     componentDidMount() {
+      console.log("hello from googlemap");
       const googleMapScript = document.createElement('script')
       googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ0lKLQYES7sfIlMlIaH_pCWUrP0PoPO8&libraries=places`
       window.document.body.appendChild(googleMapScript)

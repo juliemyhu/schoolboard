@@ -1,4 +1,4 @@
-// import GoogleMap from "./Map"
+// import GoogleMap from "./Map";
 
 class Login extends React.Component {
     constructor(props) {
