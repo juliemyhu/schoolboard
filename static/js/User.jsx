@@ -246,7 +246,7 @@ class Homepage extends React.Component {
           user_id={this.state.user_id} 
         ></ProgramContainer>
 
-        <GoogleMap />
+        <GoogleMap user_id={this.state.user_id}/>
 
 
       </div>
