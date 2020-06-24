@@ -21,7 +21,8 @@ class GoogleMap extends React.Component {
         method:"POST",
         body: JSON.stringify(this.state.user_id),
         headers: {"Content-type": "application/json"}
-      }).then(r => r.json())
+      })
+      .then(r => r.json())
       .then(response => {
         console.log("map fetch response: ", response);
         const map = new window.google.maps.Map(document.getElementById('google-map'), {
@@ -32,7 +33,7 @@ class GoogleMap extends React.Component {
           
           response.programs.map(program => {
             console.log("program!!!!", program);
-            this.createMarker2(program.college_lat, program.college_lon, map);
+            this.createMarker(program.college_lat, program.college_lon, map);
           })
       });
       
@@ -56,12 +57,19 @@ class GoogleMap extends React.Component {
     }
     
 
-    createMarker2(lat, lon, currentMap) {
+    createMarker(lat, lon, currentMap) {
       console.log("createMarker called", lat, lon, currentMap);
       new window.google.maps.Marker({
         position: { lat: lat, lng: lon },
         map: currentMap,
-      })
+        icon: {  
+          url: '/static/img/university.png',
+          scaledSize: {
+            width: 30,
+            height: 30
+          }
+        }
+      });
     }
 
     initMap(map) {
@@ -88,21 +96,21 @@ class GoogleMap extends React.Component {
       }
     }
 
-    createGoogleMap = () =>
-      new window.google.maps.Map(this.googleMapRef.current, {
-        zoom: 16,
-        center: {
-          lat: 43.642567,
-          lng: -79.387054,
-        },
-        disableDefaultUI: true,
-      })
+    // createGoogleMap = () =>
+    //   new window.google.maps.Map(this.googleMapRef.current, {
+    //     zoom: 16,
+    //     center: {
+    //       lat: 43.642567,
+    //       lng: -79.387054,
+    //     },
+    //     disableDefaultUI: true,
+    //   })
   
-    createMarker = () =>
-      new window.google.maps.Marker({
-        position: { lat: 43.642567, lng: -79.187054 },
-        map: this.googleMap,
-      })
+    // createMarker = () =>
+    //   new window.google.maps.Marker({
+    //     position: { lat: 43.642567, lng: -79.187054 },
+    //     map: this.googleMap,
+    //   })
   
     render() {
       return (
