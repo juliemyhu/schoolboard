@@ -19,7 +19,7 @@ class User(db.Model):
 	last_name= db.Column(db.String, nullable=False)
 	email = db.Column(db.String, unique=True)
 	password = db.Column(db.String)
-	location = db.Column(db.String)
+
 
 	# usercolleges = db.relationship("UserColleges")
 	userprograms = db.relationship("UserProgram")

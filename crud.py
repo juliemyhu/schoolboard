@@ -1,8 +1,8 @@
 from model import db, User, College, UserProgram, Program, Requirement,ProgramRequirement, Prerequisite, connect_to_db
 
-def create_user(first_name, last_name, email, password, location):
+def create_user(first_name, last_name, email, password):
 	"""Create and return a new user"""
-	user = User(first_name=first_name, last_name=last_name, email = email, password = password, location =location)
+	user = User(first_name=first_name, last_name=last_name, email = email, password = password)
 	
 	db.session.add(user)
 	db.session.commit()

@@ -30,13 +30,12 @@ def register_user():
 	print("register",data)
 	first_name = data["first_name"]
 	last_name = data["last_name"]
-	location = data["location"]
 	email = data['email']
 	password = data['password']
 
 	try:
-		user = crud.create_user(first_name, last_name, email, password, location)
-		return jsonify({'success':True, 'user': user.user_id})
+		user = crud.create_user(first_name, last_name, email, password)
+		return jsonify({'success':True, 'user_id': user.user_id})
 	except Exception as err:
 		return jsonify({'success': False,
 					'error':str(err)})

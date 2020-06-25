@@ -77,7 +77,6 @@ class Registration extends React.Component {
       this.state = {
         first_name: "",
         last_name: "",
-        location: "",
         email: "",
         password: "",
         registrationErrors: ""
@@ -104,8 +103,8 @@ class Registration extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-          console.log("registration res", response.user)
-          if (typeof(response.user) === "number") {
+          console.log("registration res", response)
+          if (response.success) {
             this.props.handleSuccessfulAuth(response);
           }
         })
@@ -122,7 +121,7 @@ class Registration extends React.Component {
                 type="first_name"
                 name="first_name"
                 placeholder="First Name"
-                value={this.state.password_confirmation}
+                value={this.state.first_name}
                 onChange={this.handleChange}
                 required
                 />
@@ -130,15 +129,7 @@ class Registration extends React.Component {
                 type="last_name"
                 name="last_name"
                 placeholder="last Name"
-                value={this.state.password_confirmation}
-              onChange={this.handleChange}
-              required
-            />
-            <input
-                type="location"
-                name="location"
-                placeholder="City, State"
-                value={this.state.password_confirmation}
+                value={this.state.last_name}
               onChange={this.handleChange}
               required
             />
@@ -177,7 +168,7 @@ class Homepage extends React.Component {
   }
 
   handleSuccessfulAuth(data) {
-    // console.log("success", data);
+    console.log("success", data);
     this.props.handleLogin(data);
     this.props.history.push("/dashboard"); 
   }

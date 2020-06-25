@@ -33,7 +33,7 @@ class GoogleMap extends React.Component {
           this.initMap(map);
           
           response.programs.map(program => {
-            console.log("program!!!!", program);
+            // console.log("program!!!!", program);
             this.createMarker(program.college_lat, program.college_lon, program.college_name, map);
           })
       });
@@ -60,7 +60,7 @@ class GoogleMap extends React.Component {
     
 
     createMarker(lat, lon, program_name, currentMap) {
-      console.log("createMarker called", lat, lon, currentMap);
+      // console.log("createMarker called", lat, lon, currentMap);
       const marker = new window.google.maps.Marker({
         position: { lat: lat, lng: lon },
         map: currentMap,
@@ -127,7 +127,7 @@ class GoogleMap extends React.Component {
                lng: position.coords.longitude },
             map: map,
             icon: {  
-              url: '/static/img/college.png',
+              url: '/static/img/h2.png',
               scaledSize: {
                 width: 30,
                 height: 30
@@ -146,7 +146,7 @@ class GoogleMap extends React.Component {
           });
 
           infoWindow.setPosition(pos);
-          infoWindow.setContent('Here you are.');
+          infoWindow.setContent('Here you are. Close this box and zoom out to see your schools');
           infoWindow.open(map);
           map.setCenter(pos);
         }, function() {
