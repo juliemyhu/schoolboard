@@ -27,7 +27,7 @@ class GoogleMap extends React.Component {
       .then(response => {
         console.log("map fetch response: ", response);
         const map = new window.google.maps.Map(document.getElementById('google-map'), {
-            center: { lat: 41.0082, lng: 28.9784 },
+            center: { lat: 47.613280, lng: -122.349750 },
             zoom: 8
           });
           this.initMap(map);
@@ -74,23 +74,39 @@ class GoogleMap extends React.Component {
         title: program_name
   
       });
+
+      var contentString = "<div> <b>" + marker.title +"</b></div>";
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(currentMap, marker);
+      });
+
       // marker.addListener('click', function() {
       //   infowindow.open(map, marker.title);
       // });
 
-      google.maps.event.addListener(marker, 'click', infobox);
+      // google.maps.event.addListener(marker, 'click', infobox);
     
-      var infowindow = new google.maps.InfoWindow({
-        content: marker.title
-      });
+      // var infowindow = new google.maps.InfoWindow({
+      //   content: marker.title
+      // });
 
-      function infobox() {
-        alert(marker.title);
-        // const infoWindow = new google.maps.InfoWindow({
-        //   content: marker.title,
-        //   maxWidth: 200
-        // });
-      }
+      // function infobox() {
+      //   alert(marker.title);
+      //   var infowindow = new google.maps.InfoWindow;({
+      //     content: marker.title
+      //   });
+      //   // infowindow.open(marker.title);
+      //   infowindow.open(currentMap);
+      //   // const infoWindow = new google.maps.InfoWindow({
+      //   //   content: marker.title,
+      //   //   maxWidth: 200
+      //   // });
+      // }
 
 
     }
@@ -105,6 +121,29 @@ class GoogleMap extends React.Component {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
+
+          const marker = new window.google.maps.Marker({
+            position: { lat: position.coords.latitude,
+               lng: position.coords.longitude },
+            map: map,
+            icon: {  
+              url: '/static/img/college.png',
+              scaledSize: {
+                width: 30,
+                height: 30
+              }
+            }
+          });
+
+          var contentString = "<div> <b>  You are here! </b></div>";
+
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
 
           infoWindow.setPosition(pos);
           infoWindow.setContent('Here you are.');
