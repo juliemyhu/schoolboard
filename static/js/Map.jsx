@@ -127,7 +127,7 @@ class GoogleMap extends React.Component {
                lng: position.coords.longitude },
             map: map,
             icon: {  
-              url: '/static/img/h2.png',
+              url: '/static/img/house.png',
               scaledSize: {
                 width: 30,
                 height: 30
