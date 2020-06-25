@@ -4,6 +4,7 @@ class GoogleMap extends React.Component {
     googleMapRef = React.createRef()
     _isMounted = false;
     
+    
     constructor(props) {
       super(props);
       this.state = {
@@ -33,7 +34,7 @@ class GoogleMap extends React.Component {
           
           response.programs.map(program => {
             console.log("program!!!!", program);
-            this.createMarker(program.college_lat, program.college_lon, map);
+            this.createMarker(program.college_lat, program.college_lon, program.college_name, map);
           })
       });
       
@@ -56,10 +57,11 @@ class GoogleMap extends React.Component {
       this._isMounted = false;
     }
     
+    
 
-    createMarker(lat, lon, currentMap) {
+    createMarker(lat, lon, program_name, currentMap) {
       console.log("createMarker called", lat, lon, currentMap);
-      new window.google.maps.Marker({
+      const marker = new window.google.maps.Marker({
         position: { lat: lat, lng: lon },
         map: currentMap,
         icon: {  
@@ -68,8 +70,29 @@ class GoogleMap extends React.Component {
             width: 30,
             height: 30
           }
-        }
+        },
+        title: program_name
+  
       });
+      // marker.addListener('click', function() {
+      //   infowindow.open(map, marker.title);
+      // });
+
+      google.maps.event.addListener(marker, 'click', infobox);
+    
+      var infowindow = new google.maps.InfoWindow({
+        content: marker.title
+      });
+
+      function infobox() {
+        alert(marker.title);
+        // const infoWindow = new google.maps.InfoWindow({
+        //   content: marker.title,
+        //   maxWidth: 200
+        // });
+      }
+
+
     }
 
     initMap(map) {
@@ -94,7 +117,12 @@ class GoogleMap extends React.Component {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
       }
+    
+
+    
     }
+
+    
 
     // createGoogleMap = () =>
     //   new window.google.maps.Map(this.googleMapRef.current, {
