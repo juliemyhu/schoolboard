@@ -107,6 +107,7 @@ class Registration extends React.Component {
           if (response.success) {
             this.props.handleSuccessfulAuth(response);
           }
+          else {alert("Sorry, could not Register with this email")}
         })
         
     
