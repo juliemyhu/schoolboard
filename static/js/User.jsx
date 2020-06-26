@@ -192,6 +192,7 @@ class Homepage extends React.Component {
 }
 
   class Dashboard extends React.Component {
+    _isMounted = false;
     constructor(props) {
       super(props);
 
@@ -231,6 +232,7 @@ class Homepage extends React.Component {
     //     console.log("dashboard state:", this.state, "user_id", user_id)
     // }
     componentDidMount() {
+      this._isMounted = true;
       fetch('/greetuser', {
         method:"POST",
         body: JSON.stringify(this.state),
@@ -238,16 +240,22 @@ class Homepage extends React.Component {
       } )
       .then(r => r.json())
         .then(response => {
-            console.log("greet",response);
-            this.setState({user_name:response.user_name.user_fname})
-        })
+           if (this._isMounted) {
+             console.log("greet",response);
+           this.setState({user_name:response.user_name.user_fname})
+          }
+        });
     }
+
+    componentWillUnmount() {
+      this._isMounted = false;
+    }
+
 
     render() {
       return (
       <div>
-        User: {this.state.user_name}
-        <h1>Dashboard</h1>
+        <h1>{this.state.user_name}'s Dashboard</h1>
         <h1>Status: {this.state.loggedInStatus}</h1>
         <button onClick = {() => this.handleLogoutClick()}>Logout</button>
         <ProgramContainer 

@@ -187,7 +187,7 @@ class ProgramFormContainer extends React.Component {
             ],
             user_id: this.props.user_id
         };
-        console.log("programFormContainer constructor: ", this.state)
+        // console.log("programFormContainer constructor: ", this.state)
     }
 
     // handleDelete = formId => {

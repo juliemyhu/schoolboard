@@ -27,17 +27,17 @@ for college in college_data:
 
     colleges_in_db.append(db_college)
 
-crud.create_user("test","user","user@user.com", "123")
+crud.create_user("Test","User","user@user.com", "123")
 crud.create_program("1","123961","PharmD","Fall 2020","2.8","Reach","https://pharmacyschool.usc.edu/apply/admission/requirements/")
 crud.create_program("1","110653","PharmD","Fall 2020","2.5","Match","https://pharmacyschool.usc.edu/apply/admission/requirements/")
 crud.create_program("1","123961","PharmD","Fall 2020","3.0","Reach","https://pharmacyschool.usc.edu/apply/admission/requirements/")
-crud.create_prerequisite(1, "bio",4, "A", "Complete")
-crud.create_prerequisite(1, "chem",4, "A", "In Progress")
+crud.create_prerequisite(1, "Bio",4, "A", "Complete")
+crud.create_prerequisite(1, "Chem",4, "A", "In Progress")
 
 
 
-crud.create_user("julie","hu","julie@user.com", "123")
+crud.create_user("Julie","Hu","julie@user.com", "123")
 crud.create_program("2","123961","DDS","Spring 2020","2.5","Match","https://dentistry.usc.edu/admission/doctor-of-dental-surgery-dds/" )
 crud.create_program("2","110653","DDS","Spring 2020","3.0","Match","https://dentistry.ucsf.edu/programs/dds/admissions/prerequisites" ) 
-crud.create_prerequisite(4, "bio",4, "A", "Complete")
-crud.create_prerequisite(4, "chem",4, "B", "In Progress")
+crud.create_prerequisite(4, "Bio",4, "A", "Complete")
+crud.create_prerequisite(4, "Chem",4, "B", "In Progress")
