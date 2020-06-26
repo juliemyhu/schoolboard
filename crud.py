@@ -19,6 +19,14 @@ def get_user_by_email(email):
 
 	return User.query.filter(User.email==email).first()
 
+def get_user_fname(id):
+	user = User.query.filter(User.user_id==id).first()
+
+	return {
+		"user_fname": user.first_name,
+		"user_lname": user.last_name
+	}
+
 
 
 

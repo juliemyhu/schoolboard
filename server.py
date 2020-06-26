@@ -65,6 +65,23 @@ def check_user_info():
 		status = 'Incorrect password. Please try again. '
 	return jsonify({'success': success, 'user_id':user_id, 'status':status})
 
+
+@app.route('/greetuser', methods=["POST"])
+def greet_user():
+
+	data = request.get_json()
+	print("userid data", data)
+	user_id = data['user_id']
+	
+
+	try:
+		user_name = crud.get_user_fname(user_id)
+		print("username?",user_name)
+		return jsonify({'success':True, 'user_name': user_name})
+	except Exception as err:
+		return jsonify({'success': False,
+					'error':str(err)})
+
 @app.route('/add-college', methods=["POST"])
 def add_college():
 	"""creates new college"""

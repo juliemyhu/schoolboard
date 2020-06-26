@@ -195,6 +195,10 @@ class Homepage extends React.Component {
     constructor(props) {
       super(props);
 
+      this.state = {
+        user_name: ''
+      }
+
       this.handleLogoutClick = this.handleLogoutClick.bind(this);
 
       const stored_user_id = JSON.parse(localStorage.getItem("user_id"))
@@ -226,11 +230,23 @@ class Homepage extends React.Component {
     //     }
     //     console.log("dashboard state:", this.state, "user_id", user_id)
     // }
+    componentDidMount() {
+      fetch('/greetuser', {
+        method:"POST",
+        body: JSON.stringify(this.state),
+        headers: {'Content-type': 'application/json'}
+      } )
+      .then(r => r.json())
+        .then(response => {
+            console.log("greet",response);
+            this.setState({user_name:response.user_name.user_fname})
+        })
+    }
 
     render() {
       return (
       <div>
-        User_ID: {this.state.user_id}
+        User: {this.state.user_name}
         <h1>Dashboard</h1>
         <h1>Status: {this.state.loggedInStatus}</h1>
         <button onClick = {() => this.handleLogoutClick()}>Logout</button>
