@@ -56,8 +56,8 @@ class App extends React.Component {
 
     handleLogout() {
         this.setState({
-        loggedInStatus: "NOT_LOGGED_IN",
-        user_id: {}
+            loggedInStatus: "NOT_LOGGED_IN",
+            user_id: {}
         })
     }
 

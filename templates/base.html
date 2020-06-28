@@ -2,9 +2,12 @@
 <html>
   <head>
 
-  	<title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+
+  	<!-- We'll load React dependencies on all pages for this app. -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  	 <!-- We'll load React dependencies on all pages for this app. -->
+
 
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" crossorigin></script>
  	  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
@@ -12,11 +15,13 @@
     
     <script src="https://unpkg.com/react-router/umd/react-router.min.js" ></script>
     <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js" ></script>
-    <script src="https://unpkg.com/"></script>
-    <!-- <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script> -->
 
+    <!-- <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
+      crossorigin></script> -->
+
+  
     <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ0lKLQYES7sfIlMlIaH_pCWUrP0PoPO8"></script>
@@ -28,16 +33,12 @@
     <script src='/static/js/App.jsx' type="text/jsx"></script>
 
     <link href="/static/css/site.css" rel="stylesheet">
-
   </head>
 
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+
   <!-- Include the page's content with this block. -->
   {% block body %}{% endblock %}
 

@@ -1,4 +1,18 @@
 body {
     font-family: 'Helvetica', sans-serif;
-    background-color: 'red' ;
+    /* color:white; */
+    /* background-image: url("/static/img/background.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat; */
   }
+
+.login-form {
+  align-content: center;
+  /* background-color: aqua; */
+  /* background-image: url("/static/img/background.jpg") */
+}
+
+/* head {
+    font-family: 'Helvetica', sans-serif;
+
+  } */

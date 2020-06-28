@@ -39,7 +39,7 @@ class PrerequisiteForm extends React.Component {
             <div>
                 <h3>Add Prerequisite</h3>
                 <form onSubmit={this.handleSubmit} >
-                    <label>name:</label>
+                    <label>Name:</label>
                         <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} ></input>
                     <label>Units:</label>
                         <input type="text" name="units" placeholder="units"value={this.state.units} onChange={this.handleInputChange}></input>
