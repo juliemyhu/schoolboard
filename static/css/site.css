@@ -1,18 +1,17 @@
 body {
-    font-family: 'Helvetica', sans-serif;
-    /* color:white; */
-    /* background-image: url("/static/img/background.jpg");
+    font-family: 'Playfair Display', serif;
+    /* font-family: 'Helvetica', sans-serif; */
+    color:white;
+    background-image: url("/static/img/background.jpg");
     background-size: 100%;
-    background-repeat: no-repeat; */
+    background-repeat: no-repeat;
   }
+
+h1 {
+  text-align: center;
+}
 
 .login-form {
   align-content: center;
-  /* background-color: aqua; */
-  /* background-image: url("/static/img/background.jpg") */
 }
 
-/* head {
-    font-family: 'Helvetica', sans-serif;
-
-  } */

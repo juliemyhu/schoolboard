@@ -43,10 +43,11 @@ class Login extends React.Component {
   
     render() {
       return (
-        <div>
+        <div className="col-4 offset-4" >
             <h3>Login</h3>
-          <form className="login-form" onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <input
+        
               type="email"
               name="email"
               placeholder="Email"
@@ -56,6 +57,7 @@ class Login extends React.Component {
             />
   
             <input
+            
               type="password"
               name="password"
               placeholder="Password"
@@ -116,7 +118,7 @@ class Registration extends React.Component {
   
     render() {
       return (
-        <div>
+        <div className="col-4 offset-4" >
             <h3>Register:</h3>
           <form onSubmit={this.handleSubmit}>
             <input
@@ -130,7 +132,7 @@ class Registration extends React.Component {
             <input
                 type="last_name"
                 name="last_name"
-                placeholder="last Name"
+                placeholder="Last Name"
                 value={this.state.last_name}
               onChange={this.handleChange}
               required
@@ -164,9 +166,7 @@ class Registration extends React.Component {
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-
   }
 
   handleSuccessfulAuth(data) {
@@ -175,15 +175,15 @@ class Homepage extends React.Component {
     this.props.history.push("/dashboard");
   }
 
-
   render() {
     return (
-    <div>
-      <h1>Home</h1>
-      <h1>Status: {this.props.loggedInStatus}</h1>
+    <div> 
+      {/* <h1>Home</h1> */}
+      {/* <h1>Status: {this.props.loggedInStatus}</h1> */}
 
       <Login handleSuccessfulAuth={this.handleSuccessfulAuth}>
       </Login>
+      <div></div>
       <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}>
       </Registration>
 
