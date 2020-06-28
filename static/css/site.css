@@ -5,7 +5,12 @@ body {
     background-image: url("/static/img/background.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
+  
   }
+
+img {
+  opacity: 0.5;
+}
 
 h1 {
   text-align: center;

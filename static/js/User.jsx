@@ -66,7 +66,7 @@ class Login extends React.Component {
               required
             />
   
-            <button type="submit">Login</button>
+            <button className="btn btn-outline-light" type="submit">Login</button>
           </form>
         </div>
       );
@@ -119,7 +119,7 @@ class Registration extends React.Component {
     render() {
       return (
         <div className="col-4 offset-4" >
-            <h3>Register:</h3>
+            <h3>Register</h3>
           <form onSubmit={this.handleSubmit}>
             <input
                 type="first_name"
@@ -156,7 +156,7 @@ class Registration extends React.Component {
               required
             />
   
-            <button type="submit">Register</button>
+            <button className="btn btn-outline-light" type="submit">Register</button>
           </form>
         </div>
       );
@@ -192,81 +192,81 @@ class Homepage extends React.Component {
   }
 }
 
-  class Dashboard extends React.Component {
-    _isMounted = false;
-    constructor(props) {
-      super(props);
+class Dashboard extends React.Component {
+  _isMounted = false;
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      user_name: ''
+    }
+
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+
+    const stored_user_id = JSON.parse(localStorage.getItem("user_id"))
+    if(stored_user_id != null) {
       this.state = {
-        user_name: ''
+        loggedInStatus: "LOGGED_IN",
+        user_id: stored_user_id
       }
-
-      this.handleLogoutClick = this.handleLogoutClick.bind(this);
-
-      const stored_user_id = JSON.parse(localStorage.getItem("user_id"))
-      if(stored_user_id != null) {
-        this.state = {
-          loggedInStatus: "LOGGED_IN",
-          user_id: stored_user_id
-        }
-      } else {
-        this.state = {
-          loggedInStatus: this.props.loggedInStatus,
-          user_id: this.props.user_id
-        };
-      }
-    }
-
-    handleLogoutClick() {
-      localStorage.removeItem("user_id")
-      this.props.handleLogout();
-      this.props.history.push("/");
-    }
-
-    // componentDidMount() {
-    //   const user_id = JSON.parse(localStorage.getItem("user_id"));
-    //     if (user_id != null) {
-    //         this.setState({ 
-    //             loggedInStatus:"LOGGED_IN",
-    //             user_id: user_id});
-    //     }
-    //     console.log("dashboard state:", this.state, "user_id", user_id)
-    // }
-    componentDidMount() {
-      this._isMounted = true;
-      fetch('/greetuser', {
-        method:"POST",
-        body: JSON.stringify(this.state),
-        headers: {'Content-type': 'application/json'}
-      } )
-      .then(r => r.json())
-        .then(response => {
-           if (this._isMounted) {
-             console.log("greet",response);
-           this.setState({user_name:response.user_name.user_fname})
-          }
-        });
-    }
-
-    componentWillUnmount() {
-      this._isMounted = false;
-    }
-
-
-    render() {
-      return (
-      <div>
-        <h1>{this.state.user_name}'s Dashboard</h1>
-        <h1>Status: {this.state.loggedInStatus}</h1>
-        <button className="btn btn-primary" onClick = {() => this.handleLogoutClick()}>Logout</button>
-        <ProgramContainer 
-          user_id={this.state.user_id} 
-        ></ProgramContainer>
-
-        <GoogleMap user_id={this.state.user_id}/>
-
-
-      </div>
-      );
+    } else {
+      this.state = {
+        loggedInStatus: this.props.loggedInStatus,
+        user_id: this.props.user_id
+      };
     }
   }
+
+  handleLogoutClick() {
+    localStorage.removeItem("user_id")
+    this.props.handleLogout();
+    this.props.history.push("/");
+  }
+
+  // componentDidMount() {
+  //   const user_id = JSON.parse(localStorage.getItem("user_id"));
+  //     if (user_id != null) {
+  //         this.setState({ 
+  //             loggedInStatus:"LOGGED_IN",
+  //             user_id: user_id});
+  //     }
+  //     console.log("dashboard state:", this.state, "user_id", user_id)
+  // }
+  componentDidMount() {
+    this._isMounted = true;
+    fetch('/greetuser', {
+      method:"POST",
+      body: JSON.stringify(this.state),
+      headers: {'Content-type': 'application/json'}
+    } )
+    .then(r => r.json())
+      .then(response => {
+          if (this._isMounted) {
+            console.log("greet",response);
+          this.setState({user_name:response.user_name.user_fname})
+        }
+      });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+
+  render() {
+    return (
+    <div>
+      <h1>{this.state.user_name}'s Dashboard</h1>
+      <h1>Status: {this.state.loggedInStatus}</h1>
+      <button className="btn btn-primary" onClick = {() => this.handleLogoutClick()}>Logout</button>
+      <ProgramContainer 
+        user_id={this.state.user_id} 
+      ></ProgramContainer>
+
+      <GoogleMap user_id={this.state.user_id}/>
+
+
+    </div>
+    );
+  }
+}
