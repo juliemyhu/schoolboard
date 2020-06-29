@@ -70,7 +70,6 @@ class ProgramForm extends React.Component {
         .then(response => { 
             // console.log(response);
             // console.log(response.colleges);
-            
             if (response.success == true) {
                 // console.log(response.colleges[0]);
                 // console.log(response.colleges[0].name);
@@ -109,7 +108,6 @@ class ProgramForm extends React.Component {
             else {alert("could not find college")}
         }); 
     }
-
 
     render() {
         let potential_colleges = this.state.potential_colleges;
@@ -168,11 +166,9 @@ class CollegeDropdown extends React.Component {
                 <p onClick={()=>{this.props.onClick(this.state.collegeName)}}>
                     {this.state.collegeName}
                 </p>
-                
             </div>
         )
     }
-
 }
 
 
@@ -212,8 +208,7 @@ class ProgramFormContainer extends React.Component {
         </div>
         );
     }
-
-    }
+}
 
 
 
@@ -222,9 +217,6 @@ class ProgramFormContainer extends React.Component {
 
 // a single program displaying program information 
 class Program extends React.Component {
-    // We know that we are created with information
-    // We know the Program_id
-    // We know the college_id or we can fetch college_id 
     constructor(props) {
         super(props);
         this.state = {
@@ -245,11 +237,10 @@ class Program extends React.Component {
         // console.log("program's p_id", this.state.program_id);
     }
 
-    
 
     render() {
         return (
-            <div>
+            <div className="col-4" >
                 <div>
                     <table>
                         <tbody>
@@ -278,7 +269,6 @@ class Program extends React.Component {
 class ProgramContainer extends React.Component {
     _isMounted = false;
 
-    // ProgramContainer receives a userId. Its going guestId. 
     constructor(props) {
         super(props);
         this.state = {
@@ -288,16 +278,10 @@ class ProgramContainer extends React.Component {
         // console.log("ProgramContainer constructor: ", this.state)
         this.getNewProgram=this.getNewProgram.bind(this);
         this.handleDelete=this.handleDelete.bind(this);
-        
     }
-
-   
-
-    // Start off by finding all the programs this user has added.
 
     componentDidMount() {
         this._isMounted = true;
-        // Fetch the programs that this user has added.
         // console.log(this.state.user_id)
         fetch("/api/get_user_programs", {
             method:"POST",
@@ -310,15 +294,8 @@ class ProgramContainer extends React.Component {
             if (this._isMounted) {
                 this.setState({programs:response.programs})
             }
-            
             // console.log(this.state)
         });
-    
-            // At this point we should a list of programs from server
-            // Then we need to setState and update programs to have
-            // this.setState(programs)
-            // the programs we received.
-            // res.json() = {[{program1}, {program2}, {program3}]}
     }
 
     componentWillUnmount() {
@@ -338,10 +315,8 @@ class ProgramContainer extends React.Component {
             if (this._isMounted) {
                 this.setState({programs:response.programs})
             }
-            
             // console.log(this.state)
         });
-        
     }
 
     handleDelete = programId => {
@@ -358,7 +333,7 @@ class ProgramContainer extends React.Component {
 
     render() {
         return (
-        <div>
+        <div >
              {this.state.programs.map(program => (
                 <Program 
                     key = {program.program_id}
@@ -382,5 +357,6 @@ class ProgramContainer extends React.Component {
                     user_id={this.state.user_id}
                 ></ProgramFormContainer>
         </div>
-        )}
+        )
+    }
 }

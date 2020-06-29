@@ -62,18 +62,26 @@ class App extends React.Component {
     }
 
     render() {
+        let className = "min-vh-100";
+        if (this.state.loggedInStatus == "NOT_LOGGED_IN") {
+            className += " app-not-logged-in";
+        } else {
+            className += "app-logged-in";
+        }
         return (
-        <div className="app"> 
+        <div className= {className}>
+            <h1>Welcome to Schoolboard</h1> 
             <BrowserRouter>
                 <Switch>
                     <Route 
                     exact path={'/'} 
                     render = {props => (
-                        <Homepage { ... props} 
-                        handleLogin={this.handleLogin} 
-                        loggedInStatus={this.state.loggedInStatus}
-                        ></Homepage>
-                        
+                        <div className="row">
+                            <Homepage { ... props} 
+                            handleLogin={this.handleLogin} 
+                            loggedInStatus={this.state.loggedInStatus}
+                            ></Homepage>
+                        </div>  
                     )}
                     ></Route>
                     <Route 

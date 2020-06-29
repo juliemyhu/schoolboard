@@ -3,13 +3,11 @@
 class Login extends React.Component {
     constructor(props) {
       super(props);
-  
       this.state = {
         email: "",
         password: "",
         loginErrors: ""
       };
-  
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
     }
@@ -43,31 +41,41 @@ class Login extends React.Component {
   
     render() {
       return (
-        <div className="col-4 offset-4" >
-            <h3>Login</h3>
-          <form onSubmit={this.handleSubmit}>
-            <input
-        
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-  
-            <input
-            
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-  
-            <button className="btn btn-outline-light" type="submit">Login</button>
-          </form>
+        <div className="col-6 offset-4 mt-3">
+          <h3>Login</h3>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group row">
+                <label for="loginEmail" className="col-sm-2 col-form-label">Email</label>
+                  <div className="col-sm-6">
+                    <input
+                      className="form-control"
+                      id="loginEmail"
+                      type="email"
+                      name="email"
+                      placeholder="Enter Email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </div>
+              </div>
+              <div className="form-group row">
+                <label for="loginPassword" className="col-sm-2 col-form-label">Password</label>
+                  <div className="col-sm-6">
+                    <input
+                      className="form-control"
+                      id="loginPassword"
+                      type="password"
+                      name="password"
+                      placeholder="Enter Password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </div>
+              </div>
+                <button className="btn btn-light" type="submit">Login</button>
+            </form>
         </div>
       );
     }
@@ -112,52 +120,79 @@ class Registration extends React.Component {
           }
           else {alert("Sorry, could not Register with this email")}
         })
-        
-    
     }
   
     render() {
       return (
         <div className="col-4 offset-4" >
-            <h3>Register</h3>
-          <form onSubmit={this.handleSubmit}>
-            <input
-                type="first_name"
-                name="first_name"
-                placeholder="First Name"
-                value={this.state.first_name}
-                onChange={this.handleChange}
-                required
-                />
-            <input
-                type="last_name"
-                name="last_name"
-                placeholder="Last Name"
-                value={this.state.last_name}
-              onChange={this.handleChange}
-              required
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-  
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-  
-            <button className="btn btn-outline-light" type="submit">Register</button>
-          </form>
+          <h3>Register</h3>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group row">
+                <label for="registerfname" className="col-sm-4 col-form-label">First Name</label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="registerfname"
+                      type="first_name"
+                      name="first_name"
+                      placeholder="First Name"
+                      value={this.state.first_name}
+                      onChange={this.handleChange}
+                      required
+                      />
+                  </div>
+              </div>
+              <div className="form-group row">
+                <label for="registerlname" className="col-sm-4 col-form-label">Last Name</label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="registerlname"
+                      type="last_name"
+                      name="last_name"
+                      placeholder="Last Name"
+                      value={this.state.last_name}
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </div>
+              </div>
+              <div className="form-group row">
+                <label for="registeremail" className="col-sm-4 col-form-label">Email</label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="registeremail"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      aria-describedby="emailHelp"
+                      required
+                    />
+                    <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+                  </div>
+              </div>
+              <div className="form-group row">
+                <label for="registerpassword" className="col-sm-4 col-form-label">Password</label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="registerpassword"
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                       aria-describedby="passwordHelp"
+                      required
+                    />
+                    <small id="passwordHelp" class="form-text">Make it unique and secure.</small>
+                  </div>
+              </div>
+                <button className="btn btn-light" type="submit">Register</button>
+            </form>
         </div>
       );
     }
@@ -177,16 +212,18 @@ class Homepage extends React.Component {
 
   render() {
     return (
-    <div> 
+    <div className="col-12"> 
       {/* <h1>Home</h1> */}
       {/* <h1>Status: {this.props.loggedInStatus}</h1> */}
-
-      <Login handleSuccessfulAuth={this.handleSuccessfulAuth}>
-      </Login>
-      <div></div>
-      <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}>
-      </Registration>
-
+      <div className="row login">
+        <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+      </div>
+      <div className="p-3">
+      </div>
+      <div className="row registration">
+        <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
+      </div>
+      
     </div>
     );
   }
@@ -258,7 +295,7 @@ class Dashboard extends React.Component {
     <div>
       <h1>{this.state.user_name}'s Dashboard</h1>
       <h1>Status: {this.state.loggedInStatus}</h1>
-      <button className="btn btn-primary" onClick = {() => this.handleLogoutClick()}>Logout</button>
+      <button className="col-2 offset-10 btn btn-outline-primary" onClick = {() => this.handleLogoutClick()}>Logout</button>
       <ProgramContainer 
         user_id={this.state.user_id} 
       ></ProgramContainer>

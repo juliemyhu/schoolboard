@@ -104,7 +104,6 @@ class PrerequisiteContainer extends React.Component {
 
     
     componentDidMount() {
-        // We need to know what program we're looking for
         fetch('/get-prerequisites', {
             method:"POST",
             body: JSON.stringify(this.state.program_id),

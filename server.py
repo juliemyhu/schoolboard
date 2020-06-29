@@ -55,14 +55,14 @@ def check_user_info():
 	user_id = -1
 
 	if not user:
-		status = 'That email address is not associated with a user in our system'
+		status = ' That email address is not associated with a user in our system'
 	elif user.password == password:
 		session['logged_in_user_id'] = user.user_id
 		success = True
 		status = 'logged in'
 		user_id = user.user_id
 	else:
-		status = 'Incorrect password. Please try again. '
+		status = ' Incorrect password. Please try again. '
 	return jsonify({'success': success, 'user_id':user_id, 'status':status})
 
 
