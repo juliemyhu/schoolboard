@@ -66,11 +66,13 @@ class App extends React.Component {
         if (this.state.loggedInStatus == "NOT_LOGGED_IN") {
             className += " app-not-logged-in";
         } else {
-            className += "app-logged-in";
+            className += " app-logged-in";
         }
         return (
         <div className= {className}>
-            <h1>Welcome to Schoolboard</h1> 
+            <div class="col pt-5 pb-5" >
+                <h1>Welcome to Schoolboard</h1> 
+            </div>
             <BrowserRouter>
                 <Switch>
                     <Route 

@@ -333,7 +333,7 @@ class ProgramContainer extends React.Component {
 
     render() {
         return (
-        <div >
+        <div className="row">
              {this.state.programs.map(program => (
                 <Program 
                     key = {program.program_id}

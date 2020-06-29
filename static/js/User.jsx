@@ -41,7 +41,7 @@ class Login extends React.Component {
   
     render() {
       return (
-        <div className="col-6 offset-4 mt-3">
+        <div className="col-7 offset-1">
           <h3>Login</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
@@ -124,7 +124,7 @@ class Registration extends React.Component {
   
     render() {
       return (
-        <div className="col-4 offset-4" >
+        <div className="col-5 offset-1" >
           <h3>Register</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
@@ -280,7 +280,7 @@ class Dashboard extends React.Component {
       .then(response => {
           if (this._isMounted) {
             console.log("greet",response);
-          this.setState({user_name:response.user_name.user_fname})
+          this.setState({user_name:response.user_name.user_fname+" "+response.user_name.user_lname})
         }
       });
   }
@@ -293,9 +293,11 @@ class Dashboard extends React.Component {
   render() {
     return (
     <div>
-      <h1>{this.state.user_name}'s Dashboard</h1>
-      <h1>Status: {this.state.loggedInStatus}</h1>
-      <button className="col-2 offset-10 btn btn-outline-primary" onClick = {() => this.handleLogoutClick()}>Logout</button>
+      <div className="row greeting ml-3">
+        <h2>{this.state.user_name}'s Dashboard</h2>
+        {/* <h1>Status: {this.state.loggedInStatus}</h1> */}
+        <button className="btn btn-light" onClick = {() => this.handleLogoutClick()}>Logout</button>
+      </div>
       <ProgramContainer 
         user_id={this.state.user_id} 
       ></ProgramContainer>
