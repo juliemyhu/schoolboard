@@ -10,10 +10,10 @@ class ProgramForm extends React.Component {
             college_id: '',
             programName: '',
             college: '',
-            cohort: 'Fall 2020',
+            cohort: 'choose',
             link: '',
             user_id: this.props.user_id,
-            label: 'Reach',
+            label: 'choose',
             minimum_gpa: '',
             potential_colleges: []
         };
@@ -115,36 +115,93 @@ class ProgramForm extends React.Component {
         <CollegeDropdown key={college.name} onClick={this.handleSetCollege} collegeName ={college.name}>
         </CollegeDropdown>);
         return (
-        <div>
+        <div className="">
             <h3>Add School</h3>
             <form onSubmit={this.handleSubmit}>
-                <label>Program Type:</label>
-                    <input type="text"  name="programName" value={this.state.programName} onChange={this.handleInputChange}></input>
-                <label>College:</label>
-                    <input type="text" name="college" value={this.state.college} onChange={this.handleCollegeInputChange} required ></input>
-                        <div>
-                            {optionItems}
+                <div className="form-group row">
+                        <div className="col-sm-10">
+                        {/* <label>College:</label> */}
+                            <input 
+                            className="form-control"
+                            id="college"
+                            placeholder="College"
+                            type="text" 
+                            name="college" 
+                            value={this.state.college} 
+                            onChange={this.handleCollegeInputChange} 
+                            required 
+                            ></input>
+                                <div className="col-sm-10">
+                                    {optionItems}
+                                </div>
                         </div>
-                        
-                <label>Cohort:</label>
-                        <select name="cohort" value={this.state.cohort} onChange={this.handleInputChange} required>
-                            <option value="Fall 2020">Fall 2020</option>
-                            <option value="Winter 2020">Winter 2020</option>
-                            <option value="Spring 2021">Spring 2021</option>
-                            <option value="Summer 2021">Summer 2021</option>
-                            <option value="Fall 2021">Fall 2021</option>
-                        </select>
-                <label>Minimum gpa</label>
-                    <input type= "text" name="minimum_gpa" value = {this.state.minimum_gpa} onChange={this.handleInputChange} required></input>
-                <label>Label:</label>
-                        <select name="label" value={this.state.label} onChange={this.handleInputChange} required>
-                            <option value="Reach">Reach</option>
-                            <option value="Match">Match</option>
-                            <option value="Safety">Safety</option>
-                        </select>
-                <label>Link:</label>
-                    <input type="text" name = "link" value={this.state.link} onChange={this.handleInputChange} required></input>
-                <button type="submit" >Submit </button>  
+                    </div>
+                <div className="form-group row">
+                    {/* <label>Program Name:</label> */}
+                    <div className="col-sm-10">
+                        <input 
+                        className="form-control"
+                        id="programname"
+                        type="text"  
+                        name="programName" 
+                        placeholder="Program Name"
+                        value={this.state.programName} 
+                        onChange={this.handleInputChange}></input>
+                    </div>
+                </div>
+                <div className="form-group row"> 
+                    <div className="col-sm-10">       
+                    {/* <label>Cohort:</label> */}
+                            <select className="form-control" id="cohort" name="cohort" value={this.state.cohort} onChange={this.handleInputChange} required>
+                            <option value="choose" disabled>Cohort</option>
+                                <option value="Fall 2020">Fall 2020</option>
+                                <option value="Winter 2020">Winter 2020</option>
+                                <option value="Spring 2021">Spring 2021</option>
+                                <option value="Summer 2021">Summer 2021</option>
+                                <option value="Fall 2021">Fall 2021</option>
+                            </select>
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <div className="col-sm-10">
+                    {/* <label>Minimum gpa</label> */}
+                        <input 
+                        className="form-control"
+                        id="minimumgpa"
+                        placeholder="Minimum GPA"
+                        type= "text" 
+                        name="minimum_gpa" 
+                        value = {this.state.minimum_gpa}
+                        onChange={this.handleInputChange} 
+                        required></input>
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <div className="col-sm-10">
+                    {/* <label>Label:</label> */}
+                            <select className="form-control" id="label" name="label" value={this.state.label} onChange={this.handleInputChange} required>
+                                <option value="choose" disabled>Label</option>
+                                <option value="Reach">Reach</option>
+                                <option value="Match">Match</option>
+                                <option value="Safety">Safety</option>
+                            </select>
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <div className="col-sm-10">
+                    {/* <label>Link:</label> */}
+                        <input 
+                        className="form-control"
+                        id="link"
+                        placeholder="Link"
+                        type="text" 
+                        name = "link" 
+                        value={this.state.link} 
+                        onChange={this.handleInputChange} 
+                        required></input>
+                    </div>
+                </div>
+                <button type="submit" className="btn btn-outline-light">Submit </button>  
             </form>
         {/* <button onClick= {() => this.props.onDelete(this.props.form.id)}>Delete</button> */}
         </div>
@@ -240,13 +297,13 @@ class Program extends React.Component {
 
     render() {
         return (
-            <div className="col-4 p-2" >
+            <div className="" >
                 <div>
                     <table>
                         <tbody>
-                        <tr><td>Program: {this.state.name}</td></tr>
                         <tr><td>{this.state.c_name}</td></tr>
                         <tr><td>{this.state.c_city}, {this.state.c_state} </td></tr>
+                        <tr><td>{this.state.name} Program</td></tr>
                         <tr><td>{this.state.cohort}</td></tr>
                         <tr><td>Minimum GPA: {this.state.minimum_gpa}</td></tr>
                         <tr><td>Label: {this.state.label}</td></tr>
@@ -334,11 +391,11 @@ class ProgramContainer extends React.Component {
     render() {
         return (
         <div className="testimonial-group">
-            <div className="row">
+            <div className="row p-4">
              {this.state.programs.map(program => (
-                 <div className="col-xs-4 border">
+                 <div  key = {program.program_id} className="col-xs-6 p-2 border">
                     <Program 
-                        key = {program.program_id}
+                        // key = {program.program_id}
                         program_id = {program.program_id}
                         name = {program.name}
                         college = {program.college_id}

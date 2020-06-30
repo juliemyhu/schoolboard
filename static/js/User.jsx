@@ -45,7 +45,7 @@ class Login extends React.Component {
           <h3>Login</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
-                <label for="loginEmail" className="col-sm-4 col-form-label">Email</label>
+                <label htmlFor="loginEmail" className="col-sm-4 col-form-label">Email</label>
                   <div className="col-sm-8">
                     <input
                       className="form-control"
@@ -60,7 +60,7 @@ class Login extends React.Component {
                   </div>
               </div>
               <div className="form-group row">
-                <label for="loginPassword" className="col-sm-4 col-form-label">Password</label>
+                <label htmlFor="loginPassword" className="col-sm-4 col-form-label">Password</label>
                   <div className="col-sm-8">
                     <input
                       className="form-control"
@@ -128,7 +128,7 @@ class Registration extends React.Component {
           <h3>Register</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
-                <label for="registerfname" className="col-sm-4 col-form-label">First Name</label>
+                <label htmlFor="registerfname" className="col-sm-4 col-form-label">First Name</label>
                   <div className="col-sm-8">
                     <input
                       className="form-control"
@@ -143,7 +143,7 @@ class Registration extends React.Component {
                   </div>
               </div>
               <div className="form-group row">
-                <label for="registerlname" className="col-sm-4 col-form-label">Last Name</label>
+                <label htmlFor="registerlname" className="col-sm-4 col-form-label">Last Name</label>
                   <div className="col-sm-8">
                     <input
                       className="form-control"
@@ -158,7 +158,7 @@ class Registration extends React.Component {
                   </div>
               </div>
               <div className="form-group row">
-                <label for="registeremail" className="col-sm-4 col-form-label">Email</label>
+                <label htmlFor="registeremail" className="col-sm-4 col-form-label">Email</label>
                   <div className="col-sm-8">
                     <input
                       className="form-control"
@@ -171,11 +171,11 @@ class Registration extends React.Component {
                       aria-describedby="emailHelp"
                       required
                     />
-                    <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+                    <small id="emailHelp" className="form-text">We'll never share your email with anyone else.</small>
                   </div>
               </div>
               <div className="form-group row">
-                <label for="registerpassword" className="col-sm-4 col-form-label">Password</label>
+                <label htmlFor="registerpassword" className="col-sm-4 col-form-label">Password</label>
                   <div className="col-sm-8">
                     <input
                       className="form-control"
@@ -188,7 +188,7 @@ class Registration extends React.Component {
                        aria-describedby="passwordHelp"
                       required
                     />
-                    <small id="passwordHelp" class="form-text">Make it unique and secure.</small>
+                    <small id="passwordHelp" className="form-text">Make it unique and secure.</small>
                   </div>
               </div>
                 <button className="btn btn-light" type="submit">Register</button>

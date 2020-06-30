@@ -7,7 +7,7 @@ class PrerequisiteForm extends React.Component {
             name: '',
             units: '' ,
             grade:'',
-            status: 'complete',
+            status: 'choose',
             program_id: this.props.program_id
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,10 +36,11 @@ class PrerequisiteForm extends React.Component {
     
     render() {
         return (
-            <div className="col-7">
+            <div>
                 <h3>Add Prerequisite</h3>
                 <form onSubmit={this.handleSubmit} >
-                    <label for="prereqname" className="col-sm-4 col-form-label">Name:</label>
+                    <div className="form-group row">
+                    {/* <label for="prereqname" className="col-sm-4 col-form-label">Name:</label> */}
                         <div className="col-sm-8">
                             <input 
                             className="form-control" 
@@ -51,36 +52,44 @@ class PrerequisiteForm extends React.Component {
                             onChange={this.handleInputChange} 
                             ></input>
                         </div>
-                    <label for="prerequnits" className="col-sm-4 col-form-label">Units:</label>
+                    </div>
+                    <div className="form-group row">
+                    {/* <label for="prerequnits" className="col-sm-4 col-form-label">Units:</label> */}
                         <div className="col-sm-8">
                             <input 
                             className="form-control" 
                             id="prerequnits"
                             type="text" 
                             name="units" 
-                            placeholder="units"
+                            placeholder="Units"
                             value={this.state.units} 
                             onChange={this.handleInputChange}></input>
                         </div>
-                    <label for="prereqgrade" className="col-sm-4 col-form-label">Grade</label>
+                    </div>
+                    <div className="form-group row">
+                    {/* <label for="prereqgrade" className="col-sm-4 col-form-label">Grade</label> */}
                         <div className="col-sm-8">
                             <input 
                             className="form-control"
                             id="prereqgrade"
                             type="text" 
                             name="grade" 
-                            placeholder="grade" 
+                            placeholder="Grade" 
                             value={this.state.grade} 
                             onChange={this.handleInputChange}></input>
                         </div>
-                    <label for="prereqstatus" className="col-sm-4 col-form-label">Status:</label>
+                    </div>
+                    <div className="form-group row">
+                    {/* <label for="prereqstatus" className="col-sm-4 col-form-label">Status:</label> */}
                         <div className="col-sm-8">
                             <select className="form-control" id="prereqstatus" name="status" value={this.state.status} onChange={this.handleInputChange}>
-                                <option value="complete">Complete</option>
-                                <option value="in-progress">In Progress</option>
-                                <option value="planned">Planned</option>
+                                <option value="choose" disabled>Status</option>
+                                <option value="Complete">Complete</option>
+                                <option value="In-progress">In Progress</option>
+                                <option value="Planned">Planned</option>
                             </select>
                         </div>
+                    </div>
                     <button type="submit" className="btn btn-outline-light">Add</button> 
                 </form>
             </div>

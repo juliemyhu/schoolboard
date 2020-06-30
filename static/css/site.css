@@ -18,11 +18,11 @@
 }
 
 .testimonial-group > .row {
-  overflow-x: auto;
+  overflow-x: scroll;
   white-space: nowrap;
   flex-wrap: nowrap;
 }
-.testimonial-group > .row > .col-xs-4 {
+.testimonial-group > .row > .col-xs-6 {
   display: inline-block;
   float: none;
 }
