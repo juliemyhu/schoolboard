@@ -41,12 +41,12 @@ class Login extends React.Component {
   
     render() {
       return (
-        <div className="col-7 offset-1">
+        <div className="col-6">
           <h3>Login</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
-                <label for="loginEmail" className="col-sm-2 col-form-label">Email</label>
-                  <div className="col-sm-6">
+                <label for="loginEmail" className="col-sm-4 col-form-label">Email</label>
+                  <div className="col-sm-8">
                     <input
                       className="form-control"
                       id="loginEmail"
@@ -60,8 +60,8 @@ class Login extends React.Component {
                   </div>
               </div>
               <div className="form-group row">
-                <label for="loginPassword" className="col-sm-2 col-form-label">Password</label>
-                  <div className="col-sm-6">
+                <label for="loginPassword" className="col-sm-4 col-form-label">Password</label>
+                  <div className="col-sm-8">
                     <input
                       className="form-control"
                       id="loginPassword"
@@ -124,7 +124,7 @@ class Registration extends React.Component {
   
     render() {
       return (
-        <div className="col-5 offset-1" >
+        <div className="col-6" >
           <h3>Register</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
@@ -215,12 +215,10 @@ class Homepage extends React.Component {
     <div className="col-12"> 
       {/* <h1>Home</h1> */}
       {/* <h1>Status: {this.props.loggedInStatus}</h1> */}
-      <div className="row login">
+      <div className="row login p-5">
         <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
       </div>
-      <div className="p-3">
-      </div>
-      <div className="row registration">
+      <div className="row registration p-5">
         <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
       </div>
       
@@ -293,7 +291,7 @@ class Dashboard extends React.Component {
   render() {
     return (
     <div>
-      <div className="row greeting ml-3">
+      <div className="row greeting p-4">
         <h2>{this.state.user_name}'s Dashboard</h2>
         {/* <h1>Status: {this.state.loggedInStatus}</h1> */}
         <button className="btn btn-light" onClick = {() => this.handleLogoutClick()}>Logout</button>

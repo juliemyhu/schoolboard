@@ -36,22 +36,52 @@ class PrerequisiteForm extends React.Component {
     
     render() {
         return (
-            <div>
+            <div className="col-7">
                 <h3>Add Prerequisite</h3>
                 <form onSubmit={this.handleSubmit} >
-                    <label>Name:</label>
-                        <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} ></input>
-                    <label>Units:</label>
-                        <input type="text" name="units" placeholder="units"value={this.state.units} onChange={this.handleInputChange}></input>
-                    <label>Grade</label>
-                        <input type="text" name="grade" placeholder="grade" value={this.state.grade} onChange={this.handleInputChange}></input>
-                    <label>Status:</label>
-                            <select name="status" value={this.state.status} onChange={this.handleInputChange}>
+                    <label for="prereqname" className="col-sm-4 col-form-label">Name:</label>
+                        <div className="col-sm-8">
+                            <input 
+                            className="form-control" 
+                            id="prereqname"
+                            type="text" 
+                            name="name" 
+                            placeholder="Name" 
+                            value={this.state.name} 
+                            onChange={this.handleInputChange} 
+                            ></input>
+                        </div>
+                    <label for="prerequnits" className="col-sm-4 col-form-label">Units:</label>
+                        <div className="col-sm-8">
+                            <input 
+                            className="form-control" 
+                            id="prerequnits"
+                            type="text" 
+                            name="units" 
+                            placeholder="units"
+                            value={this.state.units} 
+                            onChange={this.handleInputChange}></input>
+                        </div>
+                    <label for="prereqgrade" className="col-sm-4 col-form-label">Grade</label>
+                        <div className="col-sm-8">
+                            <input 
+                            className="form-control"
+                            id="prereqgrade"
+                            type="text" 
+                            name="grade" 
+                            placeholder="grade" 
+                            value={this.state.grade} 
+                            onChange={this.handleInputChange}></input>
+                        </div>
+                    <label for="prereqstatus" className="col-sm-4 col-form-label">Status:</label>
+                        <div className="col-sm-8">
+                            <select className="form-control" id="prereqstatus" name="status" value={this.state.status} onChange={this.handleInputChange}>
                                 <option value="complete">Complete</option>
                                 <option value="in-progress">In Progress</option>
                                 <option value="planned">Planned</option>
                             </select>
-                    <button type="submit" className="btn btn-primary">Add</button> 
+                        </div>
+                    <button type="submit" className="btn btn-outline-light">Add</button> 
                 </form>
             </div>
         )
@@ -84,7 +114,7 @@ class Prerequisite extends React.Component {
                     <tr><td>Status: {this.props.status}</td></tr>
                     </tbody>
                 </table>
-                <button onClick= {() => this.props.onDelete(this.props.prerequisite_id)}  className="btn btn-outline-danger ml-4">Delete</button>
+                <button onClick= {() => this.props.onDelete(this.props.prerequisite_id)}  className="btn btn-outline-light ml-4">Delete</button>
                 {/* <button onClick= {() => this.props.onEdit(this.props.prerequisite_id)} className="btn btn-outline-primary">Edit</button> */}
             </div>)
     }

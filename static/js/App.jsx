@@ -70,7 +70,7 @@ class App extends React.Component {
         }
         return (
         <div className= {className}>
-            <div class="col pt-5 pb-5" >
+            <div class="col p-5" >
                 <h1>Welcome to Schoolboard</h1> 
             </div>
             <BrowserRouter>

@@ -16,6 +16,17 @@
   color:white;
   background-image: url("/static/img/background2.png");
 }
+
+.testimonial-group > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+.testimonial-group > .row > .col-xs-4 {
+  display: inline-block;
+  float: none;
+}
+
 /* .container {
   min-height: 100%;
 } */

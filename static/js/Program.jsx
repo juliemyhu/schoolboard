@@ -240,20 +240,20 @@ class Program extends React.Component {
 
     render() {
         return (
-            <div className="col-4" >
+            <div className="col-4 p-2" >
                 <div>
                     <table>
                         <tbody>
                         <tr><td>Program: {this.state.name}</td></tr>
-                        <tr><td>College: {this.state.c_name}</td></tr>
-                        <tr><td>Location: {this.state.c_city}, {this.state.c_state} </td></tr>
-                        <tr><td>Cohort: {this.state.cohort}</td></tr>
+                        <tr><td>{this.state.c_name}</td></tr>
+                        <tr><td>{this.state.c_city}, {this.state.c_state} </td></tr>
+                        <tr><td>{this.state.cohort}</td></tr>
                         <tr><td>Minimum GPA: {this.state.minimum_gpa}</td></tr>
                         <tr><td>Label: {this.state.label}</td></tr>
-                        <tr><td>Link : <a href={this.state.link}>program link</a></td></tr>
+                        <tr><td><a href={this.state.link}>Program Link</a></td></tr>
                         </tbody>
                     </table>
-                    <button onClick={() => this.props.onDelete(this.props.program_id)} className="btn btn-outline-danger ml-4">Delete</button>
+                    <button onClick={() => this.props.onDelete(this.props.program_id)} className="btn btn-outline-light ml-4">Delete</button>
                 </div>
                 <div>
                     <PrerequisiteContainer 
@@ -333,29 +333,35 @@ class ProgramContainer extends React.Component {
 
     render() {
         return (
-        <div className="row">
+        <div className="testimonial-group">
+            <div className="row">
              {this.state.programs.map(program => (
-                <Program 
-                    key = {program.program_id}
-                    program_id = {program.program_id}
-                    name = {program.name}
-                    college = {program.college_id}
-                    cohort = {program.cohort}
-                    minimum_gpa = {program.minimum_gpa}
-                    label = {program.label}
-                    link = {program.link}
-                    c_name = {program.college_name}
-                    c_city = {program.college_city}
-                    c_state = {program.college_state}
-                    c_lat = {program.college_lat}
-                    c_lon = {program.college_lon}
-                    onDelete={this.handleDelete}
-                ></Program>
+                 <div className="col-xs-4 border">
+                    <Program 
+                        key = {program.program_id}
+                        program_id = {program.program_id}
+                        name = {program.name}
+                        college = {program.college_id}
+                        cohort = {program.cohort}
+                        minimum_gpa = {program.minimum_gpa}
+                        label = {program.label}
+                        link = {program.link}
+                        c_name = {program.college_name}
+                        c_city = {program.college_city}
+                        c_state = {program.college_state}
+                        c_lat = {program.college_lat}
+                        c_lon = {program.college_lon}
+                        onDelete={this.handleDelete}
+                    ></Program>
+                </div>
              ))}
+            
                 <ProgramFormContainer
                     getNewProgram = {this.getNewProgram}
                     user_id={this.state.user_id}
                 ></ProgramFormContainer>
+            </div>
+            
         </div>
         )
     }
