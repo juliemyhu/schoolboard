@@ -1,6 +1,10 @@
+let MY_API_KEY = "";
 
-
-const MY_API_KEY ='free_d6e794d268065566fd05b280ee'
+fetch("/getApiKey")
+    .then(r => r.json())
+    .then(response => {
+        MY_API_KEY = response.apiKey
+    }) 
 
 // program form inside every programformcontainer
 class ProgramForm extends React.Component {

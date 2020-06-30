@@ -4,3 +4,4 @@ schoolboaards.sql
 *.pyc
 *~
 *.swp
+secrets.sh

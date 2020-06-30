@@ -13,8 +13,8 @@
 
 .app-logged-in {
   font-family: 'Playfair Display', serif;
-  color:white;
-  background-image: url("/static/img/background2.png");
+  color:black;
+  background-image: url("/static/img/notebook.png");
 }
 
 .testimonial-group > .row {

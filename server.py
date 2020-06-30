@@ -2,6 +2,8 @@ from flask import (Flask, render_template, request, flash, session, jsonify, red
 from model import connect_to_db
 from jinja2 import StrictUndefined
 import crud
+import os
+import sys
 
 app = Flask(__name__)
 app.secret_key = "c3so-l2o8-4bld-59o7-c1ra-le60-hoge"
@@ -65,6 +67,13 @@ def check_user_info():
 		status = ' Incorrect password. Please try again. '
 	return jsonify({'success': success, 'user_id':user_id, 'status':status})
 
+
+@app.route('/getApiKey')
+def get_api_key():
+	print("getapikey")
+	MY_API_KEY = os.environ['MY_API_KEY']
+	print(MY_API_KEY)
+	return jsonify({'apiKey':MY_API_KEY})
 
 @app.route('/greetuser', methods=["POST"])
 def greet_user():
