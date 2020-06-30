@@ -43,11 +43,11 @@ class ProgramForm extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log(this.state);
+        // console.log(this.state);
         fetch("https://api.collegeai.com/v1/api/autocomplete/colleges?api_key=" + MY_API_KEY + "&query=" + this.state.college)
         .then(r => r.json())
         .then(response => {
-            console.log(response);
+            // console.log(response);
             this.setState({potential_colleges: response.collegeList});
         })
     }
@@ -62,10 +62,10 @@ class ProgramForm extends React.Component {
 
     handleSubmit(event) {
         // alert('the program submit button was clicked');
-        console.log(this.state)
+        // console.log(this.state)
         // console.log('college:', this.state.college)
         event.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
         const college = this.state.college
         const URL = 'https://api.collegeai.com/v1/api/college/info?api_key=' + MY_API_KEY + '&college_names=' + college + '&info_ids=city%2Clocation_lat%2Clocation_long%2Cstate_abbr'
         
@@ -104,7 +104,7 @@ class ProgramForm extends React.Component {
                     })
                     .then (r => r.json())
                     .then ( response => {
-                        console.log("add-program response:", response)
+                        // console.log("add-program response:", response)
                         this.props.getNewProgram();
                     });
                 });

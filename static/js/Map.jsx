@@ -25,7 +25,7 @@ class GoogleMap extends React.Component {
       })
       .then(r => r.json())
       .then(response => {
-        console.log("map fetch response: ", response);
+        // console.log("map fetch response: ", response);
         const map = new window.google.maps.Map(document.getElementById('google-map'), {
             center: { lat: 47.613280, lng: -122.349750 },
             zoom: 8
@@ -57,8 +57,6 @@ class GoogleMap extends React.Component {
       this._isMounted = false;
     }
     
-    
-
     createMarker(lat, lon, program_name, currentMap) {
       // console.log("createMarker called", lat, lon, currentMap);
       const marker = new window.google.maps.Marker({
@@ -112,7 +110,7 @@ class GoogleMap extends React.Component {
     }
 
     initMap(map) {
-      console.log("initMap called");
+      // console.log("initMap called");
       const infoWindow = new google.maps.InfoWindow;
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
@@ -181,11 +179,15 @@ class GoogleMap extends React.Component {
   
     render() {
       return (
-        <div
+        <div class="p-4">
+          <div
+          className="col-12"
           id="google-map"
           ref={this.googleMapRef}
-          style={{ width: '400px', height: '300px' }}
+          style={{ width: '900px', height: '300px' }}
         />
+        </div>
+        
       )
     }
   }

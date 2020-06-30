@@ -1,20 +1,24 @@
 .container-fluid {
-  background-color:black;
+  padding-right: 0px;
+  padding-left: 0px;
 
 }
 .app-not-logged-in {
   font-family: 'Playfair Display', serif;
   /* font-family: 'Helvetica', sans-serif; */
   color:white;
-  background-image: url("/static/img/background.jpg");
+  background-image: url("/static/img/arch.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
 }
 
 .app-logged-in {
   font-family: 'Playfair Display', serif;
-  color:black;
-  background-image: url("/static/img/notebook.png");
+  color:white;
+  /* border-color: black; */
+  background-image: url("/static/img/arch.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .testimonial-group > .row {
@@ -27,19 +31,15 @@
   float: none;
 }
 
-/* .container {
-  min-height: 100%;
-} */
+.dashboard {
+  background-image: url("/static/img/bedge_grunge.png");
+  background-image: url("/static/img/wood.png");
+  
+}
 
-/* body {
-  height: 100%;
-} */
-
-/* .fill {
-  min-height: 100%;
-  height: 100%;
-} */
-
+#google-map {
+  color:black;
+}
 
 
 h1 {

@@ -29,7 +29,7 @@ class Login extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-            console.log("Res from login", response);
+            // console.log("Res from login", response);
             alert(response.status)
             if (response.success) {
               this.props.handleSuccessfulAuth(response);
@@ -106,7 +106,7 @@ class Registration extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         alert("register button clicked");
-        console.log(this.state);
+        // console.log(this.state);
         fetch('/api/register', {
             method:"POST",
             body: JSON.stringify(this.state),
@@ -114,7 +114,7 @@ class Registration extends React.Component {
         })
         .then(r => r.json())
         .then(response => {
-          console.log("registration res", response)
+          // console.log("registration res", response)
           if (response.success) {
             this.props.handleSuccessfulAuth(response);
           }
@@ -205,7 +205,7 @@ class Homepage extends React.Component {
   }
 
   handleSuccessfulAuth(data) {
-    console.log("success", data);
+    // console.log("success", data);
     this.props.handleLogin(data);
     this.props.history.push("/dashboard");
   }
@@ -277,7 +277,7 @@ class Dashboard extends React.Component {
     .then(r => r.json())
       .then(response => {
           if (this._isMounted) {
-            console.log("greet",response);
+            // console.log("greet",response);
           this.setState({user_name:response.user_name.user_fname+" "+response.user_name.user_lname})
         }
       });
@@ -290,11 +290,13 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-    <div>
+    <div className="dashboard">
       <div className="row greeting p-4">
         <h2>{this.state.user_name}'s Dashboard</h2>
         {/* <h1>Status: {this.state.loggedInStatus}</h1> */}
-        <button className="btn btn-light" onClick = {() => this.handleLogoutClick()}>Logout</button>
+          <div className="col-1">
+            <button className="btn btn-light" onClick = {() => this.handleLogoutClick()}>Logout</button>
+          </div>
       </div>
       <ProgramContainer 
         user_id={this.state.user_id} 

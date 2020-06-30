@@ -33,7 +33,7 @@ class App extends React.Component {
                     // console.log("finished setting", this.state.user_id);
             }
         } catch(err) {
-            console.log(err)
+            // console.log(err)
         }
       }
     
@@ -43,7 +43,7 @@ class App extends React.Component {
 
 
     handleLogin(data) {
-        console.log("data recieved", data, typeof(data.success))
+        // console.log("data recieved", data, typeof(data.success))
         if(data.success) {
             this.setState({
                 loggedInStatus:"LOGGED_IN",
@@ -51,7 +51,7 @@ class App extends React.Component {
             })
             localStorage.setItem("user_id", data.user_id)
         }
-        console.log(this.state.user_id)
+        // console.log(this.state.user_id)
     }
 
     handleLogout() {
