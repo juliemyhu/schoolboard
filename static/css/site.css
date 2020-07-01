@@ -34,17 +34,19 @@
 .dashboard {
   background-image: url("/static/img/bedge_grunge.png");
   background-image: url("/static/img/wood.png");
-  
 }
 
 #google-map {
   color:black;
-}
+  text-align: center;
 
+}
 
 h1 {
   text-align: center;
   /* background-color:gray; */
 }
 
-
+.card {
+  background-color: none;
+}
