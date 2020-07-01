@@ -119,7 +119,7 @@ class ProgramForm extends React.Component {
         <CollegeDropdown key={college.name} onClick={this.handleSetCollege} collegeName ={college.name}>
         </CollegeDropdown>);
         return (
-        <div className="">
+        <div >
             <h3>Add School</h3>
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group row">
@@ -254,7 +254,7 @@ class ProgramFormContainer extends React.Component {
 
     render() {
         return ( 
-        <div>
+        <div className="col-3 p-2">
             {this.state.forms.map(form => (
                 <ProgramForm 
                     key={form.id} 
@@ -311,10 +311,16 @@ class Program extends React.Component {
                         <tr><td>{this.state.cohort}</td></tr>
                         <tr><td>Minimum GPA: {this.state.minimum_gpa}</td></tr>
                         <tr><td>Label: {this.state.label}</td></tr>
-                        <tr><td><a href={this.state.link}>Program Link</a></td></tr>
+                        <tr><td><a href={this.state.link}>Program Link</a> 
+                                    <button onClick={() => this.props.onDelete(this.props.program_id)} className="btn btn-outline-light">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fillRule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </button></td></tr>
                         </tbody>
                     </table>
-                    <button onClick={() => this.props.onDelete(this.props.program_id)} className="btn btn-outline-light ml-4">Delete</button>
+                    
                 </div>
                 <div>
                     <PrerequisiteContainer 
@@ -396,8 +402,8 @@ class ProgramContainer extends React.Component {
         return (
         <div className="testimonial-group">
             <div className="row p-4">
-             {this.state.programs.map(program => (
-                 <div  key = {program.program_id} className="col-3 p-2 border">
+                {this.state.programs.map(program => (
+                 <div key = {program.program_id} className="col-3 p-2 border">
                     <Program 
                         // key = {program.program_id}
                         program_id = {program.program_id}
@@ -414,9 +420,7 @@ class ProgramContainer extends React.Component {
                         c_lon = {program.college_lon}
                         onDelete={this.handleDelete}
                     ></Program>
-                </div>
-             ))}
-            
+                </div>))}   
                 <ProgramFormContainer
                     getNewProgram = {this.getNewProgram}
                     user_id={this.state.user_id}

@@ -38,7 +38,6 @@
 
 #google-map {
   color:black;
-  text-align: center;
 
 }
 
@@ -49,4 +48,8 @@ h1 {
 
 .card {
   background-color: none;
+}
+
+table {
+  overflow: hidden;
 }

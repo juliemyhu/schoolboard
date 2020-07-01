@@ -301,7 +301,7 @@ class Dashboard extends React.Component {
       <ProgramContainer 
         user_id={this.state.user_id} 
       ></ProgramContainer>
-
+    
       <GoogleMap user_id={this.state.user_id}/>
 
 

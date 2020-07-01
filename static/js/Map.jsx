@@ -179,12 +179,13 @@ class GoogleMap extends React.Component {
   
     render() {
       return (
-        <div
-          className="col-12"
-          id="google-map"
-          ref={this.googleMapRef}
-          style={{ width: '900px', height: '300px' }}
-        />
+        <div className="col-12 px-4 pb-4 offset-1.2">
+          <div
+            id="google-map"
+            ref={this.googleMapRef}
+            style={{ width: '1000px', height: '400px' }}
+          />
+        </div>
       )
     }
   }
