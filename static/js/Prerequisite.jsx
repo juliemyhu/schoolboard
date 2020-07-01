@@ -37,10 +37,10 @@ class PrerequisiteForm extends React.Component {
     render() {
         return (
             <div>
-                <button class="btn btn-outline-light" type="button" data-toggle="collapse" data-target={"#collapseExample" + this.state.program_id} aria-expanded="false" aria-controls="collapseExample">
+                <button className="btn btn-outline-light" type="button" data-toggle="collapse" data-target={"#collapseExample" + this.state.program_id} aria-expanded="false" aria-controls="collapseExample">
                      + 
                 </button>
-                <div class="collapse" id={"collapseExample" + this.state.program_id}>
+                <div className="collapse" id={"collapseExample" + this.state.program_id}>
                     <div>
                         <form onSubmit={this.handleSubmit} >
                             <div className="form-group row">
@@ -120,18 +120,17 @@ class Prerequisite extends React.Component {
 
     render() {
         return (
-            <div>
-                <table>
+            
                     <tbody>
-                    <tr><td>Name: {this.props.name}</td></tr>
-                    <tr><td>Units: {this.props.units}</td></tr>
-                    <tr><td>Grade: {this.props.grade}</td></tr>
-                    <tr><td>Status: {this.props.status}</td></tr>
+                        <tr>
+                            <td>{this.props.name}</td>
+                            <td>{this.props.units}</td>
+                            <td>{this.props.grade}</td>
+                            <td>{this.props.status}</td>
+                            <td><button onClick= {() => this.props.onDelete(this.props.prerequisite_id)}  className="btn btn-outline-light ml-4">del</button></td>
+                        </tr>
                     </tbody>
-                </table>
-                <button onClick= {() => this.props.onDelete(this.props.prerequisite_id)}  className="btn btn-outline-light ml-4">Delete</button>
-                {/* <button onClick= {() => this.props.onEdit(this.props.prerequisite_id)} className="btn btn-outline-primary">Edit</button> */}
-            </div>)
+            )
     }
 }
 
@@ -191,6 +190,17 @@ class PrerequisiteContainer extends React.Component {
         return (
             <div>
                 <h3>Prerequisites:</h3>
+                <table>
+                    <thead>
+                        <tr>
+
+                        <th>Name</th>
+                        <th>Grade</th>
+                        <th>Units</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+                        </tr>
+                    </thead>
                 {this.state.prereqs.map(prereq => (
                     <Prerequisite 
                         key={prereq.name}
@@ -203,6 +213,7 @@ class PrerequisiteContainer extends React.Component {
                         // onEdit={this.handleEdit}
                     ></Prerequisite>
                 ))}
+                </table>
                 <PrerequisiteForm 
                     getNewPrereq = {this.getNewPrerequisite}
                     program_id= {this.state.program_id}>

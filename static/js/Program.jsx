@@ -397,7 +397,7 @@ class ProgramContainer extends React.Component {
         <div className="testimonial-group">
             <div className="row p-4">
              {this.state.programs.map(program => (
-                 <div  key = {program.program_id} className="col-4 p-2 border">
+                 <div  key = {program.program_id} className="col-3 p-2 border">
                     <Program 
                         // key = {program.program_id}
                         program_id = {program.program_id}
