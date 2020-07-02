@@ -28,7 +28,7 @@ class GoogleMap extends React.Component {
         // console.log("map fetch response: ", response);
         const map = new window.google.maps.Map(document.getElementById('google-map'), {
             center: { lat: 47.613280, lng: -122.349750 },
-            zoom: 8
+            zoom: 12
           });
           this.initMap(map);
           
@@ -179,11 +179,11 @@ class GoogleMap extends React.Component {
   
     render() {
       return (
-        <div className="col-lg px-4 pb-4 offset-3">
+        <div className="col px-4 pb-4 offset-1">
           <div
             id="google-map"
             ref={this.googleMapRef}
-            style={{ width: '1000px', height: '400px' }}
+            style={{ width: '1600px', height: '400px' }}
           />
         </div>
       )
