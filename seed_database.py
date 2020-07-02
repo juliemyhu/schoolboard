@@ -27,17 +27,31 @@ for college in college_data:
 
     colleges_in_db.append(db_college)
 
-crud.create_user("Test","User","user@user.com", "123")
-crud.create_program("1","123961","PharmD","Fall 2020","2.8","Reach","https://pharmacyschool.usc.edu/apply/admission/requirements/")
-crud.create_program("1","110653","PharmD","Fall 2020","2.5","Match","https://pharmacyschool.usc.edu/apply/admission/requirements/")
-crud.create_program("1","123961","PharmD","Fall 2020","3.0","Reach","https://pharmacyschool.usc.edu/apply/admission/requirements/")
-crud.create_prerequisite(1, "Bio",4, "A", "Complete")
-crud.create_prerequisite(1, "Chem",4, "A", "In Progress")
+# crud.create_user("Test","User","user@user.com", "123")
+# crud.create_program("1","123961","PharmD","Fall 2020","2.8","Reach","https://pharmacyschool.usc.edu/apply/admission/requirements/")
+# crud.create_program("1","110653","PharmD","Fall 2020","2.5","Match","https://pharmacyschool.usc.edu/apply/admission/requirements/")
+# crud.create_prerequisite(1, "Bio",4, "A", "Complete")
+# crud.create_prerequisite(1, "Chem",4, "A", "In Progress")
+# crud.create_prerequisite(2, "Anatomy",4, "B", "In Progress")
+# crud.create_prerequisite(1, "Physio",4, "A", "Complete")
 
 
 
 crud.create_user("Julie","Hu","julie@user.com", "123")
-crud.create_program("2","123961","DDS","Spring 2020","2.5","Match","https://dentistry.usc.edu/admission/doctor-of-dental-surgery-dds/" )
-crud.create_program("2","110653","DDS","Spring 2020","3.0","Match","https://dentistry.ucsf.edu/programs/dds/admissions/prerequisites" ) 
-crud.create_prerequisite(4, "Bio",4, "A", "Complete")
-crud.create_prerequisite(4, "Chem",4, "B", "In Progress")
+crud.create_program("1","123961","PharmD","Spring 2020","2.5","Match","https://pharmacyschool.usc.edu/apply/admission/requirements/" )
+crud.create_program("1","110653","PharmD","Fall 2020","3.0","Match","https://pharmsci.uci.edu/") 
+
+crud.create_prerequisite(1, "Bio",4, "A", "Complete")
+crud.create_prerequisite(1, "Chem",4, "B", "In Progress")
+crud.create_prerequisite(1, "Anatomy",4, "B", "In Progress")
+crud.create_prerequisite(1, "Physio",4, "A", "Complete")
+crud.create_prerequisite(1, "Math",4, "B", "Complete")
+crud.create_prerequisite(1, "Public Speaking",4, " ", "Planned")
+
+
+
+crud.create_prerequisite(2, "Bio",4, "A", "Complete")
+crud.create_prerequisite(2, "Micro",4, "B", "In Progress")
+crud.create_prerequisite(2, "Anatomy",4, "B", "In Progress")
+crud.create_prerequisite(2, "Physio",4, "A", "Complete")
+crud.create_prerequisite(2, "Econ",4, " ", "Planned")
