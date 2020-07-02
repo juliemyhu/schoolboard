@@ -32,7 +32,7 @@
 }
 
 .dashboard {
-  background-image: url("/static/img/bedge_grunge.png");
+  /* background-image: url("/static/img/bedge_grunge.png"); */
   background-image: url("/static/img/wood.png");
 }
 
@@ -50,6 +50,23 @@ h1 {
   background-color: none;
 }
 
-table {
-  overflow: hidden;
+.td {
+  font-weight: bold;
+}
+
+.a {
+  color:black
+}
+
+.college-info {
+  /* background-image: url("/static/img/school.png"); */
+  background-color: bisque;
+  background-repeat: repeat;
+  background-position: left top;
+  border-radius: 25px;
+
+  /* background-image: url("/static/img/notebook.png"); */
+  background-image: url("/static/img/retina_wood_@2X.png");
+  color: black
+
 }

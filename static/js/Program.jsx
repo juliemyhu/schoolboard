@@ -301,8 +301,8 @@ class Program extends React.Component {
 
     render() {
         return (
-            <div className="" >
-                <div>
+            <div className="program p-2">
+                <div >
                     <table>
                         <tbody>
                         <tr><td>{this.state.c_name}</td></tr>
@@ -400,10 +400,10 @@ class ProgramContainer extends React.Component {
 
     render() {
         return (
-        <div className="testimonial-group">
-            <div className="row p-4">
+        <div className="testimonial-group program-container">
+            <div className="row p-4 ">
                 {this.state.programs.map(program => (
-                 <div key = {program.program_id} className="col-3 p-2 border">
+                 <div key = {program.program_id} className="col-3 m-2 college-info">
                     <Program 
                         // key = {program.program_id}
                         program_id = {program.program_id}
