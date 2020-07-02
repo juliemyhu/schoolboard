@@ -37,7 +37,7 @@ class PrerequisiteForm extends React.Component {
     render() {
         return (
             <div>
-                <button className="btn btn-outline-light" type="button" data-toggle="collapse" data-target={"#collapseExample" + this.state.program_id} aria-expanded="false" aria-controls="collapseExample">
+                <button className="btn btn-outline-dark" type="button" data-toggle="collapse" data-target={"#collapseExample" + this.state.program_id} aria-expanded="false" aria-controls="collapseExample">
                      + 
                 </button>
                 <div className="collapse" id={"collapseExample" + this.state.program_id}>
@@ -94,7 +94,7 @@ class PrerequisiteForm extends React.Component {
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" className="btn btn-outline-light">Add</button> 
+                            <button type="submit" className="btn btn-outline-dark">Add</button> 
                         </form>
                 </div>
                 </div>
@@ -197,7 +197,7 @@ class PrerequisiteContainer extends React.Component {
     render() {
         return (
             <div>
-                <h3>Prerequisites:</h3>
+                <h4 className="p-2">Prerequisites:</h4>
                 <table>
                     <thead>
                         <tr>

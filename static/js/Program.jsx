@@ -305,7 +305,7 @@ class Program extends React.Component {
                 <div >
                     <table>
                         <tbody>
-                        <tr><td>{this.state.c_name}</td></tr>
+                        <tr><td id="display-college-name">  {this.state.c_name}</td></tr>
                         <tr><td>{this.state.c_city}, {this.state.c_state} </td></tr>
                         <tr><td>{this.state.name} Program</td></tr>
                         <tr><td>{this.state.cohort}</td></tr>

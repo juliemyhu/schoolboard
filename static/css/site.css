@@ -51,7 +51,7 @@ h1 {
 }
 
 .td {
-  font-weight: bold;
+  font-weight:bold
 }
 
 .a {
@@ -69,4 +69,17 @@ h1 {
   background-image: url("/static/img/retina_wood_@2X.png");
   color: black
 
+}
+
+#display-college-name {
+  font-size: 24px;
+  /* word-wrap: break-word; */
+  white-space: pre-line;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 15px 0;
+  white-space: pre-line;
+  /* word-wrap: break-word; */
 }
