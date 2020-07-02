@@ -144,7 +144,7 @@ class GoogleMap extends React.Component {
           });
 
           infoWindow.setPosition(pos);
-          infoWindow.setContent('Here you are. Close this box and zoom out to see your schools');
+          infoWindow.setContent('Here you are! Close this box and zoom out to see your schools. (*Note if you just added a new school, you may need to refresh first to see it on the map)');
           infoWindow.open(map);
           map.setCenter(pos);
         }, function() {
