@@ -89,7 +89,7 @@ class PrerequisiteForm extends React.Component {
                                     <select className="form-control" id="prereqstatus" name="status" value={this.state.status} onChange={this.handleInputChange}>
                                         <option value="choose" disabled>Status</option>
                                         <option value="Complete">Complete</option>
-                                        <option value="In-progress">In Progress</option>
+                                        <option value="In-Progress">In-Progress</option>
                                         <option value="Planned">Planned</option>
                                     </select>
                                 </div>
@@ -197,15 +197,15 @@ class PrerequisiteContainer extends React.Component {
     render() {
         return (
             <div>
-                <h4 className="p-2">Prerequisites:</h4>
+                {/* <h4 className="p-2">Prerequisites:</h4> */}
                 <table>
                     <thead>
                         <tr>
-                        <th>Name</th>
-                        <th>Grade</th>
-                        <th>Units</th>
-                        <th>Status</th>
-                        <th>Delete</th>
+                            <th>Prerequisite</th>
+                            <th>Grade</th>
+                            <th>Units</th>
+                            <th>Status</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                 {this.state.prereqs.map(prereq => (

@@ -298,11 +298,19 @@ class Dashboard extends React.Component {
             <button className="btn btn-light" onClick = {() => this.handleLogoutClick()}>Logout</button>
           </div>
       </div>
+      <div className="row googlemap">
+        {/* <div className="col-12"> */}
+          <GoogleMap user_id={this.state.user_id}/>
+        {/* </div> */}
+        
+      </div>
+      
+
       <ProgramContainer 
         user_id={this.state.user_id} 
       ></ProgramContainer>
     
-      <GoogleMap user_id={this.state.user_id}/>
+      
 
 
     </div>

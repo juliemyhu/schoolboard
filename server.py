@@ -147,8 +147,9 @@ def add_prereqiuiste():
 	
 	data = request.get_json()
 
-	grade = data.get('grade')
-	name = data.get('name')
+	grade = data.get('grade').title()
+	name = data.get('name').title()
+	print("is this capitalized",name)
 	status = data.get('status')
 	units= data.get('units')
 	program_id = data.get('program_id')

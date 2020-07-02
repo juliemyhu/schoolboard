@@ -73,13 +73,15 @@ h1 {
 
 #display-college-name {
   font-size: 24px;
-  /* word-wrap: break-word; */
+  word-wrap: break-word;
   white-space: pre-line;
 }
 
 table {
   border-collapse: separate;
-  border-spacing: 15px 0;
+  border-spacing: 10px 0;
   white-space: pre-line;
-  /* word-wrap: break-word; */
+  /* table-layout:fixed; */
+  width:100%;
+  word-wrap: break-word;
 }

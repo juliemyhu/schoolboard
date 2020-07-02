@@ -302,7 +302,7 @@ class Program extends React.Component {
     render() {
         return (
             <div className="program p-2">
-                <div >
+                <div>
                     <table>
                         <tbody>
                         <tr><td id="display-college-name">  {this.state.c_name}</td></tr>
