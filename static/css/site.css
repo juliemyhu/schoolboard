@@ -38,6 +38,7 @@
 
 #google-map {
   color:black;
+  overflow: hidden;
 
 }
 
