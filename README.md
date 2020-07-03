@@ -43,12 +43,16 @@ SchoolBoard has not yet been deployed, so here is how to run the app locally on 
 4. go to localhost and start using SchoolBoards
 
 ### Using SchoolBoards
-1. Register on hompage programs 
+1. Register on Hompage
 ![](/static/screenshots/register-example.png?raw=true)
-![](/static/screenshots/first-login?raw=true)
+2. Login
+![](/static/screenshots/first-login.png?raw=true)
+3. Add Schools you are interested in 
 ![](/static/screenshots/addschool.gif?raw=true)
-![](/static/screenshots/add-prereq.png?)
-![](/static/screenshots/map-example.png?)
+4. Add Prerequisite courses
+![](/static/screenshots/add-prereq.png?raw=true)
+5. View Schools in Map
+![](/static/screenshots/map-example.png?raw=true)
 
 ### Version 2.0
 ###### Filter Feature
