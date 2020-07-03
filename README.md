@@ -44,11 +44,11 @@ SchoolBoard has not yet been deployed, so here is how to run the app locally on 
 
 ### Using SchoolBoards
 1. Register on hompage programs 
-![alt text](/static/screenshots/register-example.png?raw=true)
-![alt text](/static/screenshots/first-login)
-![alt text](/static/screenshots/homepage-img)
-![alt text](/static/screenshots/homepage-img)
-![](/static/screenshots/addschool.gif)
+![](/static/screenshots/register-example.png?raw=true)
+![](/static/screenshots/first-login?raw=true)
+![](/static/screenshots/addschool.gif?raw=true)
+![](/static/screenshots/add-prereq.png?)
+![](/static/screenshots/map-example.png?)
 
 ### Version 2.0
 ###### Filter Feature
