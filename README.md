@@ -64,16 +64,12 @@ SchoolBoard has not yet been deployed, so here is how to run the app locally on 
 - cost
 - standardized test 
 
-> quote
-
-
-
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
 ### About the Author 
 Julie Hu is a previous pre-health student turned Software Engineer in the Bay Area. You can find more information in the links below
 
-[Gitbub](https://github.com/juliemyhu "Julies Github")
-[LinkedIn](https://www.linkedin.com/in/julie-hu/ "Julies linkedin")
+[Gitbub](https://github.com/juliemyhu)
+
+[LinkedIn](https://www.linkedin.com/in/julie-hu/)
 
 
 
