@@ -1,6 +1,5 @@
 # SchoolBoard 
 
----
 School Board is a personalized school planner app that helps pre-graduate students in their application process. Users can register with the app,  add colleges they are interested in, and keep track of a programs prerequisite requirements. 
 
 ### Technologies Used
@@ -21,17 +20,35 @@ School Board is a personalized school planner app that helps pre-graduate studen
 ### How to locally run SchoolBoard
 SchoolBoard has not yet been deployed, so here is how to run the app locally on your machine.
 
+1. Obtain API keys. Make sure the repository has access to keys. 
+    - [College AI API](https://api-manager.collegeai.com/)
+    - [Google Maps API](https://developers.google.com/maps/documentation)
+2. Run in virtual environment (optional)
+    - download a virtual environment like [Vagrant](https://www.vagrantup.com/downloads)
+    ```bash
+    vagrant up #activate vagrant
+    vagrant ssh #login to vagrant
+    cd src/projects/school_board # go to directory where school_board is located 
+    virtualenv env # set up directory to have virtual env 
+    source env/bin/activate #activate virtual environment
+    pip3 install -r requirements #download requirements into virtual environment
+    python3 server.py # launch server
+    ```
+3. If not using a virtual environment, make sure you install requirements in local environment
 
-```bash
-pip3 install -r requirements
-```
-```python
-import foobar
+    ```bash
+    pip3 install -r requirements # download requirements into local environment 
+    python3 server.py # launch server
+    ```
+4. go to localhost and start using SchoolBoards
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
+### Using SchoolBoards
+1. Register on hompage programs 
+![alt text](/static/screenshots/register-example.png?raw=true)
+![alt text](/static/screenshots/first-login)
+![alt text](/static/screenshots/homepage-img)
+![alt text](/static/screenshots/homepage-img)
+![](/static/screenshots/addschool.gif)
 
 ### Version 2.0
 ###### Filter Feature
@@ -55,6 +72,5 @@ Julie Hu is a previous pre-health student turned Software Engineer in the Bay Ar
 [LinkedIn](https://www.linkedin.com/in/julie-hu/ "Julies linkedin")
 
 
-![](addschool.gif)
 
 
