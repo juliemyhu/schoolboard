@@ -86,3 +86,12 @@ table {
   width:100%;
   word-wrap: break-word;
 }
+
+div {
+  border-collapse: separate;
+  border-spacing: 10px 0;
+  white-space: pre-line;
+  /* table-layout:fixed; */
+  width:100%;
+  word-wrap: break-word;
+}

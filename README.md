@@ -1,6 +1,8 @@
 # SchoolBoard 
 
-School Board is a personalized school planner app that helps pre-graduate students in their application process. Users can register with the app,  add colleges they are interested in, and keep track of a programs prerequisite requirements. 
+School Board is a personalized school planner app that helps pre-graduate students in their application process. Users can register with the app,  add colleges they are interested in, and keep track of a programs prerequisite requirements.They can also see where the  colleges are located in a little Google Map feature. 
+
+[To see a short video presentation of SchoolBoard on Youtube, click this link](https://www.youtube.com/watch?v=kOM-kQPbAHo)
 
 ### Technologies Used
 - Python
@@ -20,10 +22,11 @@ School Board is a personalized school planner app that helps pre-graduate studen
 ### How to locally run SchoolBoard
 SchoolBoard has not yet been deployed, so here is how to run the app locally on your machine.
 
-1. Obtain API keys. Make sure the repository has access to keys. 
+1. Download this repository 
+2. Obtain API keys. Make sure the repository has access to keys. (I put my API in a secrets.sh file and ran it in my virtual env) 
     - [College AI API](https://api-manager.collegeai.com/)
     - [Google Maps API](https://developers.google.com/maps/documentation)
-2. Run in virtual environment (optional)
+3. Add a virtual environment to the directory (optional)
     - download a virtual environment like [Vagrant](https://www.vagrantup.com/downloads)
     ```bash
     vagrant up #activate vagrant
@@ -34,13 +37,13 @@ SchoolBoard has not yet been deployed, so here is how to run the app locally on 
     pip3 install -r requirements #download requirements into virtual environment
     python3 server.py # launch server
     ```
-3. If not using a virtual environment, make sure you install requirements in local environment
+4. If not using a virtual environment, make sure you install requirements in local environment
 
     ```bash
     pip3 install -r requirements # download requirements into local environment 
     python3 server.py # launch server
     ```
-4. go to localhost and start using SchoolBoards
+5. After running server.py go to localhost and start using SchoolBoards!
 
 ### Using SchoolBoards
 1. Register on Hompage
