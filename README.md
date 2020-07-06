@@ -59,8 +59,8 @@ SchoolBoard has not yet been deployed, so here is how to run the app locally on 
 
 ### Version 2.0
 ###### Filter Feature
-- Alphabetically
-- By Label
+- Alphabetically (sorts programs alphabetically)
+- By Label (sorts programs by users Label)
 ###### Be able to add more program information such as 
 - letter of recommendations
 - important dates 
@@ -68,9 +68,9 @@ SchoolBoard has not yet been deployed, so here is how to run the app locally on 
 - standardized test 
 
 ### About the Author 
-Julie Hu is a previous pre-health student turned Software Engineer in the Bay Area. You can find more information in the links below
+Julie Hu is a previous pre-health student turned Software Engineer in the Bay Area. You can find more information about her in the links below
 
-[Gitbub](https://github.com/juliemyhu)
+[Github](https://github.com/juliemyhu)
 
 [LinkedIn](https://www.linkedin.com/in/julie-hu/)
 
