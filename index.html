@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Schoolboard by juliemyhu</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/juliemyhu/schoolboard">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Schoolboard</h1>
+            <h2>Project</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/juliemyhu/schoolboard/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/juliemyhu/schoolboard/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a id="schoolboard" class="anchor" href="#schoolboard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SchoolBoard</h1>
+<p>School Board is a personalized school planner app that helps pre-graduate students in their application process. Users can register with the app,  add colleges they are interested in, and keep track of a programs prerequisite requirements.They can also see where the  colleges are located in a little Google Map feature.</p>
+<p><a href="https://www.youtube.com/watch?v=kOM-kQPbAHo">To see a short video presentation of SchoolBoard on Youtube, click this link</a></p>
+<h3>
+<a id="technologies-used" class="anchor" href="#technologies-used" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Technologies Used</h3>
+<ul>
+<li>Python</li>
+<li>Flask</li>
+<li>PostgresSQL</li>
+<li>SQLAlchemy</li>
+<li>Javascript</li>
+<li>JSON</li>
+<li>CSS</li>
+<li>HTML</li>
+<li>Bootstrap</li>
+<li>React</li>
+<li>CollegeAI API</li>
+<li>Google Maps API</li>
+</ul>
+<h3></h3>
+<p>(Dependencies are listed in requirements.txt)</p>
+<h3>
+<a id="how-to-locally-run-schoolboard" class="anchor" href="#how-to-locally-run-schoolboard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to locally run SchoolBoard</h3>
+<p>SchoolBoard has not yet been deployed, so here is how to run the app locally on your machine.</p>
+<ol>
+<li>
+<p>Download this repository</p>
+</li>
+<li>
+<p>Obtain API keys. Make sure the repository has access to keys. (I put my API in a secrets.sh file and ran it in my virtual env)</p>
+<ul>
+<li><a href="https://api-manager.collegeai.com/">College AI API</a></li>
+<li><a href="https://developers.google.com/maps/documentation">Google Maps API</a></li>
+</ul>
+</li>
+<li>
+<p>Add a virtual environment to the directory (optional)</p>
+<ul>
+<li>download a virtual environment like <a href="https://www.vagrantup.com/downloads">Vagrant</a>
+</li>
+</ul>
+<div class="highlight highlight-source-shell"><pre>vagrant up <span class="pl-c"><span class="pl-c">#</span>activate vagrant</span>
+vagrant ssh <span class="pl-c"><span class="pl-c">#</span>login to vagrant</span>
+<span class="pl-c1">cd</span> src/projects/school_board <span class="pl-c"><span class="pl-c">#</span> go to directory where school_board is located </span>
+virtualenv env <span class="pl-c"><span class="pl-c">#</span> set up directory to have virtual env </span>
+<span class="pl-c1">source</span> env/bin/activate <span class="pl-c"><span class="pl-c">#</span>activate virtual environment</span>
+pip3 install -r requirements <span class="pl-c"><span class="pl-c">#</span>download requirements into virtual environment</span>
+python3 server.py <span class="pl-c"><span class="pl-c">#</span> launch server</span></pre></div>
+</li>
+<li>
+<p>If not using a virtual environment, make sure you install requirements in local environment</p>
+<div class="highlight highlight-source-shell"><pre>pip3 install -r requirements <span class="pl-c"><span class="pl-c">#</span> download requirements into local environment </span>
+python3 server.py <span class="pl-c"><span class="pl-c">#</span> launch server</span></pre></div>
+</li>
+<li>
+<p>After running server.py go to localhost and start using SchoolBoards!</p>
+</li>
+</ol>
+<h3>
+<a id="using-schoolboards" class="anchor" href="#using-schoolboards" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using SchoolBoards</h3>
+<ol>
+<li>Register on Hompage
+<img src="/static/screenshots/register-example.png?raw=true" alt="">
+file:///Users/julie/src/project/schoolboard/static/screenshots/register-example.png</li>
+<li>Login
+<img src="/static/screenshots/first-login.png?raw=true" alt="">
+</li>
+<li>Add Schools you are interested in
+<img src="/static/screenshots/addschool.gif?raw=true" alt="">
+</li>
+<li>Add Prerequisite courses
+<img src="/static/screenshots/add-prereq.png?raw=true" alt="">
+</li>
+<li>View Schools in Map
+<img src="/static/screenshots/map-example.png?raw=true" alt="">
+</li>
+</ol>
+<h3>
+<a id="version-20" class="anchor" href="#version-20" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 2.0</h3>
+<h6>
+<a id="filter-feature" class="anchor" href="#filter-feature" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Filter Feature</h6>
+<ul>
+<li>Alphabetically (sorts programs alphabetically)</li>
+<li>By Label (sorts programs by users Label)</li>
+</ul>
+<h6>
+<a id="be-able-to-add-more-program-information-such-as" class="anchor" href="#be-able-to-add-more-program-information-such-as" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Be able to add more program information such as</h6>
+<ul>
+<li>letter of recommendations</li>
+<li>important dates</li>
+<li>cost</li>
+<li>standardized test</li>
+</ul>
+<h3>
+<a id="about-the-author" class="anchor" href="#about-the-author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About the Author</h3>
+<p>Julie Hu is a previous pre-health student turned Software Engineer in the Bay Area. You can find more information about her in the links below</p>
+<p><a href="https://github.com/juliemyhu">Github</a></p>
+<p><a href="https://www.linkedin.com/in/julie-hu/">LinkedIn</a></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/juliemyhu">juliemyhu</a> can be found on <a href="https://github.com/juliemyhu/schoolboard">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
