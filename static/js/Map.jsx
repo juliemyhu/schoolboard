@@ -179,7 +179,7 @@ class GoogleMap extends React.Component {
   
     render() {
       return (
-        <div className="col px-4 pb-4 offset-1">
+        <div className="row">
           <div
             id="google-map"
             ref={this.googleMapRef}
