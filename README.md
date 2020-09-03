@@ -68,7 +68,7 @@ SchoolBoard has not yet been deployed, so here is how to run the app locally on 
 - standardized test 
 
 ### About the Author 
-Julie Hu is a previous pre-health student turned Software Engineer in the Bay Area. You can find more information about her in the links below
+Julie Hu is a previous pre-health student turned Software Engineer in the Bay Area. You can find more information about her in the links below:
 
 [Github](https://github.com/juliemyhu)
 
