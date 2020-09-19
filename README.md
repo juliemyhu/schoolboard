@@ -1,4 +1,6 @@
 # SchoolBoard 
+SchoolBoard is deployed as of September 2020 
+[Live Demo] (http://34.216.56.161)
 
 School Board is a personalized school planner app that helps pre-graduate students in their application process. Users can register with the app,  add colleges they are interested in, and keep track of a programs prerequisite requirements.They can also see where the  colleges are located in a little Google Map feature. 
 
@@ -20,7 +22,7 @@ School Board is a personalized school planner app that helps pre-graduate studen
 ###
 (Dependencies are listed in requirements.txt)
 ### How to locally run SchoolBoard
-SchoolBoard has not yet been deployed, so here is how to run the app locally on your machine.
+Here is how to run the app locally on your machine.
 
 1. Download this repository 
 2. Obtain API keys. Make sure the repository has access to keys. (I put my API in a secrets.sh file and ran it in my virtual env) 
