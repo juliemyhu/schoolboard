@@ -1,6 +1,5 @@
 # SchoolBoard 
-SchoolBoard is deployed as of September 2020 
-[Live Demo](http://34.216.56.161)
+SchoolBoard was deployed from September 2020 - June 2021
 
 School Board is a personalized school planner app that helps pre-graduate students in their application process. Users can register with the app,  add colleges they are interested in, and keep track of a programs prerequisite requirements.They can also see where the  colleges are located in a little Google Map feature. 
 
